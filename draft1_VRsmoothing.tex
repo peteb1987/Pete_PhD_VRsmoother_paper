@@ -1,0 +1,181 @@
+\documentclass[journal]{IEEEtran}
+
+
+\usepackage{cite}
+\usepackage[pdftex]{graphicx}
+\usepackage[cmex10]{amsmath}
+\usepackage{amsfonts}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{mdwmath}
+\usepackage{mdwtab}
+\usepackage{eqparbox}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{fixltx2e}
+\usepackage{url}
+\usepackage{color}
+
+\newenvironment{meta}[0]{\color{red} \em}{}
+
+% correct bad hyphenation here
+\hyphenation{}
+
+\begin{document}
+
+\title{Smoothing Algorithms for Variable Rate Models}
+
+\author{Pete~Bunch,~\IEEEmembership{}
+        Simon~Godsill,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
+\thanks{P. Bunch and S. Godsill are with the Department
+of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
+\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+
+% The paper headers
+\markboth{IEEE Transaction in Signal Processing,~Vol.~1, No.~1, January~1901}%
+{Bunch \& Godsill: Smoothing Algorithms for Variable Rate Models}
+
+% make the title area
+\maketitle
+
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+\begin{IEEEkeywords}
+
+\end{IEEEkeywords}
+
+
+
+\section{Introduction}
+
+\IEEEPARstart{T}{he} objective of sequential Bayesian inference is to estimate an imperfectly observed quantity as it varies over time. This is accomplished through the use of probabilistic models for the state evolution and measurement processes. Often, the latent state is a continuously varying quantity, whereas the observations are made at a discrete set of times. In these circumstances, it is simplest to discretise the state onto the same set of times as the observations. When the system is also Markovian, this leads to the standard ``fixed rate'' hidden Markov model (HMM). The standard HMM is poorly suited to systems where the state evolution contains discontinuities; for example, the price of a financial asset which may display large jumps at random times between periods of diffusion-like behaviour, or the kinematic state of a manoeuvring vehicle which may have sudden changes in the acceleration when turns begin or end. Such problems can be handled more naturally using a ``variable rate'' model, in which the state dynamics are conditioned upon a set of random changepoints which characterise transitions in behaviour.
+
+In a variable rate model, the set of changepoints and associated parameters are modelled as a marked point process (MPP), the mathematical properties of which are thoroughly set out in \cite{Jacobsen2006}. Conditional upon this MPP the state evolves according to some benign dynamics. In \cite{Godsill2007,Whiteley2011}, the conditional state evolution is treated as deterministic, while in \cite{Godsill2007a,Christensen2012} a conditionally linear-Gaussian state model is considered.
+
+The posterior distribution for the changepoint MPP is inherently nonlinear, and cannot be calculated analytically. Instead, inference must be conducted using numerical approximations. The particle filter (introduced by \cite{Gordon1993}) and smoother (see \cite{Doucet2000a,Godsill2004}) are schemes which approximate a posterior distribution using a set of samples, or ``particles'', drawn sequentially from it.  A thorough introduction to particle filtering and smoothing methods can be found in \cite{Cappe2007,Doucet2009}. In \cite{Godsill2007a,Godsill2007,Whiteley2011}, the particle filter was adapted for use with variable rate models, resulting in the variable rate particle filter (VRPF).
+
+The VRPF allows the changepoint sequence -- and hence the current state -- to be estimated sequentially as observations are received. However, estimates can often be improved later once further observations have been made. In this paper, we address the problem of smoothing in variable models, i.e. the estimation of the changepoint sequence and latent state given all the observations. This is achieved with an efficient backward sweep through the observations, in a similar manner to the method for standard HMMs described in \cite{Godsill2004}. Two new schemes are introduced: one for conditionally linear-Gaussian models which exploits the method of Rao-Blackwellisation; and a second for use with conditionally-deterministic models which uses an augmented target distribution in the style of an SMC sampler \cite{DelMoral2006}.
+
+{\meta Add a bit about structure of paper.}
+
+
+
+\section{Variable Rate Models} \label{sec:vr_models}
+
+We consider a general model from time $0$ to $T$, between which observations, $\{y_1 \dots y_N\}$, are made at times $\{t_1 \dots t_N = T\}$. During this period, an unknown number of changepoints, $K$, occur at times $\{\tau_0 = 0, \tau_1 \dots \tau_K \}$, each with associated changepoint parameters, $\{ u_0, u_1 \dots u_K \}$. The pairs $\{\tau_k, u_k\}$ are the elements of an marked point process (MPP). We will refer to the times of the MPP as the ``change-time sequence'' and marks as ``parameter sequence'', and both together as the ``changepoint sequence''. The latent state is a continuous-time process denoted $x(t)$. Discrete sets containing multiple values over time will be written as, e.g. $y_{1:n} = \{y_1 \dots y_n\}$.
+
+The objective for inference will be to estimate the changepoint sequence. This will be denoted as $\theta = \{\tau_{0:K}, u_{0:K}\}$. At a particular time $t_n$, the sequence will be divided into past $\theta_n = \{\tau_{j}, u_{j} \forall j : 0 \leq \tau_j < t_n \}$, and future $\theta_n^+ = \{\tau_{j}, u_{j} \forall j : t_n \leq \tau_j < T \}$. It will also be useful to define a variable for the changepoints which occur in the interval $[t_{n-1},t_n)$, $\theta_{n \setminus n-1} = \{\tau_{j}, u_{j} \forall j : t_{n-1} \leq \tau_j < t_n \}$.
+
+
+
+
+
+ which has values $\{ x_0, x_1 \dots x_K \}$ at the changepoints. 
+ Conditional upon a realisation of this process, $x(t)$ may be calculated deterministically.
+   The cardinality of these sets (i.e. the number of changepoints occurring in the appropriate range) is denoted $K_n$, $K_n^+$ and $K_{n \setminus n-1}$ respectively.
+%Note that $\theta_n$ not only conveys information about where changepoints occur, but also where they do not. i.e. it is implicit that $\tau_{K_n+1} > t_n$.
+
+The changepoint sequence is assumed to be a Markov process.
+
+\begin{IEEEeqnarray}{rCl}
+ \{\tau_k, u_k\} & \sim & p(u_k|\tau_k, \tau_{k-1}, u_{k-1}) p(\tau_k|\tau_{k-1}, u_{k-1}) \label{eq:cp_model}
+\end{IEEEeqnarray}
+
+In the manner of \cite{Whiteley2011}, a survivor function is defined as the probability that no new changepoint occurs before a given time.
+
+\begin{IEEEeqnarray}{rCl}
+ S(\tau_k, u_k, t) &=& P(\tau_{k+1}>t|\tau_k, u_k) \nonumber \\
+              &=& 1 - \int_{\tau_k}^{t} p(\xi|\tau_{k}, u_k) d\xi
+\end{IEEEeqnarray}
+
+It is now possible to write down a prior for the changepoint sequence, where we use the convention that $\tau_0 = 0$. The existence of such a density for a MPP is addressed in \cite{Jacobsen2006}.
+
+\begin{IEEEeqnarray}{rCl}
+p(\theta_n) & = & S(\tau_{K_n},t_n) p(u_0) \prod_{k=1}^{K_n} p(\tau_k, u_k| \tau_{k-1}, u_{k-1}) \label{eq:cp_sequence_prior}  .
+\end{IEEEeqnarray}
+
+Next we consider the state dynamics. A counting variable is introduced to keep track of the most recent changepoint to have occurred.
+
+\begin{IEEEeqnarray}{rCl}
+ \nu_t = \max(k : \tau_k<t)
+\end{IEEEeqnarray}
+
+Conditional upon the sequence of past changepoints, $\theta_n$, the state dynamics are given by a deterministic differential equation.
+
+\begin{IEEEeqnarray}{rCl}
+ dx(t) & = & \mathrm{f}(x(t), \tau_{\nu_t}, u_{\nu_t})
+\end{IEEEeqnarray}
+
+Assuming an analytic solution exists, a state transition function may be calculated.
+
+\begin{IEEEeqnarray}{rCll}
+ x(t) & = & f(x_{\nu_t}, v_{\nu_t}, \tau_{\nu_t}, t) &, \tau_{\nu_t} < t <= \tau_{\nu_t+1}    \label{eq:disc_time_state_diff_eq}
+\end{IEEEeqnarray}
+
+By choosing $t = \tau_{\nu_t+1}$, this equation specifies the state at the next changepoint time. Similarly, by choosing $t=t_n$, the state at the observation times is specified. These points will be denoted $\hat{x}_n$. Note than these points can be calculated deterministically given the initial state and past changepoint sequence.
+
+\begin{IEEEeqnarray}{rCll}
+ \hat{x}_n & = & f(x_0, \theta_n, t)   \label{eq:obs_time_state}
+\end{IEEEeqnarray}
+
+It is assumed for notational simplicity in the following sections that the initial state, $x_0$, is known a priori. This condition is easily relaxed.
+
+In a target tracking example, $\tau_{1:K}$ might specify the times at which manoeuvres start, and $u_{1:K}$ the accelerations or other motion parameters associated with each manoeuvre. $x(t)$ would be the kinematic state of the target.
+
+
+
+
+We consider a general model from time $0$ to $T$, between which observations, $\{y_1 \dots y_N\}$, are made at times $\{t_1 \dots t_N = T\}$. The linear state at these times is written as $\{x_1 \dots x_N\}$. During this period, an unknown number of changepoints, $K$, occur at times $\{ \tau_1 \dots \tau_K \}$, each with associated changepoint parameters, $\{ u_1 \dots u_K \}$. These are the marks of the MPP. Discrete sets containing multiple values over time will be written as, e.g. $y_{1:n} = \{y_1 \dots y_n\}$.
+
+The objective for inference will be to estimate the sequence of changepoints. This will be denoted as $\theta = \{\tau_{1:K}, u_{1:K}\}$. In addition, at a particular time $t_n$, the sequence will be divided into past $\theta_n = \{\tau_{j}, u_{j} \forall j : 0 \leq \tau_j < t_n \}$, and future $\theta_n^+ = \{\tau_{j}, u_{j} \forall j : t_n \leq \tau_j < T \}$. It will also be useful to define a variable for the changepoints which occur in the interval $[t_{n-1},t_n)$, $\theta_{n \setminus n-1} = \{\tau_{j}, u_{j} \forall j : t_{n-1} \leq \tau_j < t_n \}$. The cardinality of these sets (i.e. the number of changepoints occurring in the appropriate range) is denoted $K_n$, $K_n^+$ and $K_{n \setminus n-1}$ respectively.
+
+Note that $\theta_n$ not only conveys information about where changepoints occur, but also where they do not. i.e. it is implicit that $\tau_{K_n+1} > t_n$.%; furthermore that $\theta_n$ conveys less information than the two sets $\theta_{n-1}$ and $\theta_{n \setminus n-1}$ separately. The latter also impose the condition that $\tau_{K_{n-1}} < t_{n-1} < \tau_{K_{n-1}+1}$.
+
+Assuming a Markovian changepoint sequence, a conditionally linear-Gaussian variable rate model can now be expressed by the following system equations:
+%
+\begin{IEEEeqnarray}{rCl}
+ \{\tau_k, u_k\} & \sim & p(u_k|\tau_k, \tau_{k-1}, u_{k-1}) p(\tau_k|\tau_{k-1}) \label{eq:cp_model} \\
+ x_n & = & A_n(\theta_{n})x_{n-1} + w_n \\
+ y_n & = & C_n(\theta_{n})x_n + v_n  .
+\end{IEEEeqnarray}
+
+The random variables $w_n$ and $v_n$ have a zero-mean Gaussian distribution with covariance matrices $Q_n$ and $R_n$ respectively. The changepoint density will be constructed such that $P(\tau_k < \tau_{k-1}) = 0$. The factorisation of (\ref{eq:cp_model}) may be relaxed, but is assumed throughout as it simplifies the subsequent derivations.
+
+It will be useful to define the survivor function in the same manner as \cite{Whiteley2011}.
+%
+\begin{IEEEeqnarray}{rCl}
+ S(\tau_k, t) &=& P(\tau_{k+1}>t|\tau_k) \nonumber \\
+              &=& 1 - \int_{\tau_k}^{t} p(\xi|\tau_{k}) d\xi
+\end{IEEEeqnarray}
+
+Using the convention that $\tau_0 = 0$ and $u_0$ is known a priori, the prior distribution over the changepoint sequence, $\theta_n$, may now be expressed as,
+%
+\begin{IEEEeqnarray}{rCl}
+p(\theta_n) & = & S(\tau_{K_n},t_n) \prod_{k=1}^{K_n} p(\tau_k, u_k| \tau_{k-1}, u_{k-1}) \label{eq:cp_sequence_prior}  .
+\end{IEEEeqnarray}
+
+See \cite{Jacobsen2006} for a rigorous derivation of MPP probability measures.
+
+The tasks of filtering and smoothing may now be considered as estimation of the posterior distributions of $\theta$ and $x_{1:N}$.
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+Target tracking algorithms are commonly based upon fixed rate models (see, e.g. \cite{Li2003} for a thorough survey), in which the target kinematics (position, velocity, etc.) are estimated at a set of fixed times at which observations (e.g. radar measurements) are made. In \cite{Godsill2007a,Godsill2007}, variable rate models were introduced for tracking, in which the state trajectory is divided up by a set of changepoints between which the motion follows a deterministic path governed by motion parameters (accelerations, etc.) which are fixed for that division. The inference problem is hence reduced to estimation of the changepoint times and associated motion parameters. As noted in \cite{Whiteley2011}, these comprise a marked point process (MPP), the mathematical properties of which are thoroughly set out in \cite{Jacobsen2006}.
+
+We introduce piecewise-deterministic variable rate models in section~\ref{sec:pd_vr_models}, and review the VRPF in section~\ref{sec:pd_vrpf}. The new variable rate particle smoother (VRPS) algorithm is described in section~\ref{sec:pd_vrps}. In section~\ref{sec:tracking_models}, we adapt the intrinsic-coordinate models of \cite{Godsill2007a,Godsill2007} for use with the new smoothing algorithm. Simulations are presented in section~\ref{sec:simuations}.
+
+The posterior distribution of the changepoint sequence is analytically intractable, but may be estimated using a particle filter. When the conditional state dynamics are linear-Gaussian, the efficiency of this filter may be greatly improved by using the method of Rao-Blackwellisation (see, e.g. \cite{Casella1996,Doucet2000}). Rather than targeting the entire posterior distribution over changepoints and states, the particle filter is used to estimate only the nonlinear changepoint sequence, after which Kalman filtering and smoothing may be used to infer the linear states. This is the Rao-Blackwellised variable rate particle filter (RBVRPF) of \cite{Godsill2007a,Christensen2012}.
+
+In this paper, a new algorithm is described for use with conditionally linear-Gaussian variable rate models for estimation of the smoothing distribution, i.e. the distribution over the sequence of changepoints and linear states given all the observations. This uses a similar derivation to that of the fixed rate Rao-Blackwellised particle smoother of \cite{Sarkka2012}. The new algorithm is called the Rao-Blackwellised variable rate particle smoother (RBVRPS).
+
+We review the structure of conditionally linear-Gaussian variable rate models in section~\ref{sec:rbvr_models} and revise the RBVRPF in section~\ref{sec:rbvrpf}. The new smoothing algorithm is presented in section~\ref{sec:rbvrps} with supporting simulations in section~\ref{sec:simulations}. 
