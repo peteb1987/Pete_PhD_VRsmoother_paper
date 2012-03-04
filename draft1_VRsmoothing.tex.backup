@@ -79,8 +79,6 @@ The changepoint sequence is assumed to be a Markov process.
  \{\tau_k, u_k\} & \sim & p(u_k|\tau_k, \tau_{k-1}, u_{k-1}) p(\tau_k|\tau_{k-1}, u_{k-1}) \label{eq:cp_model}
 \end{IEEEeqnarray}
 
-The changepoint density will be constructed such that $P(\tau_k < \tau_{k-1}) = 0$.
-
 In the manner of \cite{Whiteley2011}, a survivor function is defined as the probability that no new changepoint occurs before a given time,
 %
 \begin{IEEEeqnarray}{rCl}
@@ -98,22 +96,17 @@ p(\theta_n) & = & S(\tau_{\nu_{t_n}},t_n) p(u_0) \prod_{k=1}^{\nu_{t_n}} p(\tau_
 
 \subsection{Conditionally Linear-Gaussian Models}
 
-A useful class of variable rate models is those whose state dynamics are linear-Gaussian conditional on the changepoint sequence. Such a model may be discretised onto the set of observation times in exactly the same manner as a standard the standard HMM.
+A useful class of variable rate model is those whose state dynamics are linear-Gaussian conditional on the changepoint sequence. Such a model may be discretised onto the set of observation times in exactly the same manner as the 
+
+The state equations for a conditionally linear-Gaussain variable rate model can be written as,
 %
 \begin{IEEEeqnarray}{rCl}
+ \{\tau_k, u_k\} & \sim & p(u_k|\tau_k, \tau_{k-1}, u_{k-1}) p(\tau_k|\tau_{k-1}) \label{eq:cp_model} \\
  x_n & = & A_n(\theta_{n})x_{n-1} + w_n \\
- y_n & = & C_n(\theta_{n})x_n + v_n       .
+ y_n & = & C_n(\theta_{n})x_n + v_n  .
 \end{IEEEeqnarray}
 
-The random variables $w_n$ and $v_n$ have a zero-mean Gaussian distribution with covariance matrices $Q_n(\theta_{n})$ and $R_n(\theta_{n})$ respectively.
-
-Conditionally linear-Gaussian variable rate models were introduced in \cite{Godsill2007a} for a financial inference algorithm. Changepoints correspond to jumps in the value or trend of a security, at which points the covariance, $Q_n(\theta_n)$ is inflated.
-
-
-
-\subsection{Conditionally Deterministic Models}
-
-
+The random variables $w_n$ and $v_n$ have a zero-mean Gaussian distribution with covariance matrices $Q_n$ and $R_n$ respectively. The changepoint density will be constructed such that $P(\tau_k < \tau_{k-1}) = 0$. The factorisation of (\ref{eq:cp_model}) may be relaxed, but is assumed throughout as it simplifies the subsequent derivations.
 
 
 
