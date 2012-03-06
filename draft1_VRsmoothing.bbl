@@ -179,4 +179,8 @@ S.~Sarkka, P.~Bunch, and S.~Godsill, ``A backward-simulation based
   models,'' in \emph{Preprint submitted to 16th IFAC Symposium on System
   Identification.}, 2012.
 
+\bibitem{Gilks1996}
+W.~Gilks, S.~Richardson, and D.~Spiegelhalter, \emph{Markov chain Monte Carlo
+  in practice}.\hskip 1em plus 0.5em minus 0.4em\relax Chapman and Hall, 1996.
+
 \end{thebibliography}

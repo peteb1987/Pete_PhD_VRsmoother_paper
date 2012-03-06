@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  5 MAR 2012 20:32
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  6 MAR 2012 15:42
 entering extended mode
 **draft1_VRsmoothing.tex
 (D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.tex
@@ -382,10 +382,6 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 293--295
 
 [4]
 
-LaTeX Warning: Reference `eq:RBVRPS_back_cond_weight' on page 5 undefined on in
-put line 363.
-
-
 LaTeX Warning: Reference `app:backward_filter' on page 5 undefined on input lin
 e 371.
 
@@ -399,25 +395,32 @@ LaTeX Warning: Reference `app:backward_filter' on page 5 undefined on input lin
 e 388.
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 417--417
-[] []\OT1/ptm/m/n/10 Run Rao-Blackwellised par-ti-cle fil-ter to ap-prox-i-mate
-
- []
-
-
-Underfull \hbox (badness 4366) in paragraph at lines 417--417
-\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 []\OMS/cmsy/m/n/10 j\OML/c
-mm/m/it/10 y[]\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 with weighted par-ti-cles $\OM
-S/cmsy/m/n/10 f\OML/cmm/m/it/10 []; w[]\OMS/cmsy/m/n/10 g$ \OT1/ptm/m/n/10 and
-
- []
-
-
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 417--418
 [][] 
  []
 
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.bbl [5]
+
+Underfull \hbox (badness 5331) in paragraph at lines 428--430
+[]\OT1/ptm/m/n/10 Consider the aug-mented MPP con-sist-ing of $[] \OT1/cmr/m/n/
+10 =
+ []
+
+[5]
+
+LaTeX Warning: Citation `Bunch2012' on page 6 undefined on input line 452.
+
+
+Underfull \hbox (badness 7522) in paragraph at lines 504--504
+[] []\OT1/ptm/m/n/10 Propose a re-place-ment pa-ram-e-ter $\OML/cmm/m/it/10 u[]
+ \OMS/cmsy/m/n/10 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 504--505
+[][] 
+ []
+
+[6] (D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 56--59
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
@@ -440,19 +443,19 @@ Underfull \hbox (badness 2318) in paragraph at lines 144--148
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-) [6] (D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.aux)
+) [7] (D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3795 strings out of 494019
- 56292 string characters out of 3143883
- 133843 words of memory out of 3000000
- 7041 multiletter control sequences out of 15000+200000
+ 3801 strings out of 494019
+ 56367 string characters out of 3143883
+ 135891 words of memory out of 3000000
+ 7047 multiletter control sequences out of 15000+200000
  44408 words of font info for 89 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 36i,14n,38p,1264b,545s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,14n,38p,1264b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
@@ -468,9 +471,9 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
 ype1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a
 .pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft1_VRsmoothing.pdf (6 pages, 203776 bytes).
+Output written on draft1_VRsmoothing.pdf (7 pages, 217488 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
+ 87 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
