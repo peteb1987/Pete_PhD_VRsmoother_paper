@@ -183,4 +183,11 @@ S.~Sarkka, P.~Bunch, and S.~Godsill, ``A backward-simulation based
 W.~Gilks, S.~Richardson, and D.~Spiegelhalter, \emph{Markov chain Monte Carlo
   in practice}.\hskip 1em plus 0.5em minus 0.4em\relax Chapman and Hall, 1996.
 
+\bibitem{Grewal2002}
+\BIBentryALTinterwordspacing
+M.~S. Grewal and A.~P. Andrews, \emph{Kalman Filtering: Theory and Practice
+  Using {MATLAB}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
+  Inc., 2002. [Online]. Available: \url{http://dx.doi.org/10.1002/0471266388}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

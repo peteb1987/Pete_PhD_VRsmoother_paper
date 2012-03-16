@@ -259,8 +259,8 @@ This completes the requirements for the particle filter, resulting in the final 
 \ENDFOR
 \end{algorithmic}
 }}
-\label{alg:RBVRPF}
 \caption{Rao-Blackwellised variable rate particle filter}
+\label{alg:RBVRPF}
 \end{figure}
 
 
@@ -291,8 +291,8 @@ This leads to a particle filter for variable rate models with conditionally dete
 \ENDFOR
 \end{algorithmic}
 }}
-\label{alg:VRPF}
 \caption{Piecewise deterministic variable rate particle filter}
+\label{alg:VRPF}
 \end{figure}
 
 
@@ -394,7 +394,7 @@ Substituting into (\ref{eq:rb-vrps_back_cond_weight}), the backwards conditional
 \label{eq:rb-vrps_back_cond_weight2}
 \end{equation}
 
-Using these weights, a sample of $\theta_{n}$ may be drawn from the particle distribution of (\ref{eq:rb-vrps_back_cond}), completing the smoothing algorithm. Once sampling has progressed backwards from $n=N \dots 1$, a particle from the smoothing distribution will have been generated. This procedure may then be repeated until sufficient particles have been obtained. The procedure is summarised in Fig.~\ref{alg:RBVRPS}.
+Using these weights, a sample of $\theta_{n}$ may be drawn from the particle distribution of (\ref{eq:rb-vrps_back_cond}), completing the smoothing algorithm. Once sampling has progressed backwards from $n=N \dots 1$, a particle from the smoothing distribution will have been generated. This procedure may then be repeated until sufficient particles have been obtained. The algorithm is summarised in Fig.~\ref{alg:RBVRPS}.
 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
@@ -419,6 +419,8 @@ Using these weights, a sample of $\theta_{n}$ may be drawn from the particle dis
 \label{alg:RBVRPS}
 \end{figure}
 
+The algorithmic complexity of this variable rate particle smoother for conditionally linear-Gaussian models is $O(N_F \times N_S \times N)$. It is possible to reduce this by using an MCMC sampling scheme in the style of \cite{Bunch2012}, in which case it is no longer necessary to calculate the backwards sampling weights for every filter particle.
+
 
 
 \subsection{Conditionally Deterministic Smoothing} \label{sec:pd-vrps}
@@ -437,26 +439,28 @@ The backwards conditional term may be expanded as,
 p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N}) & \propto & p(y_{1:N}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}) p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n})    .
 \end{IEEEeqnarray}
 
-For each particle in the filtering approximations, the changepoint state values $x_{0:K_n}$ may be calculated deterministically from $\theta_n$ and stored during the filtering procedure. The obvious strategy then is to recursively sample $\tilde{\theta}_{n}$ from the backwards conditional term, using the re-weighted particles of the $n$th filtering approximation. However, the conditionally deterministic structure prevents this from working. $x(t)$ is fully determined by $\tilde{\theta}_{n}$ up to $\tau_{K_n+1}$, but this will not in general match up with $x_{K_n+1}$ as specified in $\tilde{\theta}_{n}^+$. The result is that $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n})=0$ for (almost) all particles. In other words, we are trying to join two deterministic state trajectories together, but they do not meet up in the middle.
+For each particle in the filtering approximations, the changepoint state values $x_{0:K_n}$ may be calculated deterministically from $\theta_n$ and stored during the filtering procedure. The obvious strategy then is to recursively sample $\tilde{\theta}_{n}$ from the backwards conditional term, using the re-weighted particles of the $n$th filtering approximation. However, the conditionally deterministic structure prevents this from working. $x(t)$ is fully determined by $\tilde{\theta}_{n}$ up to $\tau_{K_n+1}$, but this will not usually match up with $x_{K_n+1}$ as specified in $\tilde{\theta}_{n}^+$. The result is that $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n})=0$ for (almost) all particles. In other words, we are trying to join two deterministic state trajectories together, but they do not meet up in the middle.
 
-The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than just using a value of $\tilde{\theta}_{n}$ from the filtering particles, a replacement for the parameter corresponding to the final changepoint, $u_{K_n}$, is proposed with a value chosen such that the past and future paths meet up, $u_{K_n}'$. The modified sequence is denoted $\tilde{\theta}_{n}'$. This requires a new condition to be imposed on the state dynamics. For any pair of adjacent changepoints, $(\tau_k,x_k)$, and $(\tau_{k+1},x_{k+1})$ it must be possible to calculate a parameter value which results in the transition from the former to the latter. As a rule of thumb, this requires the number of dimensions of $u_k$ to be greater or equal to the number of dimensions of $x_k$.
+The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than just using a value of $\tilde{\theta}_{n}$ from the filtering particles, a replacement, $u_{K_n}'$, is proposed for the existing parameter corresponding to the final changepoint with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. Such a proposal may be written as,
 
-The target distribution is augmented by introduction of an artificial density to cover the new changepoint sequence and the discarded parameter. It is clear that this new target distribution,
+\begin{IEEEeqnarray}{rCl}
+\IEEEeqnarraymulticol{3}{l}{p(\tilde{\theta}_{n}|y_{1:n}) q(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})} \nonumber \\
+ \qquad & \propto & p(y_{1:n}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}) q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_proposal}     .
+\end{IEEEeqnarray}
+
+For this proposal to work, a new condition to be imposed on the state dynamics. For any pair of adjacent changepoints, $(\tau_k,x_k)$, and $(\tau_{k+1},x_{k+1})$ it must be possible to calculate a parameter value which results in the transition from the former to the latter. As a rule of thumb, this requires the number of dimensions of $u_k$ to be greater or equal to the number of dimensions of $x_k$.
+
+The target distribution is augmented by introduction of an artificial density to cover the new changepoint sequence and the discarded parameter.
 
 \begin{IEEEeqnarray}{rCl}
  p(\tilde{\theta}_{n}'|\tilde{\theta}_{n}^{+}, y_{1:N}) L(u_{K_n}|\tilde{\theta}_{n}', \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_target}     ,
 \end{IEEEeqnarray}
 
-admits the desired posterior term as a marginal.
+It is clear that this new target distribution admits the desired posterior term as a marginal.
 
-The augmented target distribution may be sampled using Markov chain Monte Carlo (MCMC) \cite{Gilks1996}, in a similar manner to the fixed rate smoother of \cite{Bunch2012}. Metropolis-Hastings (MH) steps are conducted to draw samples, $\{\tilde{\theta}_{n}. u_{K_n}'\}$, from the target distribution by sampling a proposal and accepting the new values with a given probability. The proposal is conducted by first resampling a particle from the $n$th filtering approximation and then sampling the replacement parameter from an appropriate proposal density. Thus a sample is drawn from,
+The augmented target distribution may be sampled using Markov chain Monte Carlo (MCMC) \cite{Gilks1996}, in a similar manner to the fixed rate smoother of \cite{Bunch2012}. Metropolis-Hastings (MH) steps are conducted to draw samples, $\{\tilde{\theta}_{n}, u_{K_n}'\}$, from the target distribution by sampling the proposal and accepting the new values with a given probability.
 
-\begin{IEEEeqnarray}{c}
- p(\tilde{\theta}_{n}|y_{1:n}) q(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) \nonumber \\
- = p(y_{1:n}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}) q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_proposal}     .
-\end{IEEEeqnarray}
-
-Hence the ratio, of target (\ref{eq:pd-vrps_target}) and proposal (\ref{eq:pd-vrps_proposal}) densities is,
+The ratio of target (\ref{eq:pd-vrps_target}) and proposal (\ref{eq:pd-vrps_proposal}) densities is given by,
 
 \begin{IEEEeqnarray}{rCl}
 \beta_n &\propto& \frac{ p(y_{r_n^-:r_n^+}|\tilde{\theta}_{n}') }{ p(y_{r_n^-:n}|\tilde{\theta}_{n}) } \nonumber \\
@@ -472,7 +476,7 @@ The transition density term will include a delta function with unit probability 
 \IEEEeqnarraymulticol{3}{l}{p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}') \propto p(u_{K_n+1}|\tau_{K_n+1}, \tau_{K_n}, u_{K_n})} \nonumber \\ \times p(\tau_{K_n+1}|\tau_{K_n}, u_{K_n}) \delta_{f(x_{K_n}, v_{K_n}, \tau_{K_n}, \tau_{K_n+1})}(x_{K_n+1})
 \end{IEEEeqnarray}
 
-If there is only one value of $u_{K_n}$ for which the two trajectories match up, then the proposal density $q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$ is also a delta function, with unit probability mass at the one valid value. The remaining terms are likelihoods and parameter transition density terms, defined by the system equations. The simplest choice for $L(.|.)$ is simply as a uniform distribution so that it cancels out in the acceptance probability.
+If there is only one value of $u_{K_n}'$ for which the two trajectories match up, then the proposal density $q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$ is also a delta function, with unit probability mass at the one valid value. The remaining terms are likelihoods and parameter transition density terms, defined by the system equations. The simplest choice for $L(.|.)$ is simply as a uniform distribution so that it cancels out in the acceptance probability.
 
 If $\beta_n^{(m-1)}$ is the target-proposal ratio for the current state in the chain, and $\beta_n^*$ that for the proposed state, then the acceptance probability is given by,
 
@@ -502,13 +506,15 @@ The algorithm is summarised in Fig.~\ref{alg:VRPS}.
   \ENDFOR
 \end{algorithmic}
 }}
-\label{alg:VRPS}
 \caption{MCMC piecewise-deterministic variable rate particle smoother}
+\label{alg:VRPS}
 \end{figure}
 
 The Markov chains require no burn-in, because the original value is itself a sample from the target distribution. The number of MH steps, $M$, at each observation time, $n$, allows a trade-off of performance against time. Larger values of $M$ will ensure more unique samples in the smoothing approximation, but will also take longer to execute. In the simulations discussed in this report, $M=1$ was used throughout.
 
 
+
+\section{Simulations}
 
 
 

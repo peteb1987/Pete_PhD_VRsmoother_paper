@@ -53,10 +53,10 @@
 \citation{Whiteley2011}
 \citation{Kitagawa1996}
 \citation{Godsill2004}
-\newlabel{alg:RBVRPF}{{\unhbox \voidb@x \hbox {III-A}}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Rao-Blackwellised variable rate particle filter}}{4}}
-\newlabel{alg:VRPF}{{\unhbox \voidb@x \hbox {III-B}}{4}}
+\newlabel{alg:RBVRPF}{{1}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Piecewise deterministic variable rate particle filter}}{4}}
+\newlabel{alg:VRPF}{{2}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Conditionally Deterministic Likelihoods}{4}}
 \newlabel{sec:pd-vrpf}{{\unhbox \voidb@x \hbox {III-B}}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Improving the Variable Rate Particle Filter}{4}}
@@ -64,6 +64,7 @@
 \newlabel{sec:vrps}{{IV}{4}}
 \citation{Sarkka2012}
 \citation{Fraser1969,Anderson1979,Sarkka2012}
+\citation{Bunch2012}
 \citation{Godsill2004}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Conditionally Linear-Gaussian Smoothing}{5}}
 \newlabel{sec:rb-vrps}{{\unhbox \voidb@x \hbox {IV-A}}{5}}
@@ -81,10 +82,23 @@
 \citation{Bunch2012}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Rao-Blackwellised Variable Rate Particle Smoother}}{6}}
 \newlabel{alg:RBVRPS}{{3}{6}}
-\newlabel{eq:pd-vrps_target}{{50}{6}}
-\newlabel{eq:pd-vrps_proposal}{{51}{6}}
+\newlabel{eq:pd-vrps_proposal}{{50}{6}}
+\newlabel{eq:pd-vrps_target}{{51}{6}}
 \newlabel{eq:pd-vrps_tpr}{{52}{6}}
-\newlabel{eq:pd-vrps_ap}{{54}{6}}
+\citation{Godsill2007a,Christensen2012}
+\citation{Grewal2002}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces MCMC piecewise-deterministic variable rate particle smoother}}{7}}
+\newlabel{alg:VRPS}{{4}{7}}
+\newlabel{eq:pd-vrps_ap}{{54}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Simulations}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Conditionally Linear-Gaussian Model}{7}}
+\newlabel{sec:finance}{{\unhbox \voidb@x \hbox {V-A}}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces An example simulated data set, showing value (top) and trend (bottom). Value observations are overlayed. Jump times are shown as dotted vertical lines.}}{8}}
+\newlabel{fig:example_data}{{5}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Filter (a) and smoother (b) kernel density estimates for value (top) and trend (bottom) jump times. Correct times overlayed as dotted vertical lines.}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{8}}
+\newlabel{fig:example_kdest}{{6}{8}}
 \bibstyle{IEEEtran}
 \bibdata{D:/pb404/Dropbox/PhD/OTbib}
 \bibcite{Jacobsen2006}{1}
@@ -103,6 +117,16 @@
 \bibcite{Fraser1969}{14}
 \bibcite{Li2003}{15}
 \bibcite{Pitt1999}{16}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Trend estimates using RBVRPF + Kalman filter (a) RBVRPF + RTS smoother (b) and RBVRPS + RTS smoother. Solid lines show means of each particle. Dashed lines show mean $\pm $2 standard deviations.}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{9}}
+\newlabel{fig:example_state}{{7}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Changepoint sequence estimation performance.}}{9}}
+\newlabel{tab:cp_performance}{{I}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces State estimation performance.}}{9}}
+\newlabel{tab:state_performance}{{II}{9}}
+\@writefile{toc}{\contentsline {section}{References}{9}}
 \bibcite{Douc2005}{17}
 \bibcite{Anderson1979}{18}
 \bibcite{Casella1996}{19}
@@ -113,6 +137,9 @@
 \bibcite{Kitagawa1996}{24}
 \bibcite{Sarkka2012}{25}
 \bibcite{Gilks1996}{26}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces MCMC piecewise-deterministic variable rate particle smoother}}{7}}
-\newlabel{alg:VRPS}{{4}{7}}
-\@writefile{toc}{\contentsline {section}{References}{7}}
+\bibcite{Grewal2002}{27}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Foreign exchange data (a), along with filter (a) and smoother (b) kernel density estimates for the state and trend jump times.}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{10}}
+\newlabel{fig:fx_results}{{8}{10}}

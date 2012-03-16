@@ -15,6 +15,8 @@
 \usepackage{url}
 \usepackage{color}
 
+\graphicspath{{./images/}{./images/finance/}{./images/tracking/}}
+
 \newenvironment{meta}[0]{\color{red} \em}{}
 
 % correct bad hyphenation here
@@ -259,8 +261,8 @@ This completes the requirements for the particle filter, resulting in the final 
 \ENDFOR
 \end{algorithmic}
 }}
-\label{alg:RBVRPF}
 \caption{Rao-Blackwellised variable rate particle filter}
+\label{alg:RBVRPF}
 \end{figure}
 
 
@@ -291,8 +293,8 @@ This leads to a particle filter for variable rate models with conditionally dete
 \ENDFOR
 \end{algorithmic}
 }}
-\label{alg:VRPF}
 \caption{Piecewise deterministic variable rate particle filter}
+\label{alg:VRPF}
 \end{figure}
 
 
@@ -441,24 +443,26 @@ p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N}) & \propto & p(y_{1:N}|\til
 
 For each particle in the filtering approximations, the changepoint state values $x_{0:K_n}$ may be calculated deterministically from $\theta_n$ and stored during the filtering procedure. The obvious strategy then is to recursively sample $\tilde{\theta}_{n}$ from the backwards conditional term, using the re-weighted particles of the $n$th filtering approximation. However, the conditionally deterministic structure prevents this from working. $x(t)$ is fully determined by $\tilde{\theta}_{n}$ up to $\tau_{K_n+1}$, but this will not usually match up with $x_{K_n+1}$ as specified in $\tilde{\theta}_{n}^+$. The result is that $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n})=0$ for (almost) all particles. In other words, we are trying to join two deterministic state trajectories together, but they do not meet up in the middle.
 
-The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than just using a value of $\tilde{\theta}_{n}$ from the filtering particles, a replacement, $u_{K_n}'$, is proposed for the existing parameter corresponding to the final changepoint, $u_{K_n}$, with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. This requires a new condition to be imposed on the state dynamics. For any pair of adjacent changepoints, $(\tau_k,x_k)$, and $(\tau_{k+1},x_{k+1})$ it must be possible to calculate a parameter value which results in the transition from the former to the latter. As a rule of thumb, this requires the number of dimensions of $u_k$ to be greater or equal to the number of dimensions of $x_k$.
-
-The target distribution is augmented by introduction of an artificial density to cover the new changepoint sequence and the discarded parameter. It is clear that this new target distribution,
-
-\begin{IEEEeqnarray}{rCl}
- p(\tilde{\theta}_{n}'|\tilde{\theta}_{n}^{+}, y_{1:N}) L(u_{K_n}|\tilde{\theta}_{n}', \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_target}     ,
-\end{IEEEeqnarray}
-
-admits the desired posterior term as a marginal.
-
-The augmented target distribution may be sampled using Markov chain Monte Carlo (MCMC) \cite{Gilks1996}, in a similar manner to the fixed rate smoother of \cite{Bunch2012}. Metropolis-Hastings (MH) steps are conducted to draw samples, $\{\tilde{\theta}_{n}, u_{K_n}'\}$, from the target distribution by sampling a proposal and accepting the new values with a given probability. The proposal is conducted by first resampling a particle from the $n$th filtering approximation and then sampling the replacement parameter from an appropriate proposal density. Thus a sample is drawn from,
+The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than just using a value of $\tilde{\theta}_{n}$ from the filtering particles, a replacement, $u_{K_n}'$, is proposed for the existing parameter corresponding to the final changepoint with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. Such a proposal may be written as,
 
 \begin{IEEEeqnarray}{rCl}
 \IEEEeqnarraymulticol{3}{l}{p(\tilde{\theta}_{n}|y_{1:n}) q(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})} \nonumber \\
  \qquad & \propto & p(y_{1:n}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}) q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_proposal}     .
 \end{IEEEeqnarray}
 
-Hence the ratio, of target (\ref{eq:pd-vrps_target}) and proposal (\ref{eq:pd-vrps_proposal}) densities is,
+For this proposal to work, a new condition to be imposed on the state dynamics. For any pair of adjacent changepoints, $(\tau_k,x_k)$, and $(\tau_{k+1},x_{k+1})$ it must be possible to calculate a parameter value which results in the transition from the former to the latter. As a rule of thumb, this requires the number of dimensions of $u_k$ to be greater or equal to the number of dimensions of $x_k$.
+
+The target distribution is augmented by introduction of an artificial density to cover the new changepoint sequence and the discarded parameter.
+
+\begin{IEEEeqnarray}{rCl}
+ p(\tilde{\theta}_{n}'|\tilde{\theta}_{n}^{+}, y_{1:N}) L(u_{K_n}|\tilde{\theta}_{n}', \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_target}     ,
+\end{IEEEeqnarray}
+
+It is clear that this new target distribution admits the desired posterior term as a marginal.
+
+The augmented target distribution may be sampled using Markov chain Monte Carlo (MCMC) \cite{Gilks1996}, in a similar manner to the fixed rate smoother of \cite{Bunch2012}. Metropolis-Hastings (MH) steps are conducted to draw samples, $\{\tilde{\theta}_{n}, u_{K_n}'\}$, from the target distribution by sampling the proposal and accepting the new values with a given probability.
+
+The ratio of target (\ref{eq:pd-vrps_target}) and proposal (\ref{eq:pd-vrps_proposal}) densities is given by,
 
 \begin{IEEEeqnarray}{rCl}
 \beta_n &\propto& \frac{ p(y_{r_n^-:r_n^+}|\tilde{\theta}_{n}') }{ p(y_{r_n^-:n}|\tilde{\theta}_{n}) } \nonumber \\
@@ -511,6 +515,181 @@ The algorithm is summarised in Fig.~\ref{alg:VRPS}.
 The Markov chains require no burn-in, because the original value is itself a sample from the target distribution. The number of MH steps, $M$, at each observation time, $n$, allows a trade-off of performance against time. Larger values of $M$ will ensure more unique samples in the smoothing approximation, but will also take longer to execute. In the simulations discussed in this report, $M=1$ was used throughout.
 
 
+
+\section{Simulations}
+
+\subsection{Conditionally Linear-Gaussian Model} \label{sec:finance}
+
+The Rao-Blackwellised VRPS algorithm was tested on the financial time series model of \cite{Godsill2007a,Christensen2012}, in which prices of an asset are treated as noisy observations of a latent state, which evolves according to a drift-diffusion with occasional jumps.
+
+The latent state is a vector with two elements, the underlying value of the asset, and the trend followed by this value.
+%
+\begin{equation}
+ \mathbf{x}(t) = [ x(t), \dot{x}(t)]^T
+\end{equation}
+
+This evolves continuously according to a jump-diffusion model:
+%
+\begin{IEEEeqnarray}{c}
+ d\mathbf{x}(t) = \begin{bmatrix}0 & 1 \\ 0 & -\lambda \end{bmatrix} \mathbf{x}(t) dt + \begin{bmatrix}0 \\ \sigma \end{bmatrix} d\mathbf{\beta}(t) + d\mathbf{J}(t)
+\end{IEEEeqnarray}
+
+where $\lambda$ introduces a mean regression effect on the trend and $\mathbf{\beta}(t)$ is standard Brownian motion (with unit diffusion constant). The jump term, $d\mathbf{J}(t)$, is zero everywhere except where jumps occur.
+%
+\begin{IEEEeqnarray}{rCl}
+ d\mathbf{J}(t) & = & \begin{cases} \mathbf{J}_k & t \in \{\tau_k\} \\ 0 & \text{elsewhere} \end{cases} \\
+ \mathbf{J}_k  & \sim & \mathcal{N}(\mathbf{J}_k| \mathbf{0}, Q_{J,u_k})
+\end{IEEEeqnarray}
+
+Jumps occur at a random set of times, $\{\tau_k\}$, and are one of two types: value jumps, indicated by $u_k = 1$, and trend jumps, indicated by $u_k=2$.
+
+The jump covariance matrices are,
+%
+\begin{IEEEeqnarray}{c}
+Q_{J,u_k} = \begin{cases} \begin{bmatrix}\sigma_{J1}^2 & 0 \\ 0 & 0 \end{bmatrix} & u_k = 1 \\
+                          \begin{bmatrix}0 & 0 \\ 0 & \sigma_{J2}^2 \end{bmatrix} & u_k = 2  \end{cases}   .
+\end{IEEEeqnarray}
+
+This model may be discretised at the observation times using standard methods (see e.g. \cite{Grewal2002}). Assuming observations of value only and Gaussian observation noise with standard deviation $\sigma_y^2$, the resulting discrete time dynamics are described by the following equations:% (see appendix \ref{app:model_discretisation}):
+%
+\begin{IEEEeqnarray}{rCl}
+ \mathbf{x}_n &=& A \mathbf{x}_{n-1} + \mathbf{w}_n \\
+ y_n          &=& C \mathbf{x}_{n} + v_n
+\end{IEEEeqnarray}
+
+where the $\mathbf{w}_b$ and $v_n$ are Gaussian random variables with covariance matrixes $Q_n$ and $R$ respectively. The time between observations times is denotes $\Delta t = t_{n} - t_{n-1}$.
+%
+\begin{IEEEeqnarray}{rCl}
+ A     &=& \begin{bmatrix}1 & \frac{1}{\lambda}(1-e^{(-\lambda \Delta t)} \\ 0 & e^{(-\lambda \Delta t)}\end{bmatrix} \\
+ C     &=& \begin{bmatrix}1 & 0\end{bmatrix}
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
+ Q_n   &=& \begin{cases}Q_{D} + Q_{J,u_k} & \exists k : \tau_k \in [t_{n-1},t_n]\\
+                        Q_{D}             & \text{otherwise} \end{cases} \\
+ Q_{D} &=& \frac{\sigma^2}{2 \lambda}\begin{bmatrix} q_1 & q_2 \\ q_2 & q_3\end{bmatrix} \\
+ q_1   &=& \frac{1}{\lambda^2}(2 \lambda \Delta t - (3 - e^{(-\lambda \Delta t)})(1 - e^{(-\lambda \Delta t)})~) \\
+ q_2   &=& \frac{1}{\lambda} (1-e^{(-\lambda \Delta t)})^2 \\
+ q_3   &=& 1-e^{(-2 \lambda \Delta t)} \\
+ R     &=& [\sigma_y^2]
+\end{IEEEeqnarray}
+
+The times between changepoints were assumed to be exponentially distributed, with equal probability of value and trend jumps.
+%
+\begin{IEEEeqnarray}{rCl}
+ \IEEEeqnarraymulticol{3}{l}{p(\tau_k, u_k|\tau_{k-1}, u_{k-1}) = P(u_k) p(\tau_k|\tau_{k-1})} \\
+ p(\tau_k|\tau_{k-1})               &=& \begin{cases}\frac{1}{\alpha} \exp ( \alpha (\tau_k-\tau_{k-1}) ) & \tau_k>\tau_{k-1} \\
+                                                     0 & \tau_k < \tau_{k-1} \end{cases} \\
+ P(u_k)                             &=& \begin{cases}0.5 & u_k = 1 \\ 0.5 & u_k = 2\end{cases}
+\end{IEEEeqnarray}
+
+The algorithms were first tested on artificial data simulated from this model. The following parameters were used: $\Delta t = 0.0017$, $N = 1000$, $\alpha = 20$, $\lambda = 5$, $\sigma = 0.05$, $\sigma_{J1} = 0.005$, $\sigma_{J2} = 0.05$, $\sigma_{y} = 0.001$.
+
+The filter used $N_P = 100$ particles, and the smoother resampled $N_S = 100$ sequences. Bootstrap proposals were used for the filter.
+
+An example realisation simulated from the model is shown in figure~\ref{fig:example_data}.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.9\columnwidth]{example_data.pdf}
+\caption{An example simulated data set, showing value (top) and trend (bottom). Value observations are overlayed. Jump times are shown as dotted vertical lines.}
+\label{fig:example_data}
+\end{figure}
+
+Both the smoother and the final processing step of the filter produce a particle approximation to the changepoint sequence posterior, $p(\theta|y_{1:N})$. It is actually no simple task to compare the quality of these approximations. Each particle consists of a list of changepoint times and types, and there is no obvious way to take an average over the set to produce a single estimate. Furthermore, once a best estimate has been calculated, it is not obvious how the error should be assessed, as it is not trivial to define a distance metric between lists of varying lengths.
+
+For a first, qualitative comparison of the changepoint sequence distributions, it is possible to generate kernel density estimates for the changepoint times. These are constructed by simply adding a (unit amplitude) Gaussian kernel for each changepoint present in each particle and scaling by the number of particles. The resulting function provides an approximate measure of the likelihood of finding a jump at a given time. These are shown in figure~\ref{fig:example_kdest} for the example data set.
+
+\begin{figure}[!t]
+\centering
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_filter_kdest.pdf}} \\
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_smoother_kdest.pdf}}
+\caption{Filter (a) and smoother (b) kernel density estimates for value (top) and trend (bottom) jump times. Correct times overlayed as dotted vertical lines.}
+\label{fig:example_kdest}
+\end{figure}
+
+It is immediately apparent that the approximation produced by the filter lacks diversity. The jump time kernel density estimate comprises peaks with magnitude $1$, with regions of $0$ between. This is a result of every particle containing an almost identical list of changepoints, as a result of resampling. In contrast, the smoother is clearly providing a less degenerate particle representation, and generally contains larger kernel density peaks at the times of larger jumps. Furthermore, the kernel density for the trend jump times contains broader peaks, capturing the fact that because the trend is not observed directly, the jumps are harder to localise precisely.
+
+A further comparison of the algorithms is possible via the state estimates they generate. Here we can compare three options: the filtering results, using the VRPF and a Kalman filter for the state estimates; the filter-smoother results, using the final VRPF approximation for the changepoint sequence and a Rauch-Tung-Striebel (RTS) smoother for the state estimates; and the full smoothing results, using the VRPS followed by an RTS smoother. For the example data set, the trend estimates are shown in figure~\ref{fig:example_state} (The estimates of value are less informative, as this quantity is observed). Again, the improved particle diversity of the smoother is apparent.
+
+\begin{figure}[!t]
+\centering
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_filter_state.pdf}} \\
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_filtersmoother_state.pdf}} \\
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_smoother_state.pdf}}
+\caption{Trend estimates using RBVRPF + Kalman filter (a) RBVRPF + RTS smoother (b) and RBVRPS + RTS smoother. Solid lines show means of each particle. Dashed lines show mean $\pm$2 standard deviations.}
+\label{fig:example_state}
+\end{figure}
+
+For a quantitative comparison, the algorithms were tested on $10$ realisations from the model, each of $1000$ time steps, and the following statistics were calculated for each:
+\begin{itemize}
+	\item The number of unique changepoint sequences. This is a measure of particle diversity of the approximation.
+	\item The number of unique changepoint times. Another measure of particle diversity.
+	%\item The optimal sub-pattern assignment (OSPA) distance between the maximum a posteriori (MAP) changepoint sequence and the true sequence. The OSPA is a concept from multiple target tracking introduced in \cite{Schuhmacher2008} to measure the distance between sets of points of varying cardinality. It is thus well suited to measuring the error between changepoint sequences of varying length. For each approximation, the sequence from the MAP particle was used as a point estimate.
+	%\item The root-mean-square error (RMSE) of the MAP state estimate. The MAP state estimate is taken to be the Gaussian mean of the conditional state distribution, from the Kalman smoother or RTS, selected from the particle with the highest posterior probability.
+	\item The root-mean-square error (RMSE) of the mean state estimate. The mean state estimate is the average of the Gaussian means from all the particles.
+\end{itemize}
+
+%Note that the MAP particle may be found by calculating the posterior probability of each. The terms required for this calculation will already have been evaluated during the filtering procedure.
+
+%\begin{IEEEeqnarray}{rCl}
+% p(\theta|y_{1:N}) & \propto & p(y_{1:N}|\theta) p(\theta) \nonumber \\
+%                         &         & S(\tau_K, T) \prod_{k=1}^K p(u_k) p(\tau_k|\tau_{k-1}) \prod_{n=1}^{N} p(y_n|\theta, y_{1:n-1})
+%\end{IEEEeqnarray}
+
+The results are shown in tables~\ref{tab:cp_performance} and ~\ref{tab:state_performance}.% The OSPA parameters are: exponent $p=1$, threshold $c=0.01$.
+
+\begin{table}%
+\caption{Changepoint sequence estimation performance.}
+\label{tab:cp_performance}
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|}
+\hline
+ & RBVRPF & RBVRPS \\
+\hline \hline
+mean unique no. sequences   & 7.8      & 100       \\
+\hline
+mean unique no. jump times  & 47.8     & 1076.7    \\
+%MAP sequence OSPA    & $5.36 \times 10^{-3}$ & $4.98 \times 10^{-3}$  \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}%
+\caption{State estimation performance.}
+\label{tab:state_performance}
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ &\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering RBVRPF and KF}} & \raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering RBVRPF and RTS}} & \raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering RBVRPS and RTS}} \\
+% & \begin{minipage}[c]{1.5cm}\centering RBVRPF + KF\end{minipage} & \begin{minipage}[c]{1.5cm}\centering RBVRPF + RTS\end{minipage} & \begin{minipage}[c]{1.5cm}\centering RBVRPS + RTS\end{minipage} \\
+\hline \hline
+\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{2cm}{\centering mean value estimate RMSE}}   & $5.31 \times 10^{-4}$ & $4.48 \times 10^{-4}$ & $4.16 \times 10^{-4}$ \\
+\hline
+\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{2cm}{\centering mean trend estimate RMSE}}   & $2.56 \times 10^{-2}$ & $1.79 \times 10^{-2}$ & $1.49 \times 10^{-2}$ \\
+%MAP value estimate RMSE    & $5.98 \times 10^{-4}$ & $4.48 \times 10^{-4}$ & $4.49 \times 10^{-4}$ \\
+%MAP trend estimate RMSE    & $3.13 \times 10^{-2}$ & $1.79 \times 10^{-2}$ & $1.74 \times 10^{-2}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+The new RBVRPS algorithm outperforms the filter in terms of both state estimation accuracy and particle diversity.
+
+%\begin{meta}
+%Another interesting question is how the posterior distribution over the number of changepoints is expected to behave. The prior is poisson distributed with mean $\alpha T$. The means of both the filter and smoother particle posterior are consistently greater than the true number (by about 50\%). Is this expected and why?
+%\end{meta}
+
+Finally, we demonstrate the algorithms on a real financial data set, 1000 data points representing 1.7s of USD-GBP foreign exchange rate data from April 2008, using the same parameters as for the previous simulations. The data shown in Fig.~\ref{fig:fx_results}, along with jump time kernel density estimates from the filter and smoother. In this example, there is no ground truth against which to judge the results. However, the smoother does a pleasing job of estimating jump times in the same areas that one would if analysing the data ``by eye''. We submit this simply to illustrate the practical applications of the model and algorithm.
+
+\begin{figure}[!t]
+\centering
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{fx_data.pdf}} \\
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{fx_filter_kdest.pdf}} \\
+\subfloat[]{\includegraphics[width=0.95\columnwidth]{fx_smoother_kdest.pdf}}
+\caption{Foreign exchange data (a), along with filter (a) and smoother (b) kernel density estimates for the state and trend jump times.}
+\label{fig:fx_results}
+\end{figure}
 
 
 
