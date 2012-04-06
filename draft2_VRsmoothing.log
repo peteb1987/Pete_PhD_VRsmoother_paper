@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  3 APR 2012 14:35
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  6 APR 2012 17:32
 entering extended mode
-**draft1_VRsmoothing.tex
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.tex
+**draft2_VRsmoothing.tex
+(D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -283,7 +283,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.aux)
+(D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
@@ -320,12 +320,8 @@ File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
-
-
-LaTeX Warning: Reference `sec:simuations' on page 1 undefined on input line 62.
-
-
 LaTeX Font Info:    Try loading font information for U+msa on input line 68.
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
@@ -337,147 +333,130 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
 
 ]
-Overfull \hbox (78.34016pt too wide) in alignment at lines 165--169
+Overfull \hbox (78.34016pt too wide) in alignment at lines 165--170
  [] [] [] [][]
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
 []\OT1/ptm/m/n/10 Next, an ex-ten-sion to the change-point se-quence,
  []
 
 
-Underfull \hbox (badness 5133) in paragraph at lines 196--198
+Underfull \hbox (badness 5133) in paragraph at lines 197--199
 \OML/cmm/m/it/10 []$\OT1/ptm/m/n/10 , is pro-posed from an im-por-tance dis-tr
 i-bu-tion,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--263
-[] []\OT1/ptm/m/n/10 Sample a change-point his-tory $\OML/cmm/m/it/10 [] \OMS/
-cmsy/m/n/10 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 263--263
-[] []\OT1/ptm/m/n/10 Propose a se-quence ex-ten-sion $\OML/cmm/m/it/10 [] \OMS
-/cmsy/m/n/10 
- []
-
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 263--264
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 267--268
 [][] 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 295--295
-[] []\OT1/ptm/m/n/10 Propose a se-quence ex-ten-sion $\OML/cmm/m/it/10 [] \OMS
-/cmsy/m/n/10 
- []
 
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 295--296
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 300--301
 [][] 
  []
 
-[4]
-
-LaTeX Warning: Reference `app:backward_filter' on page 5 undefined on input lin
-e 373.
-
-
-Underfull \hbox (badness 6284) in paragraph at lines 373--375
+[3] [4]
+Underfull \hbox (badness 6284) in paragraph at lines 378--380
 []\OT1/ptm/m/n/10 The sec-ond state term in (35[]) is the like-li-hood,
  []
 
 
-LaTeX Warning: Reference `app:backward_filter' on page 5 undefined on input lin
-e 390.
-
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 419--420
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 424--425
 [][] 
  []
 
-
-LaTeX Warning: Citation `Bunch2012' on page 5 undefined on input line 424.
-
-
-Underfull \hbox (badness 5331) in paragraph at lines 432--434
-[]\OT1/ptm/m/n/10 Consider the aug-mented MPP con-sist-ing of $[] \OT1/cmr/m/n/
-10 =
+[5]
+Overfull \hbox (43.17824pt too wide) in alignment at lines 451--453
+ [] [] [] [][]
  []
 
-[5]
 
-LaTeX Warning: Citation `Bunch2012' on page 6 undefined on input line 463.
-
-[6]
-Underfull \hbox (badness 7522) in paragraph at lines 510--510
+Underfull \hbox (badness 7522) in paragraph at lines 522--522
 [] []\OT1/ptm/m/n/10 Propose a re-place-ment pa-ram-e-ter $\OML/cmm/m/it/10 u[]
  \OMS/cmsy/m/n/10 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 510--511
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 522--523
 [][] 
  []
 
-[7] <./images/finance/example_data.pdf, id=40, 325.215pt x 289.08pt>
+[6] <./images/finance/example_data.pdf, id=36, 325.215pt x 289.08pt>
 File: ./images/finance/example_data.pdf Graphic file (type pdf)
 
-<use ./images/finance/example_data.pdf>
-<./images/finance/example_filter_kdest.pdf, id=41, 325.215pt x 289.08pt>
+<use ./images/finance/example_data.pdf> [7 <D:/pb404/VariableRateAlgorithms/com
+bined_paper/images/finance/example_data.pdf>]
+<./images/finance/example_filter_kdest.pdf, id=45, 325.215pt x 289.08pt>
 File: ./images/finance/example_filter_kdest.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_filter_kdest.pdf>
-<./images/finance/example_smoother_kdest.pdf, id=42, 325.215pt x 289.08pt>
+<./images/finance/example_smoother_kdest.pdf, id=46, 325.215pt x 289.08pt>
 File: ./images/finance/example_smoother_kdest.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_smoother_kdest.pdf>
-<./images/finance/example_filter_state.pdf, id=43, 325.215pt x 144.54pt>
+<./images/finance/example_filter_state.pdf, id=47, 325.215pt x 144.54pt>
 File: ./images/finance/example_filter_state.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_filter_state.pdf>
-<./images/finance/example_filtersmoother_state.pdf, id=44, 325.215pt x 144.54pt
+<./images/finance/example_filtersmoother_state.pdf, id=48, 325.215pt x 144.54pt
 >
 File: ./images/finance/example_filtersmoother_state.pdf Graphic file (type pdf)
 
  <use ./images/finance/example_filtersmoother_state.pdf>
-<./images/finance/example_smoother_state.pdf, id=45, 325.215pt x 144.54pt>
+<./images/finance/example_smoother_state.pdf, id=49, 325.215pt x 144.54pt>
 File: ./images/finance/example_smoother_state.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_smoother_state.pdf> [8 <D:/pb404/VariableRateAlgo
-rithms/combined_paper/images/finance/example_data.pdf> <D:/pb404/VariableRateAl
-gorithms/combined_paper/images/finance/example_filter_kdest.pdf> <D:/pb404/Vari
-ableRateAlgorithms/combined_paper/images/finance/example_smoother_kdest.pdf>]
-<./images/finance/fx_data.pdf, id=61, 325.215pt x 144.54pt>
-File: ./images/finance/fx_data.pdf Graphic file (type pdf)
+rithms/combined_paper/images/finance/example_filter_kdest.pdf> <D:/pb404/Variab
+leRateAlgorithms/combined_paper/images/finance/example_smoother_kdest.pdf> <D:/
+pb404/VariableRateAlgorithms/combined_paper/images/finance/example_filter_state
+.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_fi
+ltersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/
+finance/example_smoother_state.pdf>]
+<./images/tracking/simulated_problem.pdf, id=73, 289.08pt x 216.81pt>
+File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
-<use ./images/finance/fx_data.pdf>
-<./images/finance/fx_filter_kdest.pdf, id=62, 325.215pt x 289.08pt>
-File: ./images/finance/fx_filter_kdest.pdf Graphic file (type pdf)
+<use ./images/tracking/simulated_problem.pdf>
+<./images/tracking/2DFilter.pdf, id=74, 289.08pt x 216.81pt>
+File: ./images/tracking/2DFilter.pdf Graphic file (type pdf)
 
-<use ./images/finance/fx_filter_kdest.pdf>
-<./images/finance/fx_smoother_kdest.pdf, id=63, 325.215pt x 289.08pt>
-File: ./images/finance/fx_smoother_kdest.pdf Graphic file (type pdf)
+<use ./images/tracking/2DFilter.pdf>
+<./images/tracking/2DSmoother.pdf, id=75, 289.08pt x 216.81pt>
+File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 
-<use ./images/finance/fx_smoother_kdest.pdf>
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.bbl
+<use ./images/tracking/2DSmoother.pdf>
+<./images/tracking/unique_particles.pdf, id=76, 289.08pt x 216.81pt>
+File: ./images/tracking/unique_particles.pdf Graphic file (type pdf)
+
+<use ./images/tracking/unique_particles.pdf>
+Underfull \hbox (badness 1454) in paragraph at lines 799--800
+\OT1/ptm/m/n/10 points. For the linear-Gaussian case, the al-go-rithm em-
+ []
+
+[9]
+Underfull \vbox (badness 1365) has occurred while \output is active []
+
+
+(D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 56--59
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
 
+[10 <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/simulated_p
+roblem.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DF
+ilter.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DSm
+oother.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/uni
+que_particles.pdf>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-[9 <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_filte
-r_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/exa
-mple_filtersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/
-images/finance/example_smoother_state.pdf>]
+
 Underfull \hbox (badness 2318) in paragraph at lines 144--148
 []\OT1/ptm/m/n/8 A. Doucet, N. De Fre-itas, K. Mur-phy, and S. Rus-sell, ``Rao-
 
@@ -489,46 +468,58 @@ Underfull \hbox (badness 2318) in paragraph at lines 144--148
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-) [10 <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/fx_data.pd
-f> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/fx_filter_kde
-st.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/fx_smoot
-her_kdest.pdf>]
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft1_VRsmoothing.aux)
+) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex
+<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=102, 180.675pt x 225.84375pt
+>
+File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
+ <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
+File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
 
-LaTeX Warning: There were undefined references.
+<use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>)
+(D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex
+<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=105, 953.5625pt x 1204.5pt>
+File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
- ) 
+<use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
+File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
+
+<use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
+Missing character: There is no ’ in font ptmr7t!
+) [11 <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg> <D:/pb404/Dropbox/PhD/Bio
+graphies/Godsill.jpg>]
+(D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.aux) ) 
 Here is how much of TeX's memory you used:
- 3871 strings out of 494019
- 58489 string characters out of 3143883
- 133994 words of memory out of 3000000
- 7100 multiletter control sequences out of 15000+200000
- 47680 words of font info for 96 fonts, out of 3000000 for 9000
+ 3903 strings out of 494019
+ 59518 string characters out of 3143883
+ 135061 words of memory out of 3000000
+ 7119 multiletter control sequences out of 15000+200000
+ 48787 words of font info for 97 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 36i,21n,45p,1264b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/u
-tmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft1_VRsmoothing.pdf (10 pages, 1386167 bytes).
+ 36i,21n,45p,1201b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pf
+b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on draft2_VRsmoothing.pdf (11 pages, 1660451 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
+ 176 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 
