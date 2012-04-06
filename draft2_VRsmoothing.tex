@@ -320,21 +320,23 @@ A filter conducts inference sequentially as new observations are introduced. The
 
 The target distribution for a variable rate smoothing algorithm is the posterior distribution over the entire changepoint sequence, $p(\theta|y_{1:N})$. This is the distribution approximated by the final step of the VRPF. However, in the same manner as the fixed rate filter-smoother of \cite{Kitagawa1996}, this approximation is likely to lack path-space diversity --- because of the necessary resampling step in the filtering algorithm, the particles all share the same set of changepoints before a particular time, with variation only appearing for changepoints closer to $T$. For a better characterisation of the smoothing distribution, it is necessary to rejuvenate the set of particles. This is achieved with a backward pass through the observations in a similar manner to the forward-backward method described in \cite{Godsill2004}.
 
-The target distribution may be factorised as follows,
+
+
+\subsection{Conditionally Linear-Gaussian Smoothing} \label{sec:rb-vrps}
+
+At time $t_n$, the target distribution may be factorised as follows,
 %
 \begin{IEEEeqnarray}{rCl}
  p(\theta|y_{1:N}) = p(\theta_{n}^{+}|y_{1:N}) p(\theta_{n}|\theta_{n}^{+}, y_{1:N})     .
 \end{IEEEeqnarray}
 
-This suggests a sequential strategy for smoothing. A particle drawn from $p(\theta_{n}^{+}|y_{1:N})$ may be extended backwards by sampling from the backwards conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$ and concatenating the two partial sequences. The new particle will be a sample from the target distribution, but the resulting approximation will still suffer from low path-space diversity before time $t_{n-1}$. Therefore, $\theta_{n-1}$ is marginalised by simply discarding the changepoints which occur before this time. This results in a particle drawn from $p(\theta_{n-1}^{+}|y_{1:N})$. The procedure then continues recursively. After a complete backwards pass through the observations, a single particle from the target distribution will have been generated. The process is then repeated until sufficient samples are obtained.
+This suggests a sequential strategy for particle smoothing. Starting with a low diversity set of particles from $p(\theta|y_{1:N})$, we first marginalise $\theta_{n}$ by simply discarding the changepoints before $t_n$. New values of $\theta_{n}$ are then sampled from the conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$, which is approximated using the filter particles, and the past and future sequences are concatenated. By iterating backwards from $n = N \dots 1$, a diverse set of particles approximating $p(\theta|y_{1:N})$ will be generated.
 
-At step $n$ for a given particle, the future changepoint sequence may be considered to be fixed. It remains to devise a method for drawing samples from the backwards conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$. The simplifications used by the fixed rate particle smoother which exploit the Markovian nature of the state sequence \cite{Godsill2004} are of no help, because past changepoints are not independent of future observations (i.e. $p(\theta_{n}|\theta_{n}^{+}, y_{1:N}) \ne p(\theta_{n}|\theta_{n}^{+}, y_{1:n}))$. In the following sections, alternative methods for sampling this backwards conditional distribution are discussed for the two classes of model.
+%A particle drawn from $p(\theta_{n}^{+}|y_{1:N})$ may be extended backwards by sampling from the conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$ and concatenating the past and future sequences. The new particle will be a sample from the target distribution, but the resulting approximation will still suffer from low path-space diversity before time $t_{n-1}$. Therefore, $\theta_{n-1}$ is marginalised by simply discarding the changepoints which occur before this time. This results in a particle drawn from $p(\theta_{n-1}^{+}|y_{1:N})$. The procedure then continues recursively. After a complete backwards pass through the observations, a single particle from the target distribution will have been generated. The process is then repeated until sufficient samples are obtained.
 
+%At step $n$ for a given particle, the future changepoint sequence may be considered to be fixed. It remains to devise a method for drawing samples from the backwards conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$.
 
-
-\subsection{Conditionally Linear-Gaussian Smoothing} \label{sec:rb-vrps}
-
-When the state dynamics are linear-Gaussian conditional on the changepoint sequence, it is possible split the dependence on the observations into past and future by introducing the current state as an additional variable. This trick was used in \cite{Sarkka2012} in the derivation of the Rao-Blackwellised particle filter for fixed rate conditionally linear-Gaussian models.
+It remains to devise a scheme for sampling the conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$. The simplifications used by the fixed rate particle smoother which exploit the Markovian nature of the state sequence \cite{Godsill2004} are of no help, because past changepoints are not independent of future observations (i.e. $p(\theta_{n}|\theta_{n}^{+}, y_{1:N}) \ne p(\theta_{n}|\theta_{n}^{+}, y_{1:n}))$. However, when the state dynamics are linear-Gaussian conditional on the changepoint sequence, it is possible split the dependence on the observations into past and future by introducing the current state as an additional variable. This trick was used in \cite{Sarkka2012} in the derivation of the Rao-Blackwellised particle filter for fixed rate conditionally linear-Gaussian models.
 %
 \begin{IEEEeqnarray}{rCl}
  \IEEEeqnarraymulticol{3}{l}{p(\theta_{n}|\theta_{n}^+, y_{1:N})} \nonumber \\
@@ -406,18 +408,20 @@ Using these weights, a sample of $\theta_{n}$ may be drawn from the particle dis
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
+\linespread{1.7} \selectfont
   \STATE Run Rao-Blackwellised variable rate particle filter to approximate $p(\theta_{n}|y_{1:n})$ with weighted particles $\{\theta_{n}^{(i)}, w_{n}^{(i)}\}$ and $\{p(x_n|\theta_{n}^{(i)},y_{1:n})\}$ as normal distributions with moments $\{m_{n}^{(i)}\}$ and $\{P_{n}^{(i)}\}$. Store all results.
   \FOR{$i=1 \dots N_S$}
   	\STATE Initialise particle using $\theta^{(i)} \sim \sum_j w_N^{(j)} \delta_{\theta^{(j)}}(\theta)$.
     \STATE Initialise sufficient statistics $\tilde{m}_N^{(i)}$ and $\tilde{P}_N^{(i)}$ (see text).
-    \FOR{$n=N \dots 1$}
+    \FOR{$n=N-1 \dots 1$}
+      \STATE Discard $\theta_{n}^{(i)}$.
       \STATE Predict state mean and covariance $\tilde{m}_n^{-(i)}$ and $\tilde{P}_n^{-(i)}$ using \ref{eq:backward_kf_predict_start} to \ref{eq:backward_kf_predict_stop}.
       \FOR{$j=1 \dots N_P$}
 	      \STATE Calculate weight $\tilde{w}_n^{(j)}$ using (\ref{eq:rb-vrps_back_cond_weight2}).
       \ENDFOR
       \STATE Sample $\theta_{n}^{(i)} \sim \sum_j \tilde{w}_n^{(j)} \delta_{\theta_{n}^{(j)}}(\theta_{n})$.
+      \STATE Join $\theta^{(i)} \gets \theta_{n}^{(i)} \cup \theta_{n}^{+(i)}$.
       \STATE Update state mean and covariance $\tilde{m}_n^{(i)}$ and $\tilde{P}_n^{(i)}$ using \ref{eq:backward_kf_update_start} to \ref{eq:backward_kf_update_stop}.
-      \STATE Discard $\theta_{n-1}^{(i)}$.
     \ENDFOR
   \ENDFOR
 \end{algorithmic}
@@ -440,21 +444,23 @@ In order to achieve conditional independence between past and future observation
  p(\tilde{\theta}|y_{1:N}) = p(\tilde{\theta_{n}}^{+}|y_{1:N}) p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N})     .
 \end{IEEEeqnarray}
 
-Again, this suggests a backwards sequential sampling algorithm for smoothing. The backwards conditional term may be expanded as,
+Again, this suggests a backwards sequential sampling algorithm for smoothing. The conditional term may be expanded as,
 %
 \begin{IEEEeqnarray}{rCl}
-p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N}) & \propto & p(y_{n+1:N}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}) p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}|y_{1:n})    .
+p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N}) & \propto & p(y_{n+1:N}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}) \nonumber \\
+& & \times p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}|y_{1:n})    .
 \end{IEEEeqnarray}
 
-This presents a problem. We cannot substitute the particle approximation for the filtering distribution because the transition density term for the augmented sequences is given by,
+This presents a problem. We cannot directly substitute the particle approximation for the filtering distribution because the transition density term for the augmented sequences is given by,
 %
 \begin{IEEEeqnarray}{rCl}
-p(\tilde{\theta}_{n}^+ | \tilde{\theta}_{n}) & \propto & p(\tau_{K_n+1}, u_{K_n+1}| \tau_{K_n}, u_{K_n}) \delta_{f(x_{K_n}, u_{K_n}, \tau_{K_n}, \tau_{K_n+1})}(x_{K_n+1}),
+p(\tilde{\theta}_{n}^+ | \tilde{\theta}_{n}) & \propto & p(\tau_{K_n+1}, u_{K_n+1}| \tau_{K_n}, u_{K_n}) \nonumber \\
+ & & \times \delta_{f(x_{K_n}, u_{K_n}, \tau_{K_n}, \tau_{K_n+1})}(x_{K_n+1}),
 \end{IEEEeqnarray}
 
 which will be $0$ for almost all filtering particles. Intuitively, we are trying to join two deterministic state trajectories together, but they do not meet up in the middle.
 
-The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than sampling $p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N})$ directly, a value of $\tilde{\theta}_{n}$ is proposed from the filtering particles, after which a replacement, $u_{K_n}'$, is proposed for the existing parameter corresponding to the final changepoint, with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. Such a proposal density may be written as,
+The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than sampling $p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N})$ directly, a value of $\tilde{\theta}_{n}$ is proposed from the filtering particles, after which a replacement, $u_{K_n}'$, is proposed for the existing final changepoint parameter, with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. Such a proposal density may be written as,
 %
 \begin{IEEEeqnarray}{rCl}
 \IEEEeqnarraymulticol{3}{l}{p(\tilde{\theta}_{n}|y_{1:n}) q(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})} \nonumber \\
@@ -472,17 +478,16 @@ Clearly this new target distribution admits the desired posterior as a marginal.
 
 For this method to work, a new condition must be imposed on the state dynamics. For any pair of adjacent changepoints, $(\tau_k,x_k)$, and $(\tau_{k+1},x_{k+1})$ it must be possible to calculate a parameter value which results in the transition from the former to the latter. As a rule of thumb, this requires the number of dimensions of $u_k$ to be greater or equal to the number of dimensions of $x_k$.
 
-The augmented target distribution may be sampled using Markov chain Monte Carlo (MCMC) \cite{Gilks1996}, in a similar manner to the fixed rate smoother of \cite{Bunch2012} (IS could be used, but this would require resampling steps, which would lead to a loss of path-space diversity). Metropolis-Hastings (MH) steps are conducted to draw samples, $\{\tilde{\theta}_{n}, u_{K_n}'\}$, from the target distribution by sampling the proposal and accepting the new values with a given probability.
+The augmented target distribution may be sampled using Markov chain Monte Carlo (MCMC) \cite{Gilks1996}, in a similar manner to the fixed rate smoother of \cite{Bunch2012}. Metropolis-Hastings (MH) steps are conducted to draw samples, $\{\tilde{\theta}_{n}, u_{K_n}'\}$, from the target distribution by sampling the proposal and accepting the new values with a given probability.      % (IS could be used, but this would require resampling steps, which would lead to a loss of path-space diversity)
 
 The ratio of target (\ref{eq:pd-vrps_target}) and proposal (\ref{eq:pd-vrps_proposal}) densities is given by,
 %
 \begin{IEEEeqnarray}{rCl}
-\beta_n &\propto& \frac{ p(y_{r_n^-:r_n^+}|\tilde{\theta}_{n}') }{ p(y_{r_n^-:n}|\tilde{\theta}_{n}) } \nonumber \\
-  & & \times \frac{ p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}') p(u_{K_n}'|\tilde{\theta}_n \setminus u_{K_n}) }{ p(u_{K_n}|\tilde{\theta}_n \setminus u_{K_n}) } \nonumber \\
-  & & \times \frac{ L(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) }{ q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) } \label{eq:pd-vrps_tpr}    ,
+\beta_n & \propto & \frac{ p(y_{r_n^-:r_n^+}|\tilde{\theta}_{n}') }{ p(y_{r_n^-:n}|\tilde{\theta}_{n}) } \times \frac{ p(u_{K_n}'|\tau_{K_n}, \tau_{K_n-1}, u_{K_n-1}) }{ p(u_{K_n}|\tau_{K_n}, \tau_{K_n-1}, u_{K_n-1}) } \nonumber \\
+  & & \times p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}') \times \frac{ L(u_{K_n}|\tilde{\theta}_{n}', \tilde{\theta}_{n}^{+}, y_{1:N}) }{ q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) } \label{eq:pd-vrps_tpr}    ,
 \end{IEEEeqnarray}
 
-where $r_n^- = \min( m : t_m > \tau_{K_n} )$ and $r_n^+ = \max( m : t_m < \tau_{K_n+1} )$.
+where $r_n^- = \min( m : t_m > \tau_{K_n} )$ and $r_n^+ = \max( m : t_m < \tau_{K_n+1} )$ are the indexes of the earliest and latest observations to fall between the changepoints each side of $t_n$.
 
 %The transition density term will include a delta function with unit probability mass at the point for which the past and future state trajectories match up.
 
@@ -490,32 +495,35 @@ where $r_n^- = \min( m : t_m > \tau_{K_n} )$ and $r_n^+ = \max( m : t_m < \tau_{
 %\IEEEeqnarraymulticol{3}{l}{p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}') \propto p(u_{K_n+1}|\tau_{K_n+1}, \tau_{K_n}, u_{K_n})} \nonumber \\ \times p(\tau_{K_n+1}|\tau_{K_n}, u_{K_n}) \delta_{f(x_{K_n}, v_{K_n}, \tau_{K_n}, \tau_{K_n+1})}(x_{K_n+1})
 %\end{IEEEeqnarray}
 
-The proposal density $q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$ is constructed so as to be non-zero only where $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}')$ is non-zero. This may require it to be a delta function if there is only one feasible value. The artificial conditional term, $L(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$, may be any arbitrary density, but the simplest choice is simply as a uniform distribution so that it cancels out in the acceptance probability. The remaining terms are likelihoods and parameter transition density terms, defined by the system equations.
+The proposal density $q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$ is constructed so as to be non-zero only where $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}')$ is non-zero. This may require it to be a delta function if there is only one feasible value. The artificial conditional term, $L(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$, may be any arbitrary density, but the simplest choice is simply as a uniform distribution so that it cancels out in the MH acceptance probability. The remaining terms are likelihoods and parameter transition density terms, defined by the system equations.
 
-If $\beta_n^{(m-1)}$ is the target-proposal ratio for the current state in the chain, and $\beta_n^*$ that for the proposed state, then the acceptance probability is given by,
+If $\beta_n^{(m-1)}$ is the target-proposal ratio for the current state in the chain, and $\beta_n^*$ that for the new state, then the acceptance probability is given by,
 %
 \begin{IEEEeqnarray}{rCl}
 \alpha_n^{(m)} = \min \left( 1, \frac{\beta_n^*}{\beta_n^{(m-1)}} \right) \label{eq:pd-vrps_ap}     .
 \end{IEEEeqnarray}
+
+Each Markov chain may be initialised with the output from the previous stage. This value is itself a particle from the target distribution (albeit one from an approximation with poor diversity), meaning that no burn-in period is required.
 
 The algorithm is summarised in Fig.~\ref{alg:VRPS}.
 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
+\linespread{1.7} \selectfont
   \STATE Run variable rate particle filter to approximate $p(\tilde{\theta}_{n}|y_{1:n})$ with weighted particles $\{\tilde{\theta}_{n}^{(i)}, w_{n}^{(i)}\}$. Store all results.
   \FOR{$i=1 \dots N_S$}
-  	\STATE Initialise particle from $N$th filter approximation $\tilde{\theta}^{(i)} \sim \sum_j w_N^{(j)} \delta_{\tilde{\theta}^{(j)}}(\tilde{\theta})$.
+  	\STATE Initialise particle using $\tilde{\theta}^{(i)} \sim \sum_j w_N^{(j)} \delta_{\tilde{\theta}^{(j)}}(\tilde{\theta})$.
     \FOR{$n=N \dots 1$}
-      \STATE Get the current changepoint history $\tilde{\theta}_n^{(i)(0)} \gets \tilde{\theta}_n^{(i)}$.
+      \STATE Initialise chain with $\tilde{\theta}_n^{(i)(0)} \gets \tilde{\theta}_n^{(i)}$.
       \FOR{$m=1 \dots M$}
-        \STATE Propose a new changepoint history from $n$th filter approximation $\tilde{\theta}_n^{(i)*} \sim \sum_j w_n^{(j)} \delta_{\tilde{\theta}_{n}^{(j)}}(\tilde{\theta}_{n})$.
-        \STATE Propose a replacement parameter $u_{K_n}'^* \sim q(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$.
-        \STATE Construct a new changepoint history, $\tilde{\theta}_n'^{(i)*}$, by replacing $u_{K_n}^*$ with $u_{K_n}'^*$.
-        \STATE Calculate acceptance probability $\alpha_n^{(m)}$ using (\ref{eq:pd-vrps_tpr}) and (\ref{eq:pd-vrps_ap}).
-        \STATE With probability $\alpha_n^{(m)}$, $\tilde{\theta}_n^{(i)(m)} \gets \tilde{\theta}_n^{(i)*}$. Otherwise, $\tilde{\theta}_n^{(i)(m)} \gets \tilde{\theta}_n^{(i)(m-1)}$.
+        \STATE Propose a new history $\tilde{\theta}_n^{(i)*} \sim \sum_j w_n^{(j)} \delta_{\tilde{\theta}_{n}^{(j)}}(\tilde{\theta}_{n})$.
+        \STATE Propose a parameter $u_{K_n}'^* \sim q(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$.
+        \STATE Replace $u_{K_n}^*$ with $u_{K_n}'^*$ to form $\tilde{\theta}_n'^{(i)*}$.
+        \STATE Calculate $\alpha_n^{(m)}$ using (\ref{eq:pd-vrps_tpr}) and (\ref{eq:pd-vrps_ap}).
+        \STATE With probability $\alpha_n^{(m)}$, $\tilde{\theta}_n^{(i)(m)} \gets \tilde{\theta}_n^{(i)*}$. \\ Otherwise, $\tilde{\theta}_n^{(i)(m)} \gets \tilde{\theta}_n^{(i)(m-1)}$.
       \ENDFOR
-      \STATE Keep final sample $\tilde{\theta}_n^{(i)} \gets \tilde{\theta}_n^{(i)(M)}$.
+      \STATE Store final sample $\tilde{\theta}_n^{(i)} \gets \tilde{\theta}_n^{(i)(M)}$.
     \ENDFOR
   \ENDFOR
 \end{algorithmic}
@@ -524,7 +532,7 @@ The algorithm is summarised in Fig.~\ref{alg:VRPS}.
 \label{alg:VRPS}
 \end{figure}
 
-The Markov chains require no burn-in, because the starting value is itself a sample from the target distribution. The number of MH steps, $M$, at each observation time, $n$, allows a trade-off of performance against time. Larger values of $M$ will ensure more unique samples in the smoothing approximation, but will also take longer to execute. See \cite{Bunch2012} for analysis of this trade-off on a fixed rate model. In the simulations discussed in this report, $M=1$ was used throughout.
+The number of MH steps, $M$, at each observation time, $n$, allows a trade-off of performance against time. Larger values of $M$ will ensure more unique samples in the smoothing approximation, but will also take longer to execute. See \cite{Bunch2012} for analysis of this trade-off on a fixed rate model. In the simulations discussed in this report, $M=1$ was used throughout.
 
 
 
@@ -730,7 +738,7 @@ The target dynamics are described by four differential equations.
 \dot{y}_t & = & \dot{s}_t \sin(\psi_t) + d_{Y,K(t)}     .
 \end{IEEEeqnarray}
 
-Solving these yields the following state equations (where $\Delta\tau = \tau_{k+1} - \tau_k$):
+Solving these yields the following state equations (where $\Delta\ t = t - \tau_{K(t)}$):
 %
 \begin{IEEEeqnarray}{rCl}
 \dot{s}(t) & = & \dot{s}_{K(t)} + a_{T,k} \Delta t \label{eq:2D_ICmodel_start} \\

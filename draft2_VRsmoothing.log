@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  6 APR 2012 17:32
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  6 APR 2012 18:40
 entering extended mode
 **draft2_VRsmoothing.tex
 (D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.tex
@@ -359,109 +359,90 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 300--301
  []
 
 [3] [4]
-Underfull \hbox (badness 6284) in paragraph at lines 378--380
+Underfull \hbox (badness 6284) in paragraph at lines 380--382
 []\OT1/ptm/m/n/10 The sec-ond state term in (35[]) is the like-li-hood,
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 424--425
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 428--429
 [][] 
  []
 
 [5]
-Overfull \hbox (43.17824pt too wide) in alignment at lines 451--453
- [] [] [] [][]
- []
-
-
-Underfull \hbox (badness 7522) in paragraph at lines 522--522
-[] []\OT1/ptm/m/n/10 Propose a re-place-ment pa-ram-e-ter $\OML/cmm/m/it/10 u[]
- \OMS/cmsy/m/n/10 
- []
-
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 522--523
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 530--531
 [][] 
  []
 
-[6] <./images/finance/example_data.pdf, id=36, 325.215pt x 289.08pt>
+[6] <./images/finance/example_data.pdf, id=35, 325.215pt x 289.08pt>
 File: ./images/finance/example_data.pdf Graphic file (type pdf)
 
-<use ./images/finance/example_data.pdf> [7 <D:/pb404/VariableRateAlgorithms/com
-bined_paper/images/finance/example_data.pdf>]
-<./images/finance/example_filter_kdest.pdf, id=45, 325.215pt x 289.08pt>
+<use ./images/finance/example_data.pdf> [7]
+<./images/finance/example_filter_kdest.pdf, id=41, 325.215pt x 289.08pt>
 File: ./images/finance/example_filter_kdest.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_filter_kdest.pdf>
-<./images/finance/example_smoother_kdest.pdf, id=46, 325.215pt x 289.08pt>
+<./images/finance/example_smoother_kdest.pdf, id=42, 325.215pt x 289.08pt>
 File: ./images/finance/example_smoother_kdest.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_smoother_kdest.pdf>
-<./images/finance/example_filter_state.pdf, id=47, 325.215pt x 144.54pt>
+<./images/finance/example_filter_state.pdf, id=43, 325.215pt x 144.54pt>
 File: ./images/finance/example_filter_state.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_filter_state.pdf>
-<./images/finance/example_filtersmoother_state.pdf, id=48, 325.215pt x 144.54pt
+<./images/finance/example_filtersmoother_state.pdf, id=44, 325.215pt x 144.54pt
 >
 File: ./images/finance/example_filtersmoother_state.pdf Graphic file (type pdf)
 
  <use ./images/finance/example_filtersmoother_state.pdf>
-<./images/finance/example_smoother_state.pdf, id=49, 325.215pt x 144.54pt>
+<./images/finance/example_smoother_state.pdf, id=45, 325.215pt x 144.54pt>
 File: ./images/finance/example_smoother_state.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_smoother_state.pdf> [8 <D:/pb404/VariableRateAlgo
-rithms/combined_paper/images/finance/example_filter_kdest.pdf> <D:/pb404/Variab
-leRateAlgorithms/combined_paper/images/finance/example_smoother_kdest.pdf> <D:/
-pb404/VariableRateAlgorithms/combined_paper/images/finance/example_filter_state
-.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_fi
-ltersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/
-finance/example_smoother_state.pdf>]
-<./images/tracking/simulated_problem.pdf, id=73, 289.08pt x 216.81pt>
+rithms/combined_paper/images/finance/example_data.pdf> <D:/pb404/VariableRateAl
+gorithms/combined_paper/images/finance/example_filter_kdest.pdf> <D:/pb404/Vari
+ableRateAlgorithms/combined_paper/images/finance/example_smoother_kdest.pdf>]
+[9 <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_filte
+r_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/exa
+mple_filtersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/
+images/finance/example_smoother_state.pdf>]
+<./images/tracking/simulated_problem.pdf, id=80, 289.08pt x 216.81pt>
 File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
 <use ./images/tracking/simulated_problem.pdf>
-<./images/tracking/2DFilter.pdf, id=74, 289.08pt x 216.81pt>
+<./images/tracking/2DFilter.pdf, id=81, 289.08pt x 216.81pt>
 File: ./images/tracking/2DFilter.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DFilter.pdf>
-<./images/tracking/2DSmoother.pdf, id=75, 289.08pt x 216.81pt>
+<./images/tracking/2DSmoother.pdf, id=82, 289.08pt x 216.81pt>
 File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DSmoother.pdf>
-<./images/tracking/unique_particles.pdf, id=76, 289.08pt x 216.81pt>
+<./images/tracking/unique_particles.pdf, id=83, 289.08pt x 216.81pt>
 File: ./images/tracking/unique_particles.pdf Graphic file (type pdf)
 
 <use ./images/tracking/unique_particles.pdf>
-Underfull \hbox (badness 1454) in paragraph at lines 799--800
+Underfull \hbox (badness 1454) in paragraph at lines 807--808
 \OT1/ptm/m/n/10 points. For the linear-Gaussian case, the al-go-rithm em-
  []
 
-[9]
-Underfull \vbox (badness 1365) has occurred while \output is active []
-
-
 (D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/simulated_
+problem.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2D
+Filter.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DS
+moother.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/un
+ique_particles.pdf>]
 Underfull \hbox (badness 4072) in paragraph at lines 56--59
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
 
-[10 <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/simulated_p
-roblem.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DF
-ilter.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DSm
-oother.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/uni
-que_particles.pdf>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-
-Underfull \hbox (badness 2318) in paragraph at lines 144--148
-[]\OT1/ptm/m/n/8 A. Doucet, N. De Fre-itas, K. Mur-phy, and S. Rus-sell, ``Rao-
-
- []
-
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -489,13 +470,13 @@ Missing character: There is no ’ in font ptmr7t!
 graphies/Godsill.jpg>]
 (D:\pb404\VariableRateAlgorithms\combined_paper\draft2_VRsmoothing.aux) ) 
 Here is how much of TeX's memory you used:
- 3903 strings out of 494019
- 59518 string characters out of 3143883
- 135061 words of memory out of 3000000
- 7119 multiletter control sequences out of 15000+200000
+ 3900 strings out of 494019
+ 59479 string characters out of 3143883
+ 135049 words of memory out of 3000000
+ 7116 multiletter control sequences out of 15000+200000
  48787 words of font info for 97 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 36i,21n,45p,1201b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,21n,45p,1201b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files 
 (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x
@@ -517,7 +498,7 @@ cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Prog
 ram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft2_VRsmoothing.pdf (11 pages, 1660451 bytes).
+Output written on draft2_VRsmoothing.pdf (11 pages, 1659562 bytes).
 PDF statistics:
  176 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

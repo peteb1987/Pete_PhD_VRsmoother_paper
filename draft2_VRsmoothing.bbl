@@ -129,22 +129,12 @@ R.~Douc, O.~Cappe, and E.~Moulines, ``Comparison of resampling schemes for
   2005. ISPA 2005. Proceedings of the 4th International Symposium on}, sept.
   2005, pp. 64 -- 69.
 
-\bibitem{Anderson1979}
-B.~Anderson and J.~Moore, \emph{Optimal filtering}.\hskip 1em plus 0.5em minus
-  0.4em\relax Prentice-Hall (Englewood Cliffs, NJ), 1979.
-
-\bibitem{Casella1996}
+\bibitem{Grewal2002}
 \BIBentryALTinterwordspacing
-G.~Casella and C.~P. Robert, ``Rao-blackwellisation of sampling schemes,''
-  \emph{Biometrika}, vol.~83, no.~1, pp. 81--94, 1996. [Online]. Available:
-  \url{http://biomet.oxfordjournals.org/content/83/1/81.abstract}
+M.~S. Grewal and A.~P. Andrews, \emph{Kalman Filtering: Theory and Practice
+  Using {MATLAB}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
+  Inc., 2002. [Online]. Available: \url{http://dx.doi.org/10.1002/0471266388}
 \BIBentrySTDinterwordspacing
-
-\bibitem{Doucet2000}
-A.~Doucet, N.~De~Freitas, K.~Murphy, and S.~Russell, ``{Rao-Blackwellised
-  particle filtering for dynamic Bayesian networks},'' in \emph{Proceedings of
-  the Sixteenth Conference on Uncertainty in Artificial Intelligence}.\hskip
-  1em plus 0.5em minus 0.4em\relax Citeseer, 2000, pp. 176--183.
 
 \bibitem{Gilks2001}
 \BIBentryALTinterwordspacing
@@ -200,13 +190,6 @@ P.~Bunch and S.~Godsill, ``Improved particle approximations to the joint
 \bibitem{Gilks1996}
 W.~Gilks, S.~Richardson, and D.~Spiegelhalter, \emph{Markov chain Monte Carlo
   in practice}.\hskip 1em plus 0.5em minus 0.4em\relax Chapman and Hall, 1996.
-
-\bibitem{Grewal2002}
-\BIBentryALTinterwordspacing
-M.~S. Grewal and A.~P. Andrews, \emph{Kalman Filtering: Theory and Practice
-  Using {MATLAB}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
-  Inc., 2002. [Online]. Available: \url{http://dx.doi.org/10.1002/0471266388}
-\BIBentrySTDinterwordspacing
 
 \bibitem{Bunch2012a}
 P.~Bunch and S.~Godsill, ``Dynamical models for tracking with the variable rate
