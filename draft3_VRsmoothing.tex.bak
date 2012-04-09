@@ -754,12 +754,12 @@ Performance was evaluated by testing on 10 scenarios, each with 1000 observation
 
 The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:finance_unique_particles}. This illustrates the main advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution.
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.9\columnwidth]{finance_unique_particles.pdf}
-\caption{Mean number of unique particles in the filter-smoother (dashed) and smoother (solid) estimates.}
-\label{fig:finance_unique_particles}
-\end{figure}
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=0.9\columnwidth]{finance_unique_particles.pdf}
+%\caption{Mean number of unique particles in the filter-smoother (dashed) and smoother (solid) estimates.}
+%\label{fig:finance_unique_particles}
+%\end{figure}
 
 
 

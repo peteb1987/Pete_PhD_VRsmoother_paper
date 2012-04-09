@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  9 APR 2012 14:53
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  9 APR 2012 19:11
 entering extended mode
 **draft3_VRsmoothing.tex
 (D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.tex
@@ -332,110 +332,91 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-Overfull \hbox (78.34016pt too wide) in alignment at lines 165--170
- [] [] [] [][]
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 197--199
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
 []\OT1/ptm/m/n/10 Next, an ex-ten-sion to the change-point se-quence,
  []
 
 
-Underfull \hbox (badness 5133) in paragraph at lines 197--199
+Underfull \hbox (badness 5133) in paragraph at lines 201--203
 \OML/cmm/m/it/10 []$\OT1/ptm/m/n/10 , is pro-posed from an im-por-tance dis-tr
 i-bu-tion,
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 267--268
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 271--272
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 300--301
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 304--305
 [][] 
  []
 
 [3] [4]
-Underfull \hbox (badness 6284) in paragraph at lines 380--382
-[]\OT1/ptm/m/n/10 The sec-ond state term in (35[]) is the like-li-hood,
+Underfull \hbox (badness 6284) in paragraph at lines 384--386
+[]\OT1/ptm/m/n/10 The sec-ond state term in (34[]) is the like-li-hood,
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 428--429
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 432--433
 [][] 
  []
 
 [5]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 530--531
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 534--535
 [][] 
  []
 
 [6] <./images/finance/example_data.pdf, id=35, 325.215pt x 289.08pt>
 File: ./images/finance/example_data.pdf Graphic file (type pdf)
 
-<use ./images/finance/example_data.pdf> [7]
-<./images/finance/example_filter_kdest.pdf, id=41, 325.215pt x 289.08pt>
-File: ./images/finance/example_filter_kdest.pdf Graphic file (type pdf)
-
-<use ./images/finance/example_filter_kdest.pdf>
-<./images/finance/example_smoother_kdest.pdf, id=42, 325.215pt x 289.08pt>
-File: ./images/finance/example_smoother_kdest.pdf Graphic file (type pdf)
-
-<use ./images/finance/example_smoother_kdest.pdf>
-<./images/finance/example_filter_state.pdf, id=43, 325.215pt x 144.54pt>
-File: ./images/finance/example_filter_state.pdf Graphic file (type pdf)
-
-<use ./images/finance/example_filter_state.pdf>
-<./images/finance/example_filtersmoother_state.pdf, id=44, 325.215pt x 144.54pt
+<use ./images/finance/example_data.pdf>
+<./images/finance/example_filtersmoother_state.pdf, id=36, 325.215pt x 144.54pt
 >
 File: ./images/finance/example_filtersmoother_state.pdf Graphic file (type pdf)
 
  <use ./images/finance/example_filtersmoother_state.pdf>
-<./images/finance/example_smoother_state.pdf, id=45, 325.215pt x 144.54pt>
+<./images/finance/example_smoother_state.pdf, id=37, 325.215pt x 144.54pt>
 File: ./images/finance/example_smoother_state.pdf Graphic file (type pdf)
 
-<use ./images/finance/example_smoother_state.pdf> [8 <D:/pb404/VariableRateAlgo
-rithms/combined_paper/images/finance/example_data.pdf> <D:/pb404/VariableRateAl
-gorithms/combined_paper/images/finance/example_filter_kdest.pdf> <D:/pb404/Vari
-ableRateAlgorithms/combined_paper/images/finance/example_smoother_kdest.pdf>]
+<use ./images/finance/example_smoother_state.pdf>
+<./images/finance/finance_unique_particles.pdf, id=38, 289.08pt x 216.81pt>
+File: ./images/finance/finance_unique_particles.pdf Graphic file (type pdf)
+
+<use ./images/finance/finance_unique_particles.pdf> [7]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9 <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_filt
-er_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/ex
-ample_filtersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper
-/images/finance/example_smoother_state.pdf>]
-<./images/tracking/simulated_problem.pdf, id=80, 289.08pt x 216.81pt>
+ [8 <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_data
+.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_fi
+ltersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/
+finance/example_smoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_p
+aper/images/finance/finance_unique_particles.pdf>]
+<./images/tracking/simulated_problem.pdf, id=66, 289.08pt x 216.81pt>
 File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
 <use ./images/tracking/simulated_problem.pdf>
-<./images/tracking/2DFilter.pdf, id=81, 289.08pt x 216.81pt>
+<./images/tracking/2DFilter.pdf, id=67, 289.08pt x 216.81pt>
 File: ./images/tracking/2DFilter.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DFilter.pdf>
-<./images/tracking/2DSmoother.pdf, id=82, 289.08pt x 216.81pt>
+<./images/tracking/2DSmoother.pdf, id=68, 289.08pt x 216.81pt>
 File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DSmoother.pdf>
-<./images/tracking/unique_particles.pdf, id=83, 289.08pt x 216.81pt>
-File: ./images/tracking/unique_particles.pdf Graphic file (type pdf)
+<./images/tracking/tracking_unique_particles.pdf, id=69, 289.08pt x 216.81pt>
+File: ./images/tracking/tracking_unique_particles.pdf Graphic file (type pdf)
 
-<use ./images/tracking/unique_particles.pdf>
-Underfull \hbox (badness 1454) in paragraph at lines 807--808
+<use ./images/tracking/tracking_unique_particles.pdf>
+Underfull \hbox (badness 1454) in paragraph at lines 859--860
 \OT1/ptm/m/n/10 points. For the linear-Gaussian case, the al-go-rithm em-
  []
 
-
-Underfull \vbox (badness 4441) has occurred while \output is active []
-
- [10 <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/simulated_
-problem.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2D
-Filter.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DS
-moother.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/un
-ique_particles.pdf>] (D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRs
-moothing.bbl
+[9 <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/simulated_pr
+oblem.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DFi
+lter.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DSmo
+other.pdf>]
+(D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 56--59
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
@@ -452,16 +433,16 @@ Underfull \hbox (badness 4072) in paragraph at lines 56--59
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex
-<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=102, 180.675pt x 225.84375pt
->
+) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex [10 <D:/pb404/VariableRateAl
+gorithms/combined_paper/images/tracking/tracking_unique_particles.pdf>]
+<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=91, 180.675pt x 225.84375pt>
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
- <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
+<use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>)
 (D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex
-<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=105, 953.5625pt x 1204.5pt>
+<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=94, 953.5625pt x 1204.5pt>
 File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
@@ -469,18 +450,19 @@ File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
 Missing character: There is no ’ in font ptmr7t!
- [11 <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>]) [12
+) [11
 
- <D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>]
+ <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg> <D:/pb404/Dropbox/PhD/Biograph
+ies/Godsill.jpg>]
 (D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.aux) ) 
 Here is how much of TeX's memory you used:
- 3900 strings out of 494019
- 59479 string characters out of 3143883
- 136049 words of memory out of 3000000
- 7116 multiletter control sequences out of 15000+200000
+ 3888 strings out of 494019
+ 59094 string characters out of 3143883
+ 135028 words of memory out of 3000000
+ 7106 multiletter control sequences out of 15000+200000
  48787 words of font info for 97 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 36i,21n,45p,1201b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,15n,45p,1201b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files 
 (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x
@@ -502,9 +484,9 @@ cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Prog
 ram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft3_VRsmoothing.pdf (12 pages, 1663041 bytes).
+Output written on draft3_VRsmoothing.pdf (11 pages, 1581216 bytes).
 PDF statistics:
- 179 PDF objects out of 1000 (max. 8388607)
+ 165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 75 words of extra memory for PDF output out of 10000 (max. 10000000)
 
