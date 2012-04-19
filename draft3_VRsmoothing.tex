@@ -253,7 +253,7 @@ This completes the requirements for the particle filter, resulting in the final 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
 \STATE For each $i$, initialise particle changepoint sequence with $\{\theta_{0}^{(i)}\} \gets \{\tau_0^{(i)}, u_0^{(i)}\}$, where $\tau_0^{(i)}=0$ and $u_0^{(i)} \sim p(u_0)$.
 \STATE For each $i$, initialise particle sufficient statistics, $m_0^{(i)}$ and $P_0^{(i)}$ with prior values.
 \FOR{$n=1 \dots N$}
@@ -288,7 +288,7 @@ This leads to a particle filter for variable rate models with conditionally dete
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
 \STATE For each $i$, initialise particle changepoint sequence with $\{\theta_{0}^{(i)}\} \gets \{\tau_0^{(i)}, u_0^{(i)}\}$, where $\tau_0^{(i)}=0$ and $u_0^{(i)} \sim p(u_0)$.
 \FOR{$n=1 \dots N$}
   \FOR{$i=1 \dots N_F$}
@@ -412,7 +412,7 @@ Using these weights, a sample of $\theta_{n}$ may be drawn from the particle dis
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
   \STATE Run Rao-Blackwellised variable rate particle filter to approximate $p(\theta_{n}|y_{1:n})$ with weighted particles $\{\theta_{n}^{(i)}, w_{n}^{(i)}\}$ and $\{p(x_n|\theta_{n}^{(i)},y_{1:n})\}$ as normal distributions with moments $\{m_{n}^{(i)}\}$ and $\{P_{n}^{(i)}\}$. Store all results.
   \FOR{$i=1 \dots N_S$}
   	\STATE Initialise particle using $\theta^{(i)} \sim \sum_j w_N^{(j)} \delta_{\theta^{(j)}}(\theta)$.
@@ -514,7 +514,7 @@ The algorithm is summarised in Fig.~\ref{alg:VRPS}.
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
   \STATE Run variable rate particle filter to approximate $p(\tilde{\theta}_{n}|y_{1:n})$ with weighted particles $\{\tilde{\theta}_{n}^{(i)}, w_{n}^{(i)}\}$. Store all results.
   \FOR{$i=1 \dots N_S$}
   	\STATE Initialise particle using $\tilde{\theta}^{(i)} \sim \sum_j w_N^{(j)} \delta_{\tilde{\theta}^{(j)}}(\tilde{\theta})$.

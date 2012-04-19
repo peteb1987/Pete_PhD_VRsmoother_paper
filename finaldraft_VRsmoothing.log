@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  10 APR 2012 10:54
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  10 APR 2012 11:37
 entering extended mode
-**draft3_VRsmoothing.tex
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.tex
+**finaldraft_VRsmoothing.tex
+(D:\pb404\VariableRateAlgorithms\combined_paper\finaldraft_VRsmoothing.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -283,19 +283,19 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+(D:\pb404\VariableRateAlgorithms\combined_paper\finaldraft_VRsmoothing.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -312,248 +312,63 @@ LaTeX Font Info:    ... okay on input line 25.
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
-LaTeX Info: Redefining \subref on input line 25.
+LaTeX Info: Redefining \subref on input line 26.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 40.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 41.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
+LaTeX Font Info:    Try loading font information for U+msa on input line 69.
 
-
-LaTeX Warning: Citation `Jacobsen2006' on page 1 undefined on input line 56.
-
-
-LaTeX Warning: Citation `Godsill2007' on page 1 undefined on input line 56.
-
-
-LaTeX Warning: Citation `Whiteley2011' on page 1 undefined on input line 56.
-
-
-LaTeX Warning: Citation `Godsill2007a' on page 1 undefined on input line 56.
-
-
-LaTeX Warning: Citation `Christensen2012' on page 1 undefined on input line 56.
-
-
-
-LaTeX Warning: Citation `Gordon1993' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Doucet2000a' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Godsill2004' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Cappe2007' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Doucet2009' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Godsill2007a' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Godsill2007' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Whiteley2011' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `Godsill2004' on page 1 undefined on input line 60.
-
-
-LaTeX Warning: Citation `DelMoral2006' on page 1 undefined on input line 60.
-
-LaTeX Font Info:    Try loading font information for U+msa on input line 68.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 68.
+LaTeX Font Info:    Try loading font information for U+msb on input line 69.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-
-LaTeX Warning: Citation `Whiteley2011' on page 2 undefined on input line 87.
-
-
-LaTeX Warning: Citation `Jacobsen2006' on page 2 undefined on input line 94.
-
-
-LaTeX Warning: Citation `Kalman1960' on page 2 undefined on input line 124.
-
-
-LaTeX Warning: Citation `Rauch1965' on page 2 undefined on input line 124.
-
-
-LaTeX Warning: Citation `Fraser1969' on page 2 undefined on input line 124.
-
-
-LaTeX Warning: Citation `Godsill2007a' on page 2 undefined on input line 126.
-
-
-LaTeX Warning: Citation `Li2003' on page 2 undefined on input line 150.
-
-
-LaTeX Warning: Citation `Godsill2007a' on page 2 undefined on input line 150.
-
-
-LaTeX Warning: Citation `Godsill2007' on page 2 undefined on input line 150.
-
-
-LaTeX Warning: Citation `Whiteley2011' on page 2 undefined on input line 150.
-
-
-LaTeX Warning: Citation `Godsill2007' on page 2 undefined on input line 156.
-
-
-LaTeX Warning: Citation `Godsill2007a' on page 2 undefined on input line 156.
-
-
-LaTeX Warning: Citation `Whiteley2011' on page 2 undefined on input line 156.
-
-
-LaTeX Warning: Citation `Jacobsen2006' on page 2 undefined on input line 163.
-
-[2]
-
-LaTeX Warning: Citation `Pitt1999' on page 3 undefined on input line 199.
-
-
-LaTeX Warning: Citation `Cappe2007' on page 3 undefined on input line 199.
-
-
-LaTeX Warning: Citation `Doucet2009' on page 3 undefined on input line 199.
-
-
-LaTeX Warning: Citation `Douc2005' on page 3 undefined on input line 199.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--203
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 202--204
 []\OT1/ptm/m/n/10 Next, an ex-ten-sion to the change-point se-quence,
  []
 
 
-Underfull \hbox (badness 5133) in paragraph at lines 201--203
+Underfull \hbox (badness 5133) in paragraph at lines 202--204
 \OML/cmm/m/it/10 []$\OT1/ptm/m/n/10 , is pro-posed from an im-por-tance dis-tr
 i-bu-tion,
  []
 
 
-LaTeX Warning: Citation `Gordon1993' on page 3 undefined on input line 211.
-
-
-LaTeX Warning: Citation `Godsill2007' on page 3 undefined on input line 219.
-
-
-LaTeX Warning: Citation `Grewal2002' on page 3 undefined on input line 231.
-
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 271--272
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 272--273
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 304--305
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 305--306
 [][] 
  []
 
-
-LaTeX Warning: Citation `Gilks2001' on page 3 undefined on input line 313.
-
-
-LaTeX Warning: Citation `Green1995' on page 3 undefined on input line 313.
-
-
-LaTeX Warning: Citation `Whiteley2011' on page 3 undefined on input line 313.
-
-
-LaTeX Warning: Citation `Gilholm2008' on page 3 undefined on input line 313.
-
-[3]
-
-LaTeX Warning: Citation `DelMoral2006' on page 4 undefined on input line 315.
-
-
-LaTeX Warning: Citation `Whiteley2011' on page 4 undefined on input line 315.
-
-
-LaTeX Warning: Citation `Kitagawa1996' on page 4 undefined on input line 325.
-
-
-LaTeX Warning: Citation `Godsill2004' on page 4 undefined on input line 325.
-
-
-LaTeX Warning: Citation `Godsill2004' on page 4 undefined on input line 343.
-
-
-LaTeX Warning: Citation `Sarkka2012' on page 4 undefined on input line 343.
-
-[4]
-
-LaTeX Warning: Citation `Fraser1969' on page 5 undefined on input line 384.
-
-
-LaTeX Warning: Citation `Kitagawa1994' on page 5 undefined on input line 384.
-
-
-LaTeX Warning: Citation `Sarkka2012' on page 5 undefined on input line 384.
-
-
-LaTeX Warning: Citation `Gelb1974' on page 5 undefined on input line 384.
-
-
-Underfull \hbox (badness 6284) in paragraph at lines 384--386
+[3] [4]
+Underfull \hbox (badness 6284) in paragraph at lines 385--387
 []\OT1/ptm/m/n/10 The sec-ond state term in (34[]) is the like-li-hood,
  []
 
 
-LaTeX Warning: Citation `Kitagawa1994' on page 5 undefined on input line 401.
-
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 432--433
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 433--434
 [][] 
  []
-
-
-LaTeX Warning: Citation `Bunch2012' on page 5 undefined on input line 437.
 
 [5]
-
-LaTeX Warning: Citation `DelMoral2006' on page 6 undefined on input line 467.
-
-
-LaTeX Warning: Citation `Gilks1996' on page 6 undefined on input line 485.
-
-
-LaTeX Warning: Citation `Bunch2012' on page 6 undefined on input line 485.
-
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 534--535
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 535--536
 [][] 
  []
 
-
-LaTeX Warning: Citation `Bunch2012' on page 6 undefined on input line 539.
-
-[6]
-
-LaTeX Warning: Citation `Godsill2007a' on page 7 undefined on input line 557.
-
-
-LaTeX Warning: Citation `Christensen2012' on page 7 undefined on input line 557
-.
-
-
-LaTeX Warning: Citation `Grewal2002' on page 7 undefined on input line 587.
-
-<./images/finance/example_data.pdf, id=35, 325.215pt x 289.08pt>
+[6] <./images/finance/example_data.pdf, id=35, 325.215pt x 289.08pt>
 File: ./images/finance/example_data.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_data.pdf>
@@ -565,25 +380,16 @@ File: ./images/finance/example_filtersmoother_state.pdf Graphic file (type pdf)
 <./images/finance/example_smoother_state.pdf, id=37, 325.215pt x 144.54pt>
 File: ./images/finance/example_smoother_state.pdf Graphic file (type pdf)
 
-<use ./images/finance/example_smoother_state.pdf> [7]
-<./images/finance/finance_unique_particles.pdf, id=47, 289.08pt x 216.81pt>
+<use ./images/finance/example_smoother_state.pdf>
+<./images/finance/finance_unique_particles.pdf, id=38, 289.08pt x 216.81pt>
 File: ./images/finance/finance_unique_particles.pdf Graphic file (type pdf)
 
-<use ./images/finance/finance_unique_particles.pdf>
-
-LaTeX Warning: Citation `Bunch2012a' on page 8 undefined on input line 768.
-
-
-Underfull \vbox (badness 1325) has occurred while \output is active []
-
- [8 <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_data
-.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_fi
-ltersmoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/
-finance/example_smoother_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_p
-aper/images/finance/finance_unique_particles.pdf>]
-
-LaTeX Warning: Citation `Julier2004' on page 9 undefined on input line 810.
-
+<use ./images/finance/finance_unique_particles.pdf> [7] [8 <D:/pb404/VariableRa
+teAlgorithms/combined_paper/images/finance/example_data.pdf> <D:/pb404/Variable
+RateAlgorithms/combined_paper/images/finance/example_filtersmoother_state.pdf> 
+<D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/example_smoother
+_state.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/finance/fina
+nce_unique_particles.pdf>]
 <./images/tracking/simulated_problem.pdf, id=66, 289.08pt x 216.81pt>
 File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
@@ -600,7 +406,7 @@ File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 File: ./images/tracking/tracking_unique_particles.pdf Graphic file (type pdf)
 
 <use ./images/tracking/tracking_unique_particles.pdf>
-Underfull \hbox (badness 1454) in paragraph at lines 861--862
+Underfull \hbox (badness 1454) in paragraph at lines 865--866
 \OT1/ptm/m/n/10 points. For the linear-Gaussian case, the al-go-rithm em-
  []
 
@@ -608,23 +414,11 @@ Underfull \hbox (badness 1454) in paragraph at lines 861--862
 oblem.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DFi
 lter.pdf> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tracking/2DSmo
 other.pdf>]
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.bbl
-Underfull \hbox (badness 4072) in paragraph at lines 56--59
+(D:\pb404\VariableRateAlgorithms\combined_paper\finaldraft_VRsmoothing.bbl
+Underfull \hbox (badness 4072) in paragraph at lines 49--52
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
 
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
 ) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex
 <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=85, 180.675pt x 225.84375pt>
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
@@ -632,10 +426,8 @@ File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>)
-(D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex [10 <D:/pb404/Dropbox/PhD/Bi
-ographies/Bunch-bw.jpg> <D:/pb404/VariableRateAlgorithms/combined_paper/images/
-tracking/tracking_unique_particles.pdf>]
-<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=95, 953.5625pt x 1204.5pt>
+(D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex
+<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=88, 953.5625pt x 1204.5pt>
 File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
@@ -643,48 +435,42 @@ File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
 Missing character: There is no ’ in font ptmr7t!
-) [11
-
- <D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>]
-(D:\pb404\VariableRateAlgorithms\combined_paper\draft3_VRsmoothing.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+) [10 <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg> <D:/pb404/Dropbox/PhD/Bio
+graphies/Godsill.jpg> <D:/pb404/VariableRateAlgorithms/combined_paper/images/tr
+acking/tracking_unique_particles.pdf>]
+(D:\pb404\VariableRateAlgorithms\combined_paper\finaldraft_VRsmoothing.aux) ) 
 Here is how much of TeX's memory you used:
- 3888 strings out of 494019
- 59094 string characters out of 3143883
- 134920 words of memory out of 3000000
- 7106 multiletter control sequences out of 15000+200000
+ 3887 strings out of 494019
+ 59133 string characters out of 3143883
+ 135027 words of memory out of 3000000
+ 7105 multiletter control sequences out of 15000+200000
  48787 words of font info for 97 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 36i,15n,45p,1202b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/u
-tmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft3_VRsmoothing.pdf (11 pages, 1582348 bytes).
+ 36i,15n,45p,1205b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C
+:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8
+a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on finaldraft_VRsmoothing.pdf (10 pages, 1578168 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
+ 162 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  75 words of extra memory for PDF output out of 10000 (max. 10000000)
 

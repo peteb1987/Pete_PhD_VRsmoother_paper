@@ -16,6 +16,7 @@
 \usepackage{color}
 
 \graphicspath{{./images/}{./images/finance/}{./images/tracking/}}
+%\interdisplaylinepenalty=1000
 
 \newenvironment{meta}[0]{\color{red} \em}{}
 
@@ -253,7 +254,7 @@ This completes the requirements for the particle filter, resulting in the final 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
 \STATE For each $i$, initialise particle changepoint sequence with $\{\theta_{0}^{(i)}\} \gets \{\tau_0^{(i)}, u_0^{(i)}\}$, where $\tau_0^{(i)}=0$ and $u_0^{(i)} \sim p(u_0)$.
 \STATE For each $i$, initialise particle sufficient statistics, $m_0^{(i)}$ and $P_0^{(i)}$ with prior values.
 \FOR{$n=1 \dots N$}
@@ -288,7 +289,7 @@ This leads to a particle filter for variable rate models with conditionally dete
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
 \STATE For each $i$, initialise particle changepoint sequence with $\{\theta_{0}^{(i)}\} \gets \{\tau_0^{(i)}, u_0^{(i)}\}$, where $\tau_0^{(i)}=0$ and $u_0^{(i)} \sim p(u_0)$.
 \FOR{$n=1 \dots N$}
   \FOR{$i=1 \dots N_F$}
@@ -412,14 +413,14 @@ Using these weights, a sample of $\theta_{n}$ may be drawn from the particle dis
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
   \STATE Run Rao-Blackwellised variable rate particle filter to approximate $p(\theta_{n}|y_{1:n})$ with weighted particles $\{\theta_{n}^{(i)}, w_{n}^{(i)}\}$ and $\{p(x_n|\theta_{n}^{(i)},y_{1:n})\}$ as normal distributions with moments $\{m_{n}^{(i)}\}$ and $\{P_{n}^{(i)}\}$. Store all results.
   \FOR{$i=1 \dots N_S$}
   	\STATE Initialise particle using $\theta^{(i)} \sim \sum_j w_N^{(j)} \delta_{\theta^{(j)}}(\theta)$.
     \STATE Initialise sufficient statistics $\tilde{m}_N^{(i)}$ and $\tilde{P}_N^{(i)}$ (see text).
     \FOR{$n=N-1 \dots 1$}
       \STATE Discard $\theta_{n}^{(i)}$.
-      \STATE Predict state mean and covariance $\tilde{m}_n^{-(i)}$ and $\tilde{P}_n^{-(i)}$ using \ref{eq:backward_kf_predict_start} to \ref{eq:backward_kf_predict_stop}.
+      \STATE Predict state mean and covariance $\tilde{m}_n^{-(i)}$ and $\tilde{P}_n^{-(i)}$ using (\ref{eq:backward_kf_predict_start}) to (\ref{eq:backward_kf_predict_stop}).
       \FOR{$j=1 \dots N_P$}
 	      \STATE Calculate weight $\tilde{w}_n^{(j)}$ using (\ref{eq:rb-vrps_back_cond_weight2}).
       \ENDFOR
@@ -514,7 +515,7 @@ The algorithm is summarised in Fig.~\ref{alg:VRPS}.
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
 \begin{algorithmic}[1]
-\linespread{1.7} \selectfont
+\linespread{1.5} \selectfont
   \STATE Run variable rate particle filter to approximate $p(\tilde{\theta}_{n}|y_{1:n})$ with weighted particles $\{\tilde{\theta}_{n}^{(i)}, w_{n}^{(i)}\}$. Store all results.
   \FOR{$i=1 \dots N_S$}
   	\STATE Initialise particle using $\tilde{\theta}^{(i)} \sim \sum_j w_N^{(j)} \delta_{\tilde{\theta}^{(j)}}(\tilde{\theta})$.
@@ -584,7 +585,7 @@ Jumps occur at a random set of times, $\{\tau_k\}$, and are one of two types: va
 %                          \begin{bmatrix}0 & 0 \\ 0 & \sigma_{J2}^2 \end{bmatrix} & u_k = 2  \end{cases}   .
 %\end{IEEEeqnarray}
 
-This model may be discretised at the observation times using standard methods (see e.g. \cite{Grewal2002}), leading to,
+This model may be discretised at the observation times using standard methods (see \cite{Godsill2007a,Christensen2012,Grewal2002}), leading to,
 %
 %Assuming observations of value only and Gaussian observation noise with standard deviation $\sigma_y^2$, the resulting discrete time dynamics are described by the following equations:% (see appendix \ref{app:model_discretisation}):
 %
@@ -624,14 +625,14 @@ The algorithms were tested on artificial data simulated from this model. Observa
 
 The filter used $N_P = 100$ particles, and the smoother resampled $N_S = 100$ sequences. Bootstrap proposals were used for the filter. An example realisation simulated from the model is shown in figure~\ref{fig:example_data}. The trend estimates produced by the filter-smoother and VRPS are shown in figure~\ref{fig:example_state} (the equivalent graphs for value estimates are not particularly informative, as this quantity is observed).
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.9\columnwidth]{example_data.pdf}
 \caption{An example simulated data set, showing value (top) and trend (bottom). Value observations are overlayed. Jump times are shown as dotted vertical lines.}
 \label{fig:example_data}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
 \subfloat[]{\includegraphics[width=0.95\columnwidth]{example_filtersmoother_state.pdf}} \\
 \subfloat[]{\includegraphics[width=0.95\columnwidth]{example_smoother_state.pdf}}
@@ -754,9 +755,9 @@ Performance was evaluated by testing on 10 scenarios, each with 1000 observation
 
 The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:finance_unique_particles}. This illustrates the main advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution.
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{finance_unique_particles.pdf}
+\includegraphics[width=0.75\columnwidth]{finance_unique_particles.pdf}
 \caption{Mean number of unique particles in the filter-smoother (dashed) and smoother (solid) estimates.}
 \label{fig:finance_unique_particles}
 \end{figure}
@@ -789,13 +790,18 @@ The target dynamics are described by four differential equations.
 \end{IEEEeqnarray}
 
 Solving these yields the following state equations (where $\Delta\ t = t - \tau_{K(t)}$):
+%The target dynamics are governed by the following state equations \cite{Bunch2012a} (where $\Delta\ t = t - \tau_{K(t)}$):
 %
 \begin{IEEEeqnarray}{rCl}
 \dot{s}(t) & = & \dot{s}_{K(t)} + a_{T,k} \Delta t \label{eq:2D_ICmodel_start} \\
-\psi(t) & = & \psi_{K(t)} + \frac{a_{N,k}}{a_{T,k}} \log \left( \frac{\dot{s}(t)}{\dot{s}_{K(t)}} \right) \\
+\psi(t) & = & \psi_{K(t)} + \frac{a_{N,k}}{a_{T,k}} \log \left( \frac{\dot{s}(t)}{\dot{s}_{K(t)}} \right)
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
 x(t) & = & x_{K(t)} + d_{X,K(t)} \Delta t \\
      \IEEEeqnarraymulticol{3}{l}{ \quad + \: \frac{ \dot{s}(t)^2 }{ 4 a_{T,k}^2 + a_{N,k}^2 } \left[  a_{N,k} \sin(\psi(t)) + 2 a_{T,k} \cos(\psi(t))  \right]} \nonumber \\
-     \IEEEeqnarraymulticol{3}{l}{ \quad - \: \frac{\dot{s}_{K(t)}^2}{4 a_{T,k}^2 + a_{N,k}^2} \left[  a_{N,k} \sin(\psi_{K(t)}) + 2 a_{T,k} \cos(\psi_{K(t)})  \right]} \nonumber \\
+     \IEEEeqnarraymulticol{3}{l}{ \quad - \: \frac{\dot{s}_{K(t)}^2}{4 a_{T,k}^2 + a_{N,k}^2} \left[  a_{N,k} \sin(\psi_{K(t)}) + 2 a_{T,k} \cos(\psi_{K(t)})  \right]} \nonumber
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
 y(t) & = & y_{K(t)} + d_{Y,K(t)} \Delta t \\
      \IEEEeqnarraymulticol{3}{l}{ \quad + \: \frac{ \dot{s}(t)^2 }{ 4 a_{T,k}^2 + a_{N,k}^2 } \left[ -a_{N,k} \cos(\psi(t)) + 2 a_{T,k} \sin(\psi(t))  \right]} \nonumber \\
      \IEEEeqnarraymulticol{3}{l}{ \quad - \: \frac{\dot{s}_{K(t)}^2}{4 a_{T,k}^2 + a_{N,k}^2} \left[  -a_{N,k} \cos(\psi_{K(t)}) + 2 a_{T,k} \sin(\psi_{K(t)})  \right]} \nonumber      .
@@ -809,14 +815,14 @@ The filter and smoother were each used to generate $50$ particles, with the filt
 
 An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the results of the VRPF and VRPS algorithms in Fig.\ref{fig:2D_particle_results}. The improved particle diversity achieved by the smoothing algorithm is apparent.
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.9\columnwidth]{simulated_problem.pdf}
 \caption{An example simulated data set, showing true position (dashed line), observations (dots) and changepoint positions (crosses). }
 \label{fig:simulated_trajectory}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
 \subfloat[]{\includegraphics[width=0.95\columnwidth]{2DFilter.pdf}} \\
 \subfloat[]{\includegraphics[width=0.95\columnwidth]{2DSmoother.pdf}}
@@ -845,9 +851,9 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 \end{tabular}
 \end{table}
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{tracking_unique_particles.pdf}
+\includegraphics[width=0.75\columnwidth]{tracking_unique_particles.pdf}
 \caption{Mean number of unique particles in the final filter (dashed) and smoother (solid) estimates.}
 \label{fig:tracking_unique_particles}
 \end{figure}
@@ -881,7 +887,7 @@ New smoothing algorithms have been introduced for variable rate models which hav
 
 %\newpage
 \bibliographystyle{IEEEtran}
-\bibliography{D:/pb404/Dropbox/PhD/OTbib}
+\bibliography{D:/pb404/Dropbox/PhD/Cleanbib}
 \input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
 \input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
 \end{document}
