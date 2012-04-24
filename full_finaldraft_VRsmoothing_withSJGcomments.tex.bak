@@ -501,7 +501,7 @@ If $\beta_n^{(m-1)}$ is the target-proposal ratio for the current state in the c
 \alpha_n^{(m)} = \min \left( 1, \frac{\beta_n^*}{\beta_n^{(m-1)}} \right) \label{eq:pd-vrps_ap}     .
 \end{IEEEeqnarray}
 
-Each Markov chain may be initialised with the output from the previous stage. This value is itself a particle from the target distribution (albeit one from an approximation with poor path-space diversity), meaning that no burn-in period is required. This is the same reasoning which justifies the absence of a burn-in when using a resample-move scheme \cite{gilks2001}.
+Each Markov chain may be initialised with the output from the previous stage. This value is itself a particle from the target distribution (albeit one from an approximation with poor path-space diversity), meaning that no burn-in period is required. This is the same reasoning which justifies the absence of a burn-in when using a resample-move scheme \cite{Gilks2001}.
 
 The algorithm is summarised in Fig.~\ref{alg:VRPS}.
 
@@ -618,7 +618,7 @@ The algorithms were tested on artificial data simulated from this model. Observa
 
 %The following parameters were used: $\Delta t = 0.0017$, $N = 1000$, $\alpha = 20$, $\lambda = 5$, $\sigma = 0.05$, $\sigma_{J1} = 0.005$, $\sigma_{J2} = 0.05$, $\sigma_{y} = 0.001$.
 
-The filter used $N_F = 100$ particles, and the smoother resampled $N_S = 100$ sequences. Bootstrap proposals were used for the filter. An example forward realisation simulated from the model is shown in figure~\ref{fig:example_data}. The sampled trend trajectories produced by the filter-smoother and VRPS are shown in figure~\ref{fig:example_state} (the equivalent graphs for value are not particularly informative as this quantity is observed, and the errors produced by both algorithms are small).
+The filter used $N_F = 100$ particles, and the smoother resampled $N_S = 100$ sequences. Bootstrap proposals were used for the filter. An example forward realisation simulated from the model is shown in figure~\ref{fig:example_data}. The sampled trend trajectories produced by the filter-smoother and VRPS are shown in figure~\ref{fig:example_state} (the equivalent graphs for value are not particularly informative as this quantity is observed, and the errors produced by both algorithms are small). Notice that the path diversity is dramatically improved by the VRPS.
 
 \begin{figure}[!t]
 \centering
@@ -629,8 +629,8 @@ The filter used $N_F = 100$ particles, and the smoother resampled $N_S = 100$ se
 
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_filtersmoother_state.pdf}} \\
-\subfloat[]{\includegraphics[width=0.95\columnwidth]{example_smoother_state.pdf}}
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{example_filtersmoother_state.pdf}} \\
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{example_smoother_state.pdf}}
 \caption{Trend estimates from (a) the filter-smoother and (b) the VRPS. Solid lines show means of each particle. Dashed lines show mean $\pm$2 standard deviations.}
 \label{fig:example_state}
 \end{figure}
@@ -752,7 +752,7 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.75\columnwidth]{finance_unique_particles.pdf}
+\includegraphics[width=0.5\columnwidth,angle=90]{finance_unique_particles.pdf}
 \caption{Mean number of unique particles in the filter-smoother (dashed) and smoother (solid) estimates.}
 \label{fig:finance_unique_particles}
 \end{figure}
@@ -763,7 +763,7 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 The piecewise-deterministic VRPS was tested using a 2-dimensional dynamic model for manoeuvring vehicles \cite{Bunch2012a}. The target is modelled as a particle subject to perpendicular forces tangential and normal to the direction of motion. These forces are held constant between changepoint times, $\tau_{1:K}$, which represent the beginnings and ends of manoeuvres.
 
-The state vector consists of cartesian position, $x(t)$ and $y(t)$, plus bearing, $\psi(t)$, and speed, $\dot{s}(t)$.
+The state vector consists of Cartesian position, $x(t)$ and $y(t)$, plus heading angle, $\psi(t)$, and speed, $\dot{s}(t)$.
 %
 \begin{equation}
 \mathbf{x}(t) = [x(t), y(t), \psi(t), \dot{s}(t)]^T
@@ -804,11 +804,11 @@ y(t) & = & y_{K(t)} + d_{Y,K(t)} \Delta t \\
 
 The changepoint motion parameters are assumed to be independent and zero-mean Gaussian distributed. The times between changepoints are modelled as gamma distributed. Observations are made via a radar-style bearing and range measurement model with Gaussian noise.
 
-The filtering and smoothing algorithms were tested on artificial data simulated from the model. Observations were generated every $0.1$. The standard deviations of tangential and normal accelerations were set to $0.01$ and $1$ respectively, and those for the drift velocities to $1$. The parameters of the Gamma distribution for inter-changepoint times were $5$ and $1$ for the shape and scale respectively. Observation noise standard deviations were $0.1$ and $0.25^{\circ}$ respectively.
+The filtering and smoothing algorithms were tested on artificial data simulated from the model. Observations were generated every $0.1s$. The standard deviations of tangential and normal accelerations were set to $0.01m/s^2$ and $1m/s^2$ respectively, and those for the drift velocities to $1m/s$. The parameters of the Gamma distribution for inter-changepoint times were $5$ and $1s$ for the shape and scale respectively. Observation noise standard deviations were $0.1m$ and $0.25^{\circ}$ respectively.
 
 The filter and smoother were each used to generate $50$ particles, with the filter employing resample-move steps with proposals based on an unscented transform \cite{Julier2004} approximation to the optimal proposal density.
 
-An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the results of the VRPF and VRPS algorithms in Fig.\ref{fig:2D_particle_results}. The improved particle diversity achieved by the smoothing algorithm is apparent.
+An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the results of the VRPF and VRPS algorithms in Fig.\ref{fig:2D_particle_results}. The improved particle diversity achieved by the smoothing algorithm is readily apparent.
 
 \begin{figure}[!t]
 \centering
@@ -819,15 +819,15 @@ An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the 
 
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.95\columnwidth]{2DFilter.pdf}} \\
-\subfloat[]{\includegraphics[width=0.95\columnwidth]{2DSmoother.pdf}}
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DFilter.pdf}} \\
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DSmoother.pdf}}
 \caption{Filter (a) and smoother (b) particle estimates of position (solid lines), with particle changepoint positions (crosses). }
 \label{fig:2D_particle_results}
 \end{figure}
 
-Performance was evaluated by testing on 10 scenarios, each with 500 observations. At each observation time, an estimate of the position and velocity is made by taking the average of values from the array of particles. The resulting root mean square errors (RMSEs) are displayed in table~\ref{tab:tracking_state_performance}, demonstrating an improvement in accuracy from the smoother. The smoother also provides a more accurate estimate of the number of changepoints in each test, with an average error of 0.6 compared to 2.0 from the final frame filter approximation.
+Performance was evaluated by testing on 10 independently generated scenarios, each with 500 observations. At each observation time, an estimate of the position and velocity is made by taking the average of values from the array of particles. The resulting root mean square errors (RMSEs) are displayed in table~\ref{tab:tracking_state_performance}, demonstrating an improvement in accuracy from the smoother. The smoother also provides a more accurate estimate of the number of changepoints in each test, with an average error of 0.6 compared to 2.0 from the final frame filter approximation.
 
-The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:tracking_unique_particles}. This illustrates the main advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution, allowing, for example, calculation of state covariance measures.
+The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:tracking_unique_particles}. This illustrates again the principal advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution, allowing, for example, calculation of state covariance measures.
 
 \begin{table}%
 \caption{State estimation performance.}
@@ -848,7 +848,7 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.75\columnwidth]{tracking_unique_particles.pdf}
+\includegraphics[width=0.5\columnwidth]{tracking_unique_particles.pdf}
 \caption{Mean number of unique particles in the final filter (dashed) and smoother (solid) estimates.}
 \label{fig:tracking_unique_particles}
 \end{figure}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  20 APR 2012 12:45
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  23 APR 2012 14:36
 entering extended mode
 **full_finaldraft_VRsmoothing_withSJGcomments.tex
 
@@ -376,7 +376,7 @@ File: ./images/finance/example_filtersmoother_state.pdf Graphic file (type pdf)
 File: ./images/finance/example_smoother_state.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_smoother_state.pdf>
-<./images/finance/finance_unique_particles.pdf, id=43, 216.81pt x 289.08pt>
+<./images/finance/finance_unique_particles.pdf, id=43, 289.08pt x 216.81pt>
 File: ./images/finance/finance_unique_particles.pdf Graphic file (type pdf)
 
 <use ./images/finance/finance_unique_particles.pdf> [8 <D:/pb404/Research/Varia
@@ -384,23 +384,23 @@ bleRateAlgorithms/combined_paper/images/finance/example_data.pdf> <D:/pb404/Res
 earch/VariableRateAlgorithms/combined_paper/images/finance/example_filtersmooth
 er_state.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/f
 inance/example_smoother_state.pdf> <D:/pb404/Research/VariableRateAlgorithms/co
-mbined_paper/images/finance/finance_unique_particles.pdf, page is rotated 90 de
-grees>] <./images/tracking/simulated_problem.pdf, id=66, 289.08pt x 216.81pt>
+mbined_paper/images/finance/finance_unique_particles.pdf>]
+<./images/tracking/simulated_problem.pdf, id=82, 289.08pt x 216.81pt>
 File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
 <use ./images/tracking/simulated_problem.pdf>
-<./images/tracking/2DFilter.pdf, id=67, 289.08pt x 216.81pt>
+<./images/tracking/2DFilter.pdf, id=83, 289.08pt x 216.81pt>
 File: ./images/tracking/2DFilter.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DFilter.pdf>
-<./images/tracking/2DSmoother.pdf, id=68, 289.08pt x 216.81pt>
+<./images/tracking/2DSmoother.pdf, id=84, 289.08pt x 216.81pt>
 File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DSmoother.pdf> [9 <D:/pb404/Research/VariableRateAlgori
 thms/combined_paper/images/tracking/simulated_problem.pdf> <D:/pb404/Research/V
 ariableRateAlgorithms/combined_paper/images/tracking/2DFilter.pdf> <D:/pb404/Re
 search/VariableRateAlgorithms/combined_paper/images/tracking/2DSmoother.pdf>]
-<./images/tracking/tracking_unique_particles.pdf, id=84, 216.81pt x 289.08pt>
+<./images/tracking/tracking_unique_particles.pdf, id=100, 289.08pt x 216.81pt>
 File: ./images/tracking/tracking_unique_particles.pdf Graphic file (type pdf)
 
 <use ./images/tracking/tracking_unique_particles.pdf>
@@ -409,7 +409,7 @@ Underfull \hbox (badness 1454) in paragraph at lines 860--861
  []
 
 [10 <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/tracking/tr
-acking_unique_particles.pdf, page is rotated 90 degrees>] [11]
+acking_unique_particles.pdf>] [11]
 (D:\pb404\Research\VariableRateAlgorithms\combined_paper\full_finaldraft_VRsmoo
 thing_withSJGcomments.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 49--52
@@ -429,14 +429,15 @@ Underfull \hbox (badness 2318) in paragraph at lines 117--121
  []
 
 ) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex
-<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=94, 180.675pt x 225.84375pt>
+<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=110, 180.675pt x 225.84375pt
+>
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
-<use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
+ <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>)
 (D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex
-<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=97, 953.5625pt x 1204.5pt>
+<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=113, 953.5625pt x 1204.5pt>
 File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
@@ -477,10 +478,10 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
 pe1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on full_finaldraft_VRsmoothing_withSJGcomments.pdf (12 pages, 15
-96028 bytes).
+Output written on full_finaldraft_VRsmoothing_withSJGcomments.pdf (12 pages, 16
+06966 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
+ 182 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  75 words of extra memory for PDF output out of 10000 (max. 10000000)
 
