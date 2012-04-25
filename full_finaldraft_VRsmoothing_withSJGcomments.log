@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  23 APR 2012 14:36
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  25 APR 2012 16:42
 entering extended mode
 **full_finaldraft_VRsmoothing_withSJGcomments.tex
 
@@ -336,47 +336,49 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
 
 ] [2]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 277--278
-[][] 
+Underfull \hbox (badness 2512) in paragraph at lines 240--242
+[]\OT1/ptm/m/n/10 For the con-di-tion-ally linear-Gaussian mod-els of sec-
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 310--311
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 282--283
 [][] 
  []
 
 [3]
-Underfull \vbox (badness 2913) has occurred while \output is active []
-
- [4]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 432--433
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 315--316
 [][] 
  []
 
 
-Underfull \hbox (badness 7486) in paragraph at lines 443--444
-[]\OT1/ptm/m/n/10 In a con-di-tion-ally de-ter-min-is-tic sys-tem, the en-tire
+Underfull \hbox (badness 2512) in paragraph at lines 340--342
+[]\OT1/ptm/m/n/10 For the con-di-tion-ally linear-Gaussian mod-els of sec-
+ []
+
+[4]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 437--438
+[][] 
  []
 
 [5] [6]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 528--529
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 533--534
 [][] 
  []
 
-[7] <./images/finance/example_data.pdf, id=40, 325.215pt x 289.08pt>
+[7] <./images/finance/example_data.pdf, id=41, 325.215pt x 289.08pt>
 File: ./images/finance/example_data.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_data.pdf>
-<./images/finance/example_filtersmoother_state.pdf, id=41, 325.215pt x 144.54pt
+<./images/finance/example_filtersmoother_state.pdf, id=42, 325.215pt x 144.54pt
 >
 File: ./images/finance/example_filtersmoother_state.pdf Graphic file (type pdf)
 
  <use ./images/finance/example_filtersmoother_state.pdf>
-<./images/finance/example_smoother_state.pdf, id=42, 325.215pt x 144.54pt>
+<./images/finance/example_smoother_state.pdf, id=43, 325.215pt x 144.54pt>
 File: ./images/finance/example_smoother_state.pdf Graphic file (type pdf)
 
 <use ./images/finance/example_smoother_state.pdf>
-<./images/finance/finance_unique_particles.pdf, id=43, 289.08pt x 216.81pt>
+<./images/finance/finance_unique_particles.pdf, id=44, 289.08pt x 216.81pt>
 File: ./images/finance/finance_unique_particles.pdf Graphic file (type pdf)
 
 <use ./images/finance/finance_unique_particles.pdf> [8 <D:/pb404/Research/Varia
@@ -385,31 +387,34 @@ earch/VariableRateAlgorithms/combined_paper/images/finance/example_filtersmooth
 er_state.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/f
 inance/example_smoother_state.pdf> <D:/pb404/Research/VariableRateAlgorithms/co
 mbined_paper/images/finance/finance_unique_particles.pdf>]
-<./images/tracking/simulated_problem.pdf, id=82, 289.08pt x 216.81pt>
+<./images/tracking/simulated_problem.pdf, id=83, 289.08pt x 216.81pt>
 File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
 <use ./images/tracking/simulated_problem.pdf>
-<./images/tracking/2DFilter.pdf, id=83, 289.08pt x 216.81pt>
+<./images/tracking/2DFilter.pdf, id=84, 289.08pt x 216.81pt>
 File: ./images/tracking/2DFilter.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DFilter.pdf>
-<./images/tracking/2DSmoother.pdf, id=84, 289.08pt x 216.81pt>
+<./images/tracking/2DSmoother.pdf, id=85, 289.08pt x 216.81pt>
 File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 
-<use ./images/tracking/2DSmoother.pdf> [9 <D:/pb404/Research/VariableRateAlgori
-thms/combined_paper/images/tracking/simulated_problem.pdf> <D:/pb404/Research/V
-ariableRateAlgorithms/combined_paper/images/tracking/2DFilter.pdf> <D:/pb404/Re
-search/VariableRateAlgorithms/combined_paper/images/tracking/2DSmoother.pdf>]
-<./images/tracking/tracking_unique_particles.pdf, id=100, 289.08pt x 216.81pt>
+<use ./images/tracking/2DSmoother.pdf>
+<./images/tracking/tracking_unique_particles.pdf, id=86, 289.08pt x 216.81pt>
 File: ./images/tracking/tracking_unique_particles.pdf Graphic file (type pdf)
 
 <use ./images/tracking/tracking_unique_particles.pdf>
-Underfull \hbox (badness 1454) in paragraph at lines 860--861
+Underfull \hbox (badness 1454) in paragraph at lines 865--866
 \OT1/ptm/m/n/10 points. For the linear-Gaussian case, the al-go-rithm em-
  []
 
-[10 <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/tracking/tr
-acking_unique_particles.pdf>] [11]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/tracking/si
+mulated_problem.pdf>] [10 <D:/pb404/Research/VariableRateAlgorithms/combined_pa
+per/images/tracking/2DFilter.pdf> <D:/pb404/Research/VariableRateAlgorithms/com
+bined_paper/images/tracking/2DSmoother.pdf> <D:/pb404/Research/VariableRateAlgo
+rithms/combined_paper/images/tracking/tracking_unique_particles.pdf>] [11]
 (D:\pb404\Research\VariableRateAlgorithms\combined_paper\full_finaldraft_VRsmoo
 thing_withSJGcomments.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 49--52
@@ -417,19 +422,13 @@ Underfull \hbox (badness 4072) in paragraph at lines 49--52
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 113--115
-[]\OT1/ptm/m/n/8 G. Casella and C. P. Robert, ``Rao-blackwellisation of sam-pli
-ng
- []
-
-
-Underfull \hbox (badness 2318) in paragraph at lines 117--121
+Underfull \hbox (badness 2318) in paragraph at lines 121--125
 []\OT1/ptm/m/n/8 A. Doucet, N. De Fre-itas, K. Mur-phy, and S. Rus-sell, ``Rao-
 
  []
 
 ) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex
-<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=110, 180.675pt x 225.84375pt
+<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=111, 180.675pt x 225.84375pt
 >
 File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
  <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
@@ -437,7 +436,7 @@ File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>)
 (D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex
-<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=113, 953.5625pt x 1204.5pt>
+<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=114, 953.5625pt x 1204.5pt>
 File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
 
 <use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
@@ -448,40 +447,44 @@ Missing character: There is no ’ in font ptmr7t!
 ) [12 <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg> <D:/pb404/Dropbox/PhD/Bio
 graphies/Godsill.jpg>]
 (D:\pb404\Research\VariableRateAlgorithms\combined_paper\full_finaldraft_VRsmoo
-thing_withSJGcomments.aux) ) 
+thing_withSJGcomments.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3895 strings out of 494019
- 59596 string characters out of 3143883
- 134080 words of memory out of 3000000
- 7113 multiletter control sequences out of 15000+200000
+ 3899 strings out of 494019
+ 59660 string characters out of 3143883
+ 134125 words of memory out of 3000000
+ 7117 multiletter control sequences out of 15000+200000
  48787 words of font info for 97 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  36i,21n,45p,1237b,563s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/
-fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-i5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.
-pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
-mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
-.pfb>
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/time
+s/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
 Output written on full_finaldraft_VRsmoothing_withSJGcomments.pdf (12 pages, 16
-06966 bytes).
+11862 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
+ 186 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  75 words of extra memory for PDF output out of 10000 (max. 10000000)
 

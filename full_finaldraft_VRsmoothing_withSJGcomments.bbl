@@ -76,9 +76,13 @@ P.~Del~Moral, A.~Doucet, and A.~Jasra, ``Sequential {Monte Carlo} samplers,''
   \emph{Journal of the Royal Statistical Society: Series B (Statistical
   Methodology)}, vol.~68, pp. 411--436, 2006.
 
+\bibitem{Green1995}
+P.~Green, ``Reversible jump {Markov} chain {Monte Carlo} computation and
+  {Bayesian} model determination,'' \emph{Biometrika}, vol.~82, p. 711, 1995.
+
 \bibitem{Grewal2002}
-M.~S. Grewal and A.~P. Andrews, \emph{Kalman Filtering: Theory and Practice
-  Using {MATLAB}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
+M.~S. Grewal and A.~P. Andrews, \emph{Kalman filtering: Theory and practice
+  using {MATLAB}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
   Inc., 2002.
 
 \bibitem{Kalman1960}
@@ -110,7 +114,7 @@ R.~Douc, O.~Cappe, and E.~Moulines, ``Comparison of resampling schemes for
   Processing and Analysis}, 2005.
 
 \bibitem{Casella1996}
-G.~Casella and C.~P. Robert, ``Rao-blackwellisation of sampling schemes,''
+G.~Casella and C.~P. Robert, ``{Rao-Blackwellisation} of sampling schemes,''
   \emph{Biometrika}, vol.~83, pp. 81--94, 1996.
 
 \bibitem{Doucet2000}
@@ -120,14 +124,10 @@ A.~Doucet, N.~De~Freitas, K.~Murphy, and S.~Russell, ``{Rao-Blackwellised
   pp. 176--183.
 
 \bibitem{Gilks2001}
-W.~R. Gilks and C.~Berzuini, ``Following a moving target-{Monte Carlo}
+W.~R. Gilks and C.~Berzuini, ``Following a moving target -- {Monte Carlo}
   inference for dynamic {Bayesian} models,'' \emph{Journal of the Royal
   Statistical Society: Series B (Statistical Methodology)}, vol.~63, pp.
   127--146, 2001.
-
-\bibitem{Green1995}
-P.~Green, ``Reversible jump {Markov chain Monte Carlo} computation and bayesian
-  model determination,'' \emph{Biometrika}, vol.~82, p. 711, 1995.
 
 \bibitem{Gilholm2008}
 K.~Gilholm and N.~O. Everett, ``A novel algorithm for tracking targets using
@@ -147,7 +147,7 @@ S.~Sarkka, P.~Bunch, and S.~Godsill, ``A backward-simulation based
 
 \bibitem{Kitagawa1994}
 G.~Kitagawa, ``The two-filter formula for smoothing and an implementation of
-  the gaussian-sum smoother,'' \emph{Annals of the Institute of Statistical
+  the {Gaussian}-sum smoother,'' \emph{Annals of the Institute of Statistical
   Mathematics}, vol.~46, pp. 605--623, 1994.
 
 \bibitem{Gelb1974}
@@ -163,6 +163,11 @@ P.~Bunch and S.~Godsill, ``Improved particle approximations to the joint
 W.~Gilks, S.~Richardson, and D.~Spiegelhalter, \emph{Markov chain Monte Carlo
   in practice}.\hskip 1em plus 0.5em minus 0.4em\relax Chapman and Hall, 1996.
 
+\bibitem{Schuhmacher2008}
+D.~Schuhmacher, B.-T. Vo, and B.-N. Vo, ``A consistent metric for performance
+  evaluation of multi-object filters,'' \emph{Signal Processing, IEEE
+  Transactions on}, vol.~56, pp. 3447--3457, 2008.
+
 \bibitem{Bunch2012a}
 P.~Bunch and S.~Godsill, ``Dynamical models for tracking with the variable rate
   particle filter,'' in \emph{submitted for publication}, 2012.
@@ -172,7 +177,7 @@ S.~Julier and J.~Uhlmann, ``Unscented filtering and nonlinear estimation,''
   \emph{Proceedings of the IEEE}, vol.~92, pp. 401--422, 2004.
 
 \bibitem{Oksendal2003}
-B.~{\O}ksendal, \emph{Stochastic differential equations: an introduction with
+B.~{\O}ksendal, \emph{Stochastic differential equations: {An} introduction with
   applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2003.
 
 \bibitem{Sarkka2006}

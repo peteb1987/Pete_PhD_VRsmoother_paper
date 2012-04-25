@@ -53,11 +53,11 @@ Bayesian inference, state-space model, variable rate, particle filter, filtering
 
 \IEEEPARstart{T}{he} objective of sequential Bayesian inference is to estimate an imperfectly observed quantity as it varies over time. This is accomplished through the use of probabilistic models for the state evolution and measurement processes. Often, the latent state is a continuously varying quantity, whereas the observations are made at a discrete set of times. In these circumstances, it is simplest to discretise the state onto the same set of times as the observations. When the system is also Markovian, this leads to the standard ``fixed rate'' hidden Markov model (HMM). The standard HMM is poorly suited to systems where the state evolution contains discontinuities; for example, the price of a financial asset which may display large jumps at random times between periods of diffusion-like behaviour, or the kinematic state of a manoeuvring vehicle which may have sudden changes in the acceleration when turns begin or end. Such problems can be handled more naturally using a ``variable rate'' model, in which the state dynamics are conditioned upon a set of changepoints which characterise transitions in behaviour.
 
-In a variable rate model, the set of changepoints and associated parameters are modelled as a marked point process (MPP), the mathematical properties of which are set out thoroughly in \cite{Jacobsen2006}. Conditional upon this MPP the state evolves according to some benign dynamics. In \cite{Godsill2007,Whiteley2011}, the conditional state evolution is treated as deterministic, while in \cite{Godsill2007a,Christensen2012} a conditionally linear-Gaussian state model is considered.
+In a variable rate setting, changepoints and associated parameters are modelled as a marked point process (MPP), the mathematical properties of which are explored comprehensively in \cite{Jacobsen2006}. Conditional upon this MPP the state evolves according to some benign dynamics. In \cite{Godsill2007,Whiteley2011}, the conditional state evolution is treated as deterministic, while in \cite{Godsill2007a,Christensen2012} a conditionally linear-Gaussian state model is considered.
 
 The posterior distribution for the changepoint MPP is inherently nonlinear, and cannot be calculated analytically. Instead, inference may be conducted using numerical approximations. The particle filter (introduced by \cite{Gordon1993}) and smoother (see \cite{Doucet2000a,Godsill2004}) are schemes which approximate a posterior distribution using a set of samples, or ``particles'', drawn sequentially from it.  A thorough introduction to particle filtering and smoothing methods can be found in \cite{Cappe2007,Doucet2009}. In \cite{Godsill2007a,Godsill2007,Whiteley2011}, the particle filter was adapted for use with variable rate models, resulting in the variable rate particle filter (VRPF).
 
-The VRPF allows the changepoint sequence -- and hence the current state -- to be estimated sequentially as observations are received. However, estimates can often be improved later once further observations have been made. In this paper, we address the problem of smoothing in variable rate models, i.e. the estimation of the changepoint sequence and latent state given all the observations. This is achieved in this paper with an efficient backward sweep through the observations, in a new version of the method for standard HMMs described in \cite{Godsill2004}. Two new schemes are introduced: one for conditionally linear-Gaussian models which exploits the method of Rao-Blackwellisation; and a second for use with conditionally-deterministic models which uses an augmented target distribution in the style of an SMC sampler \cite{DelMoral2006}.
+The VRPF allows the changepoint sequence -- and hence the current state -- to be estimated sequentially as observations are received. However, estimates can often be improved later once further observations have been made. In this paper, we address the problem of smoothing in variable rate models, i.e. the estimation of the changepoint sequence and latent state given all the observations. We achieve this with an efficient backward sweep through the observations, in a new version of the method for standard HMMs described in \cite{Godsill2004}. Two new schemes are introduced: one for conditionally linear-Gaussian models which exploits the method of Rao-Blackwellisation; and a second for use with conditionally-deterministic models which uses an augmented target distribution in the style of an SMC sampler \cite{DelMoral2006}.
 
 We introduce the general structure of variable rate models in section~\ref{sec:vr_models}. The VRPF is reviewed in section~\ref{sec:vrpf}, and new variable rate smoothing algorithms are described in section~\ref{sec:vrps}. In section~\ref{sec:simulations}, particular examples of variable rate models are presented and algorithm performance is demonstrated in a series of simulations.
 
@@ -91,17 +91,24 @@ In the manner of \cite{Whiteley2011}, a survivor function is defined as the prob
               &=& 1 - \int_{\tau_k}^{t} p(\xi|\tau_{k}, u_k) d\xi     .
 \end{IEEEeqnarray}
 
-It is now possible to write down a prior for the changepoint sequence, where we use the convention that $\tau_0 = 0$. The existence of such a density for a MPP is addressed in \cite{Jacobsen2006}.
+It is now possible to write down a prior for the changepoint sequence. This comprises a density term for each changepoint in the sequence and a survivor function term accounting for the probability that no additional changepoints occur within the time interval. We use the convention that $\tau_0 = 0$.
 
 \begin{IEEEeqnarray}{rCl}
 p(\theta_n) & = & S(\tau_{K_n},t_n) p(u_0) \prod_{k=1}^{K_n} p(\tau_k, u_k| \tau_{k-1}, u_{k-1}) \label{eq:cp_sequence_prior}
 \end{IEEEeqnarray}
 
-This comprises a density term for each changepoint in the sequence and a survivor function term accounting for the probability that no other changepoints occur within the time interval.
+The existence of such a density for a MPP is addressed in \cite{Jacobsen2006}. The number of changepoints, $K_n$, is not fixed. If $u_k$ varies over $\mathcal{U}$, and $\tau_k$ varies over the real line $\mathbb{R}$, then the space spanned by $\theta_n$ is the union,
+%
+\begin{IEEEeqnarray}{rCl}
+ \Theta & = & \bigcup_k \Theta_k \label{eq:theta_space} \\
+ \Theta_k & = & \{k\} \times \mathbb{R}^k \times \mathcal{U}^k     .
+\end{IEEEeqnarray}
+
+This closely resembles the variable-dimension spaces employed by reversible jump Markov chain Monte Carlo algorithms \cite{Green1995}.
 
 
 
-\subsection{Conditionally Linear-Gaussian Models}
+\subsection{Conditionally Linear-Gaussian Models} \label{sec:clg_models}
 
 We first consider the class of variable rate models whose state dynamics are linear-Gaussian conditional on the changepoint sequence. Such a model may be discretised onto the set of observation times in exactly the same manner as a standard the standard HMM,
 %
@@ -129,14 +136,14 @@ Conditionally linear-Gaussian models for use with variable rate particle filters
 
 
 
-\subsection{Conditionally Deterministic Models}
+\subsection{Conditionally Deterministic Models} \label{sec:cd_models}
 
-The second class of variable rate models for consideration is those in which the state is completely specified by the changepoint sequence, with no additional random components. Such a process is commonly referred to as ``piecewise-deterministic'', as the latent state follows a deterministic path between changepoints. In this case, it is not necessary to discretise the state -- it may be kept as a continuous variable.
+Next we examine the class of variable rate models in which the state is completely specified by the changepoint sequence, with no additional random components. Such a process is commonly referred to as ``piecewise-deterministic'', as the latent state follows a deterministic path between changepoints. In this case, it is not necessary to discretise the state --- it may be kept as a continuous variable.
 
 In general, the state dynamics will be governed by a differential equation which may depend on the entire changepoint sequence. Here we assume that only the most recent changepoint determines the future state trajectory,
 %
 \begin{IEEEeqnarray}{rCl}
- dx(t) & = & \mathrm{f}(x(t), \tau_{K(t)}, u_{K(t)})     .
+ dx(t) & = & \varphi(x(t), \tau_{K(t)}, u_{K(t)}) dt     .
 \end{IEEEeqnarray}
 
 By introducing a new sequence, $\{ x_0, x_1 \dots x_K \}$, which denotes the value of the state at each changepoint (i.e. $x_k = x(\tau_k)$), and assuming that an analytic solution exists, a piecewise function describing the path may be found,
@@ -145,7 +152,7 @@ By introducing a new sequence, $\{ x_0, x_1 \dots x_K \}$, which denotes the val
  x(t) & = & f(x_{K_n}, u_{K_n}, \tau_{K_n}, t) &, \tau_{K_n} < t \leq \tau_{K_{n}+1}    \label{eq:disc_time_state_diff_eq}     .
 \end{IEEEeqnarray}
 
-By choosing $t = \tau_{K_{n}+1}$, this equation specifies the state at the next changepoint time. Similarly, by choosing $t=t_n$, the state at the observation times may be calculated --- these latter points will be denoted $\hat{x}_n$. To complete the model, a probabilistic measurement model must be devised for the observation process, $p(y_n|\hat{x}_n)$.
+By choosing $t = \tau_{K_{n}+1}$, this equation specifies the state at the next changepoint time. Similarly, by choosing $t=t_n$, the state at the observation times may be evaluated --- these latter points will be denoted $\hat{x}_n$. To complete the framework, a probabilistic measurement model must be devised for the observation process, $p(y_n|\hat{x}_n)$.
 
 For convenience, we assume that $x_0$ is known in the following sections. This means that $x(t)$ may be calculated deterministically for all $t$ given $\theta$. This condition is easily relaxed by including $x_0$ as a random variable in the posterior distribution.
 
@@ -155,7 +162,7 @@ Target tracking algorithms are commonly based upon fixed rate models (see, e.g. 
 
 \section{The Variable Rate Particle Filter} \label{sec:vrpf}
 
-The variable rate particle filter (VRPF) is described in \cite{Godsill2007,Godsill2007a,Whiteley2011}. The objective of the algorithm is to sequentially estimate the posterior distribution of the changepoint sequence, $p(\theta_{n}| y_{1:n})$, at each time $t_n$. This distribution may be expanded using Bayes' rule,
+The variable rate particle filter (VRPF) is described in \cite{Godsill2007,Godsill2007a,Whiteley2011}. The objective of the algorithm is to sequentially estimate the posterior distribution of the changepoint sequence, $p(\theta_{n}| y_{1:n})$, at each time $t_n$, which is defined on the same space as the prior density (\ref{eq:theta_space}). This distribution may be expanded using Bayes' rule,
 %
 \begin{IEEEeqnarray}{rCl}
 \IEEEeqnarraymulticol{3}{l}{ p(\theta_{n}|y_{1:n}) \propto p(y_n|\theta_{n}, y_{1:n-1}) } \nonumber \\
@@ -192,7 +199,7 @@ A particle filter is an algorithm for approximating a probability distribution u
  \hat{p}(\theta_{n}|y_{1:n}) = \sum_j w_n^{(j)} \delta_{\theta_{n}^{(j)}}(\theta_{n}) \label{eq:vrpf}
 \end{equation}
 
-where $\delta_x(X)$ is a dirac probability mass at $X=x$.
+where $\delta_x(X)$ is a unit probability mass at $X=x$.
 
 The particle filter works recursively. At the $n$th step, a particle, $\theta_{n-1}^{(i)}$, is first resampled from those approximating the filtering distribution at the $(n-1)$th step, using an appropriately chosen set of proposal weights, $\{v_{n-1}^{(j)}\}$ (where $\sum_j v_{n-1}^{(j)} = 1$),
 %
@@ -202,17 +209,17 @@ The particle filter works recursively. At the $n$th step, a particle, $\theta_{n
 
 The choice of weights determines the type of resampling used. The simplest choice, $v_{n-1}^{(j)} = 1/N_F$ (where $N_F$ is the number of filter particles) may be achieved by simply omitting this step all together and using the particles of $\hat{p}(\theta_{n-1}|y_{1:n-1})$. This, however, leads to degeneracy of the particle weights over time. Conventional resampling is achieved by using $v_{n-1}^{(j)} = w_{n-1}^{(j)}$. Any other choice results in an auxiliary particle filter \cite{Pitt1999}. For further discussion of resampling, see \cite{Cappe2007,Doucet2009,Douc2005}.
 
-Next, an extension to the changepoint sequence, $\theta_{n \setminus n-1}^{(i)}$, is sampled from an importance distribution, $q(\theta_{n \setminus n-1}|\theta_{n-1}^{(i)}, y_n)$, and concatenated with $\theta_{n-1}$ to create a proposal for $\theta_n$. Finally, the particle is weighted according to the ratio of the target and proposal densities,
+Next, an extension to the changepoint sequence, $\theta_{n \setminus n-1}^{(i)}$, is sampled from an importance distribution, $q(\theta_{n \setminus n-1}|\theta_{n-1}^{(i)}, y_n)$, and concatenated with $\theta_{n-1}^{(i)}$ to create a proposal for $\theta_n^{(i)}$. Finally, the particle is weighted according to the ratio of the target and proposal densities,
 %
 \begin{IEEEeqnarray}{rCl}
-w_n^{(i)} & = & \frac{ p(\theta_{n}^{(i)}|y_{1:n}) }{ q(\theta_{n}) } \nonumber \\
-    & \propto & \frac{ p(y_n|\theta_n, y_{1:n-1}) p(\theta_{n \setminus n-1}|\theta_{n-1}) p(\theta_{n-1}|y_{1:n-1}) }{ q(\theta_{n-1}) q(\theta_{n \setminus n-1}|\theta_{n-1}^{(i)}, y_n) } \nonumber \\
-    & =       & \frac{w_{n-1}^{(i)}}{v_{n-1}^{(i)}} \times \frac{ p(y_n|\theta_n, y_{1:n-1}) p(\theta_{n \setminus n-1}|\theta_{n-1}) }{ q(\theta_{n \setminus n-1}|\theta_{n-1}^{(i)}, y_n) } \label{eq:vrpf_weights}     .
+w_n^{(i)} & = & \frac{ p(\theta_{n}^{(i)}|y_{1:n}) }{ q(\theta_{n}^{(i)}) } \nonumber \\
+    & \propto & \frac{ p(y_n|\theta_n^{(i)}, y_{1:n-1}) p(\theta_{n \setminus n-1}^{(i)}|\theta_{n-1}^{(i)}) p(\theta_{n-1}^{(i)}|y_{1:n-1}) }{ q(\theta_{n-1}^{(i)}) q(\theta_{n \setminus n-1}^{(i)}|\theta_{n-1}^{(i)}, y_n) } \nonumber \\
+    & =       & \frac{w_{n-1}^{(i)}}{v_{n-1}^{(i)}} \times \frac{ p(y_n|\theta_n^{(i)}, y_{1:n-1}) p(\theta_{n \setminus n-1}^{(i)}|\theta_{n-1}^{(i)}) }{ q(\theta_{n \setminus n-1}^{(i)}|\theta_{n-1}^{(i)}, y_n) } \label{eq:vrpf_weights}     .
 \end{IEEEeqnarray}
 
 The normalisation may be enforced by scaling the weights so that they sum to $1$.
 
-For the most basic ``bootstrap'' \cite{Gordon1993} form of the VRPF, $\theta_{n \setminus n-1}$ may be proposed from the prior transition density (\ref{eq:cp_sequence_trandens}). This can be achieved by sampling new changepoints sequentially from the transition model (\ref{eq:cp_model}) until one falls after the current time, $t_n$. This final future changepoint is discarded. (This process can be thought of as sampling the entire future changepoint sequence from $t_{n-1}$ onwards, and then marginalising those which fall after $t_n$.) The bootstrap proposal leads to the usual simplification of the weight formula, % (apart from the first which is sampled from (\ref{eq:cp_cond_model}))
+For the most basic ``bootstrap'' \cite{Gordon1993} form of the VRPF, $\theta_{n \setminus n-1}$ may be proposed from the prior transition density (\ref{eq:cp_sequence_trandens}). This can be achieved by sampling new changepoints sequentially from the transition model (\ref{eq:cp_model}) until one falls after the current time, $t_n$. This final future changepoint is discarded. (This process can be thought of as sampling an entire future changepoint sequence from $t_{n-1}$ onwards, and then marginalising those which fall after $t_n$.) The bootstrap proposal leads to the usual simplification of the weight formula, % (apart from the first which is sampled from (\ref{eq:cp_cond_model}))
 %
 \begin{IEEEeqnarray}{rCl}
 w_n^{(i)} & = & \frac{w_{n-1}^{(i)}}{v_{n-1}^{(i)}} \times p(y_n|\hat{x}_n) \label{eq:bootstrap_vrpf_weights}     .
@@ -232,7 +239,7 @@ It only remains to consider the likelihood term required for evaluation of the i
 
 \subsection{Conditionally Linear-Gaussian Likelihoods} \label{sec:rb-vrpf}
 
-For a conditionally linear-Gaussian model, the required likelihood term, $p(y_n|\theta_n, y_{1:n-1})$ is the predictive distribution estimated by the Kalman filter. Conveniently, the Kalman filter also provides us with an estimate of the current state given the changepoint sequence and all the preceding observations. It follows from the the Gaussian dynamics and prior that these distributions are all Gaussian as well, \cite{Grewal2002},
+For the conditionally linear-Gaussian models of section~\ref{sec:clg_models}, the required likelihood term, $p(y_n|\theta_n, y_{1:n-1})$ is the predictive distribution estimated by the Kalman filter. Conveniently, the Kalman filter also provides us with an estimate of the current state given the changepoint sequence and all the preceding observations. It follows from the the Gaussian dynamics and prior that these distributions are all Gaussian as well, \cite{Grewal2002},
 %
 \begin{IEEEeqnarray}{rCl}
  p(x_n|\theta_{n}, y_{1:n-1}) & = & \mathcal{N}(x_n|m_n^-, P_n^-) \\
@@ -283,13 +290,13 @@ The VRPF applied to a conditionally linear-Gaussian model estimates a posterior 
 
 \subsection{Conditionally Deterministic Likelihoods} \label{sec:pd-vrpf}
 
-When a conditionally deterministic model is used, the state at observation time $t_n$ is specified by the changepoint sequence $\theta_n$ (plus the initial state, $x_0$), using (\ref{eq:disc_time_state_diff_eq}). Thus, the required likelihood term is simply given by,
+When the conditionally deterministic models of section~\ref{sec:cd_models} are used, the state at observation time $t_n$ is specified by the changepoint sequence $\theta_n$ (plus the initial state, $x_0$), using (\ref{eq:disc_time_state_diff_eq}). Thus, the required likelihood term is simply given by,
 %
 \begin{IEEEeqnarray}{rCl}
  p(y_n|\theta_{n}, y_{1:n-1}) & = & p(y_n|\hat{x}_n)     .
 \end{IEEEeqnarray}
 
-This leads to a particle filter for variable rate models with conditionally deterministic dynamics, summarised in Fig.~\ref{alg:VRPF}.
+This leads to a piecewise-deterministic variable rate particle filter, as summarised in Fig.~\ref{alg:VRPF}.
 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
@@ -332,13 +339,13 @@ The target distribution for a variable rate smoothing algorithm is the posterior
 
 \subsection{Conditionally Linear-Gaussian Smoothing} \label{sec:rb-vrps}
 
-At time $t_n$, the target distribution may be factorised as follows,
+For the conditionally linear-Gaussian models of section~\ref{sec:clg_models}, the target distribution may be factorised as follows at time $t_n$,
 %
 \begin{IEEEeqnarray}{rCl}
  p(\theta|y_{1:N}) = p(\theta_{n}^{+}|y_{1:N}) p(\theta_{n}|\theta_{n}^{+}, y_{1:N})     .
 \end{IEEEeqnarray}
 
-This suggests a sequential strategy for particle smoothing. Starting with a low diversity set of particles from $p(\theta|y_{1:N})$, we first marginalise $\theta_{n}$ by simply discarding the changepoints before $t_n$. New values of $\theta_{n}$ are then sampled from the conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$, which is approximated using the filter particles, and the past and future sequences are concatenated. By iterating backwards from $n = N \dots 1$, a diverse set of particles approximating $p(\theta|y_{1:N})$ will be generated.
+This suggests a sequential strategy for particle smoothing. Starting with a low diversity set of particles from $p(\theta|y_{1:N})$, we first marginalise $\theta_{n}$ by simply discarding the changepoints before $t_n$. New values of $\theta_{n}$ are then sampled from the conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$, which is approximated using the filter particles, and the past and future sequences are concatenated. By iterating backwards over $n = N \dots 1$, a diverse set of particles approximating $p(\theta|y_{1:N})$ will be generated.
 
 It remains to devise a scheme for sampling the conditional distribution, $p(\theta_{n}|\theta_{n}^{+}, y_{1:N})$. The simplifications used by the fixed rate particle smoother which exploit the Markovian nature of the state sequence \cite{Godsill2004} are of no help, because past changepoints are not independent of future observations in variable rate models (i.e. $p(\theta_{n}|\theta_{n}^{+}, y_{1:N}) \ne p(\theta_{n}|\theta_{n}^{+}, y_{1:n}))$. However, when the state dynamics are linear-Gaussian conditional on the changepoint sequence, it is possible split the dependence on the observations into past and future by introducing the current state as an additional variable. This device was used in \cite{Sarkka2012} in the derivation of the Rao-Blackwellised particle filter for fixed rate conditionally linear-Gaussian models,
 %
@@ -351,7 +358,7 @@ It remains to devise a scheme for sampling the conditional distribution, $p(\the
        &   & \times p(\theta_{n}^+|\theta_{n}) p(\theta_{n}|y_{1:n})     .
 \end{IEEEeqnarray}
 
-Finally, the particle approximation of (\ref{eq:vrpf}) is substituted for the filtering distribution, $p(\theta_{n}|y_{1:n})$,
+The particle approximation of (\ref{eq:vrpf}) is substituted for the filtering distribution, $p(\theta_{n}|y_{1:n})$, yielding,
 %
 \begin{IEEEeqnarray}{rCl}
 \hat{p}(\theta_{n}|\theta_{n}^+, y_{1:N}) & = & \sum_i \tilde{w}_{n}^{(i)} \delta_{\theta_{n}^{(i)}}(\theta_{n}) \label{eq:rb-vrps_back_cond}     ,
@@ -381,7 +388,7 @@ p(x_n|\theta_{n}^{(i)}, y_{1:n}) & = & \mathcal{N}(x_n|m_n^{(i)}, P_n^{(i)})    
 
 The mean and covariance of this distribution will have been calculated during the filtering stage, and can be stored for use now in the smoother.
 
-The second state-dependent term in (\ref{eq:rb-vrps_back_cond_weight}) is the likelihood, $p(y_{n+1:N}|x_n, \tilde{\theta}_{n}^+)$. This may be considered to be an improper density over $x_n$, and may be calculated analytically using a backwards Kalman filter, in a similar manner to that used in the two-filter smoother \cite{Fraser1969,Kitagawa1994,Sarkka2012,Gelb1974}. Such a backwards Kalman filter uses the following recursions, which are derived in appendix~\ref{app:backwards_KF},
+The second state-dependent term in (\ref{eq:rb-vrps_back_cond_weight}) is the likelihood, $p(y_{n+1:N}|x_n, \tilde{\theta}_{n}^+)$. This may be regarded as an improper density over $x_n$, and may be calculated analytically using a backwards Kalman filter, in a similar manner to that used in the two-filter smoother \cite{Fraser1969,Kitagawa1994,Sarkka2012,Gelb1974}. Such a backwards Kalman filter uses the following recursions, which are derived in appendix~\ref{app:backwards_KF},
 %
 \begin{IEEEeqnarray}{rCl}
  p(y_{n+1:N}|x_n, \theta_{n}^+) & \propto & \mathcal{N}(x_n|\tilde{m}_n^-, \tilde{P}_n^-) \\
@@ -398,16 +405,16 @@ The second state-dependent term in (\ref{eq:rb-vrps_back_cond_weight}) is the li
  \tilde{P}_n   & = & \tilde{P}_n^- - \tilde{K}_n \tilde{S}_n \tilde{K}_n^T \label{eq:backward_kf_update_stop}     .
 \end{IEEEeqnarray}
 
-Exact methods for initialising this recursion are discussed in appendix~\ref{app:init_backwards_KF}, and also in \cite{Kitagawa1994}. However, it is often sufficient to use an approximation, for example $\tilde{m}_N^{(i)} = m_N^{(i)}$ and $\tilde{P}_N^{(i)} = P_N^{(i)}$.
+Exact methods for initialising this recursion are discussed in appendix~\ref{app:init_backwards_KF}, and also in \cite{Kitagawa1994}. However, it is often sufficient to use an approximation, for example $\tilde{m}_N^{(i)} \gets m_N^{(i)}$ and $\tilde{P}_N^{(i)} \gets P_N^{(i)}$.
 
-Substituting the Gaussian densities into (\ref{eq:rb-vrps_back_cond_weight}) and performing the integral yields the following backwards conditional weights,
+Substituting the Gaussian densities into (\ref{eq:rb-vrps_back_cond_weight}) and integrating yields the following backwards conditional weights,
 %
 \begin{equation}
  \tilde{w}_n \propto w_n p(\theta_{n}^+|\theta_{n}^{(i)}) \mathcal{N}(\tilde{m}_n^-|m_n, \tilde{P}_n^- + P_n)     .
 \label{eq:rb-vrps_back_cond_weight2}
 \end{equation}
 
-Using these weights, a sample of $\theta_{n}$ may be drawn from the particle distribution of (\ref{eq:rb-vrps_back_cond}), completing one step of the smoothing algorithm. Once sampling has progressed backwards from $n=N \dots 1$, a particle from the smoothing distribution will have been generated. This procedure may then be repeated until sufficient particles have been obtained. The algorithm is summarised in Fig.~\ref{alg:RBVRPS}.
+Using these weights, a sample of $\theta_{n}$ may be drawn from the particle distribution of (\ref{eq:rb-vrps_back_cond}), completing one step of the smoothing algorithm. Once sampling has progressed backwards over $n=N \dots 1$, a particle from the smoothing distribution will have been generated. This procedure may then be repeated until sufficient particles have been obtained. The algorithm is summarised in Fig.~\ref{alg:RBVRPS}.
 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
@@ -440,7 +447,7 @@ The algorithmic complexity of this variable rate particle smoother for condition
 
 \subsection{Conditionally Deterministic Smoothing} \label{sec:pd-vrps}
 
-In a conditionally deterministic system, the entire continuous-time state trajectory, $x(t)$, is a function of the changepoint sequence $\theta$ and the initial state, $x_0$. When the changepoint sequence is split into past, $\theta_n$, and future $\theta_n^+$, and the past is altered, this will alter the state trajectory in the future. This is undesirable in practice, as each sampling operation will require the recalculation of state values and observations likelihoods for all future observation times.
+In the conditionally deterministic models of section~\ref{sec:cd_models}, the entire continuous-time state trajectory, $x(t)$, is a function of the changepoint sequence $\theta$ and the initial state, $x_0$. When the changepoint sequence is split into past, $\theta_n$, and future $\theta_n^+$, and the past is altered, this will alter the state trajectory in the future. This is undesirable in practice, as each sampling operation will require the recalculation of state values and observations likelihoods for all future observation times.
 
 In order to achieve conditional independence between past and future observations, consider the augmented changepoint sequence, $\tilde{\theta} = \{\tau_{0:K}, u_{0:K}, x_{0:K}\}$ ($\tilde{\theta}_n$ and $\tilde{\theta}_n^+$ defined in the same manner as before). The changepoint state values, $x_{0:K}$ may be calculated deterministically from $\theta$ for each particle. The smoother is then formulated by factorising the augmented sequence posterior distribution as before,
 %
@@ -448,30 +455,30 @@ In order to achieve conditional independence between past and future observation
  p(\tilde{\theta}|y_{1:N}) = p(\tilde{\theta}_{n}^{+}|y_{1:N}) p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N})     .
 \end{IEEEeqnarray}
 
-Again, this suggests a backwards sequential sampling algorithm for smoothing. The second term may be expanded as,
+As before, this suggests a backwards sequential sampling algorithm for smoothing. The second term may be expanded as,
 %
 \begin{IEEEeqnarray}{rCl}
 p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N}) & \propto & p(y_{n+1:N}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}) \nonumber \\
 & & \times p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}|y_{1:n})    .
 \end{IEEEeqnarray}
 
-This presents a problem. We cannot directly substitute the particle approximation for the filtering distribution because the transition density term for the augmented sequences is given by,
+A difficulty is now encountered. We cannot directly substitute the particle approximation for the filtering distribution because the transition density term for the augmented sequences is given by,
 %
 \begin{IEEEeqnarray}{rCl}
 p(\tilde{\theta}_{n}^+ | \tilde{\theta}_{n}) & \propto & p(\tau_{K_n+1}, u_{K_n+1}| \tau_{K_n}, u_{K_n}) \nonumber \\
  & & \times \delta_{f(x_{K_n}, u_{K_n}, \tau_{K_n}, \tau_{K_n+1})}(x_{K_n+1}),
 \end{IEEEeqnarray}
 
-which will be $0$ for all but one unique filtering particle. Intuitively, we are trying to join two deterministic state trajectories together, but they do not meet up in the middle.
+which will be $0$ for all but one unique filtering particle, the one from which the next selected future changepoint originated. Intuitively, we are trying to join two deterministic state trajectories together, but they do not meet up in the middle.
 
-The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than sampling $p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N})$ directly, a value of $\tilde{\theta}_{n}$ is proposed from the filtering particles, after which a replacement, $u_{K_n}'$, is proposed for the existing final changepoint parameter, with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. Such a proposal density may be written as,
+The solution to this problem is provided by an idea from the Sequential Monte Carlo (SMC) samplers of \cite{DelMoral2006}. Rather than sampling $p(\tilde{\theta}_{n}|\tilde{\theta}_{n}^{+}, y_{1:N})$ directly, an augmented distribution is targeted. A value of $\tilde{\theta}_{n}$ can be proposed from the filtering particles, after which a replacement, $u_{K_n}'$, is proposed for the existing final changepoint parameter, with a value chosen such that the past and future paths meet up. The modified sequence is denoted $\tilde{\theta}_{n}'$. Such a proposal density may be written as,
 %
 \begin{IEEEeqnarray}{rCl}
 \IEEEeqnarraymulticol{3}{l}{p(\tilde{\theta}_{n}|y_{1:n}) q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})} \nonumber \\
  \qquad & \propto & p(y_{1:n}|\tilde{\theta}_{n}) p(\tilde{\theta}_{n}) q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N}) \label{eq:pd-vrps_proposal}     .
 \end{IEEEeqnarray}
 
-The target distribution is augmented by introduction of an artificial density to cover the new changepoint sequence and the discarded parameter.
+The augmented target distribution over the the new sequence, $\tilde{\theta}_{n}'$, and the discarded parameter, $u_{K_n}$, is constructed by introducing an artificial density,
 %
 \begin{IEEEeqnarray}{rCl}
 \IEEEeqnarraymulticol{3}{l}{ p(\tilde{\theta}_{n}'|\tilde{\theta}_{n}^{+}, y_{1:N}) L(u_{K_n}|\tilde{\theta}_{n}', \tilde{\theta}_{n}^{+}, y_{1:N}) } \nonumber \\
@@ -493,7 +500,7 @@ The ratio of target (\ref{eq:pd-vrps_target}) and proposal (\ref{eq:pd-vrps_prop
 
 where $r_n^- = \min( m : t_m > \tau_{K_n} )$ and $r_n^+ = \max( m : t_m < \tau_{K_n+1} )$ are the indexes of the earliest and latest observations to fall between the changepoints each side of $t_n$.
 
-The proposal density $q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$ is constructed so as to be non-zero only where $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}')$ is non-zero. This could require it to be a delta function if there is only one feasible value. The artificial conditional term, $L(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$, may be any arbitrary density, but the simplest choice is simply as a uniform distribution so that it cancels out in the MH acceptance probability. The remaining terms are likelihoods and parameter transition density terms, defined by the system equations.
+The proposal density $q(u_{K_n}'|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$ is constructed so as to be non-zero only where $p(\tilde{\theta}_{n}^{+}|\tilde{\theta}_{n}')$ is non-zero. This could require it to be a delta function if there is only one feasible value. The artificial conditional term, $L(u_{K_n}|\tilde{\theta}_{n}, \tilde{\theta}_{n}^{+}, y_{1:N})$, may be any arbitrary density, but the simplest choice is a uniform distribution over the set of parameter values, $\{u_{K_n}^{(i)}\}$, which appear in the filtering approximation. With this choice, the artificial density terms will always cancel out in the MH acceptance probability. The remaining terms are likelihoods and parameter transition density terms, defined by the system equations.
 
 If $\beta_n^{(m-1)}$ is the target-proposal ratio for the current state in the chain, and $\beta_n^*$ that for the new state, then the acceptance probability is given by,
 %
@@ -501,9 +508,9 @@ If $\beta_n^{(m-1)}$ is the target-proposal ratio for the current state in the c
 \alpha_n^{(m)} = \min \left( 1, \frac{\beta_n^*}{\beta_n^{(m-1)}} \right) \label{eq:pd-vrps_ap}     .
 \end{IEEEeqnarray}
 
-Each Markov chain may be initialised with the output from the previous stage. This value is itself a particle from the target distribution (albeit one from an approximation with poor path-space diversity), meaning that no burn-in period is required. This is the same reasoning which justifies the absence of a burn-in when using a resample-move scheme \cite{Gilks2001}.
-
 The algorithm is summarised in Fig.~\ref{alg:VRPS}.
+
+Each Markov chain may be initialised with the output from the previous stage. This value is itself a particle from the target distribution (albeit one from an approximation with poor path-space diversity), meaning that no burn-in period is required. This is the same reasoning which justifies the absence of a burn-in when using a resample-move scheme \cite{Gilks2001}.
 
 \begin{figure}
 \fbox{\parbox{\columnwidth}{
@@ -536,7 +543,7 @@ The number of MH steps, $M$, at each observation time, $n$, allows a trade-off o
 
 \section{Simulations} \label{sec:simulations}
 
-The smoothers and the final step of the filters each produce a particle approximation to the changepoint sequence posterior, $p(\theta|y_{1:N})$. Calculating a single estimator from these is no simple task. Each particle consists of a list of changepoint times and parameters, and there is no obvious way to take an average over the set to produce a single estimate. Furthermore, if a best estimate could be calculated (e.g. by finding the maximum a posteriori sequence), it is not trivial to define a distance metric between the estimated and true sequences to assess relative accuracy.
+The smoothers and the final step of the filters each produce a particle approximation to the changepoint sequence posterior, $p(\theta|y_{1:N})$. Calculating a single estimator from these is no simple task. Each particle consists of a list of changepoint times and parameters, and there is no obvious way to take an average over the set to produce a single estimate. Furthermore, if a best estimate could be calculated (e.g. by finding the maximum a posteriori sequence), it is not trivial to define a distance metric between the estimated and true sequences to assess relative accuracy. (One possible choice of metric has been considered for this comparison, the optimal sub-pattern assignment (OSPA) distance of \cite{Schuhmacher2008}. However, the relative performance of the algorithms is liable to vary significantly with the parameters of the metric.)
 
 Comparisons of accuracy are most easily conducted by comparing state estimates. These can be calculated by simply taking a mean of the particle values (using the Gaussian means for the linear-Gaussian case). The accuracy is then assessed by comparing the root mean squared error (RMSE) of the resulting estimators.
 
@@ -548,7 +555,7 @@ In addition, the benefit of employing a smoothing algorithm is that it ensures a
 
 \subsection{Conditionally Linear-Gaussian Model} \label{sec:finance}
 
-The Rao-Blackwellised VRPS algorithm was tested on the financial time series model of \cite{Godsill2007a,Christensen2012}, in which prices of an asset are treated as noisy observations of a latent state, which evolves according to a drift-diffusion with occasional jumps.
+The Rao-Blackwellised VRPS algorithm was tested on the financial time series model of \cite{Christensen2012}, in which prices of an asset are treated as noisy observations of a latent state, which evolves according to a drift-diffusion with occasional jumps.
 
 The latent state is a vector with two elements, the underlying value of the asset, and the trend followed by this value,
 %
@@ -556,7 +563,7 @@ The latent state is a vector with two elements, the underlying value of the asse
  \mathbf{x}(t) = [ x(t), \dot{x}(t)]^T     .
 \end{equation}
 
-This evolves continuously according to a jump-diffusion model:
+This evolves continuously according to a jump-diffusion model,
 %
 \begin{IEEEeqnarray}{c}
  d\mathbf{x}(t) = \begin{bmatrix}0 & 1 \\ 0 & -\lambda \end{bmatrix} \mathbf{x}(t) dt + \begin{bmatrix}0 \\ \sigma \end{bmatrix} d\beta(t) + d\mathbf{J}(t)
@@ -603,7 +610,7 @@ where the $\mathbf{w}_n$ and $v_n$ are Gaussian random variables with covariance
 % R     &=& [\sigma_y^2]
 %\end{IEEEeqnarray}
 
-The times between changepoints are assumed to be exponentially distributed with mean $\alpha$, and equal probability of value and trend jumps.
+The times between changepoints are assumed to be exponentially distributed with mean $1/\alpha$, and equal probability of value and trend jumps.
 %
 %\begin{IEEEeqnarray}{rCl}
 % \IEEEeqnarraymulticol{3}{l}{p(\tau_k, u_k|\tau_{k-1}, u_{k-1}) = P(u_k) p(\tau_k|\tau_{k-1})} \\
@@ -748,11 +755,11 @@ Performance was evaluated by testing on 10 scenarios, each with 1000 observation
 %\label{fig:fx_results}
 %\end{figure}
 
-The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:finance_unique_particles}. This illustrates the main advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution.
+The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:finance_unique_particles}. This illustrates the main advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint and state distributions.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.5\columnwidth,angle=90]{finance_unique_particles.pdf}
+\includegraphics[width=0.75\columnwidth]{finance_unique_particles.pdf}
 \caption{Mean number of unique particles in the filter-smoother (dashed) and smoother (solid) estimates.}
 \label{fig:finance_unique_particles}
 \end{figure}
@@ -763,19 +770,19 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 The piecewise-deterministic VRPS was tested using a 2-dimensional dynamic model for manoeuvring vehicles \cite{Bunch2012a}. The target is modelled as a particle subject to perpendicular forces tangential and normal to the direction of motion. These forces are held constant between changepoint times, $\tau_{1:K}$, which represent the beginnings and ends of manoeuvres.
 
-The state vector consists of Cartesian position, $x(t)$ and $y(t)$, plus heading angle, $\psi(t)$, and speed, $\dot{s}(t)$.
+The state vector consists of Cartesian position, $x(t)$ and $y(t)$, plus heading angle, $\psi(t)$, and speed, $\dot{s}(t)$,
 %
 \begin{equation}
-\mathbf{x}(t) = [x(t), y(t), \psi(t), \dot{s}(t)]^T
+\mathbf{x}(t) = [x(t), y(t), \psi(t), \dot{s}(t)]^T     .
 \end{equation}
 
-In addition to the tangential and normal accelerations, $a_{T,k}$ and $a_{N,k}$, we introduce two linear velocity terms, $d_{X,k}$ and $d_{Y,k}$. Without these, the model could not be used for smoothing, because for an arbitrary pair of adjacent changepoints ($\tau_{k}$, $\mathbf{x}_{k}$) and ($\tau_{k+1}$, $\mathbf{x}_{k+1}$), there would not in general be a pair of accelerations which achieved the required transition. These linear velocity terms may be considered to be merely relaxation terms, allowing arbitrary past and future trajectories to be joined, or they may represent real physical effects, such as wind (for aircraft) or currents (for boats). Together, these four variables make up the vector of motion parameters,
+In addition to the tangential and normal accelerations, $a_{T,k}$ and $a_{N,k}$, we introduce two linear velocity terms, $d_{X,k}$ and $d_{Y,k}$. Without these, the model could not be used for smoothing, because for an arbitrary pair of adjacent changepoints ($\tau_{k}$, $\mathbf{x}_{k}$) and ($\tau_{k+1}$, $\mathbf{x}_{k+1}$), there would not, in general, be a pair of accelerations which achieved the required transition. These linear velocity terms may be considered to be merely relaxation terms, allowing arbitrary past and future trajectories to be joined, or they may represent real physical effects, such as wind (for aircraft) or currents (for boats). Together, these four variables make up the vector of motion parameters,
 %
 \begin{equation}
-\mathbf{u}_k = [a_{T,k}, a_{N,k}, d_{X,k}, d_{Y,k}]^T
+\mathbf{u}_k = [a_{T,k}, a_{N,k}, d_{X,k}, d_{Y,k}]^T     .
 \end{equation}
 
-The target dynamics are described by four differential equations.
+The target dynamics are described by four differential equations,
 %
 \begin{IEEEeqnarray}{rCl}
 \ddot{s}_t & = & a_{T,K(t)} \\
@@ -784,7 +791,7 @@ The target dynamics are described by four differential equations.
 \dot{y}_t & = & \dot{s}_t \sin(\psi_t) + d_{Y,K(t)}     .
 \end{IEEEeqnarray}
 
-Solving these yields the following state equations (where $\Delta\ t = t - \tau_{K(t)}$):
+Solving these yields the following state equations (where $\Delta\ t = t - \tau_{K(t)}$),
 %The target dynamics are governed by the following state equations \cite{Bunch2012a} (where $\Delta\ t = t - \tau_{K(t)}$):
 %
 \begin{IEEEeqnarray}{rCl}
@@ -825,9 +832,9 @@ An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the 
 \label{fig:2D_particle_results}
 \end{figure}
 
-Performance was evaluated by testing on 10 independently generated scenarios, each with 500 observations. At each observation time, an estimate of the position and velocity is made by taking the average of values from the array of particles. The resulting root mean square errors (RMSEs) are displayed in table~\ref{tab:tracking_state_performance}, demonstrating an improvement in accuracy from the smoother. The smoother also provides a more accurate estimate of the number of changepoints in each test, with an average error of 0.6 compared to 2.0 from the final frame filter approximation.
+Performance was evaluated by testing on 10 independently generated scenarios, each with 500 observations. At each observation time, an estimate of the position and velocity is made by taking the average of values from the array of particles. The resulting root mean square errors (RMSEs) are displayed in table~\ref{tab:tracking_state_performance}, demonstrating an improvement in accuracy from the smoother. The VRPS also provides a more accurate estimate of the number of changepoints in each test, with an average error of 0.6 compared to 2.0 from the filter-smoother.
 
-The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:tracking_unique_particles}. This illustrates again the principal advantage of the smoother algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution, allowing, for example, calculation of state covariance measures.
+The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:tracking_unique_particles}. This illustrates again the principal advantage of the VRPS algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution, allowing, for example, calculation of state covariances.
 
 \begin{table}%
 \caption{State estimation performance.}
@@ -848,7 +855,7 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.5\columnwidth]{tracking_unique_particles.pdf}
+\includegraphics[width=0.75\columnwidth]{tracking_unique_particles.pdf}
 \caption{Mean number of unique particles in the final filter (dashed) and smoother (solid) estimates.}
 \label{fig:tracking_unique_particles}
 \end{figure}
@@ -857,7 +864,7 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 \section{Conclusions}
 
-New smoothing algorithms have been introduced for variable rate models which have either linear-Gaussian or deterministic dynamics conditional on a set of unknown changepoints. For the linear-Gaussian case, the algorithm employs Rao-Blackwellisation, using particle methods to estimate the nonlinear changepoint sequence, and Kalman filtering/smoothing to estimate the linear state components. For the deterministic case, smoothing is achieved by sampling an augmented target distribution using MCMC. Simulations demonstrate that the smoothers generate approximation with improved particle diversity and accuracy when compared to the filters.
+New smoothing algorithms have been introduced for variable rate models which have either linear-Gaussian or deterministic dynamics conditional on a set of unknown changepoints. For the linear-Gaussian case, the algorithm employs Rao-Blackwellisation, using particle methods to estimate the nonlinear changepoint sequence, and Kalman filtering/smoothing to estimate the linear state components. For the deterministic case, smoothing is achieved by sampling an augmented target distribution using MCMC. Simulations demonstrate that the smoothers generate approximations with improved particle diversity and accuracy when compared to the filters.
 
 
 
@@ -890,7 +897,7 @@ where,
  \tilde{Z}_n^- & = & \tilde{Z}_{n+1} ||A_{n+1}||^{-1}   .
 \end{IEEEeqnarray}
 
-$||A||$ is used to denote the magnitude of the determinant of $A$, and it is assumed that $A$ is non-singular.
+$||A||$ denotes the magnitude of the determinant of $A$, and it is assumed that $A$ is non-singular.
 
 The update step simply involves multiplying by the likelihood of the observation at time $t_n$,
 %
@@ -898,7 +905,7 @@ The update step simply involves multiplying by the likelihood of the observation
 \IEEEeqnarraymulticol{3}{l}{p(y_{n:N}|x_n, \tilde{\theta}_{n}^+)} \\
  & = & p(y_{n+1:N}|x_n, \tilde{\theta}_{n}^+) p(y_{n}|x_n, \tilde{\theta}_{n}^+) \nonumber \\
  & = & \tilde{Z}_n^- \mathcal{N}(x_n|\tilde{m}_n^-, \tilde{P}_n^-) \mathcal{N}(y_n|C_n x_n, R_n) \nonumber \\
- & = & \tilde{Z}_n \mathcal{N}(x_n|\tilde{m}_n, \tilde{P}_n)
+ & = & \tilde{Z}_n \mathcal{N}(x_n|\tilde{m}_n, \tilde{P}_n)     ,
 \end{IEEEeqnarray}
 
 where,
@@ -969,11 +976,11 @@ State evolution is governed by the following stochastic differential equation,
  d\mathbf{x}(t) = \begin{bmatrix}0 & 1 \\ 0 & -\lambda \end{bmatrix} \mathbf{x}(t) dt + \begin{bmatrix}0 \\ \sigma \end{bmatrix} d\beta(t) + d\mathbf{J}(t)
 \end{IEEEeqnarray}
 
-where $\lambda$ is the mean regression constant, $\sigma$ is the diffusion constant, $\mathbf{\beta}(t)$ is standard Brownian motion, $d\mathbf{J}(t)$ is a jump term defined according to,
+where $\lambda$ is the mean reversion constant, $\sigma$ is the diffusion constant, $\mathbf{\beta}(t)$ is standard Brownian motion, $d\mathbf{J}(t)$ is a jump term defined according to,
 %
 \begin{IEEEeqnarray}{rCl}
  d\mathbf{J}(t) & = & \begin{cases} \mathbf{J}_k & t \in \{\tau_k\} \\ 0 & \text{elsewhere} \end{cases} \\
- \mathbf{J}_k  & \sim & \mathcal{N}(\mathbf{J}_k| \mathbf{0}, Q_{J,u_k})
+ \mathbf{J}_k  & \sim & \mathcal{N}(\mathbf{J}_k| \mathbf{0}, Q_{J,u_k})    .
 \end{IEEEeqnarray}
 
 $\{\tau_k\}$ is the set of jump times, and $\{u_k\}$ the set of jump types, where $u_k = 1$ indicates a value jump, and $u_k=2$ a trend jump. The jump covariance matrices are,
@@ -989,7 +996,7 @@ Discretisation proceeds by separating the diffusion and jump terms and integrati
  \mathbf{x}_n &=& A \mathbf{x}_{n-1} + \mathbf{w}_n
 \end{IEEEeqnarray}
 
-where the $\mathbf{w}_n$ is a Gaussian random variable with covariance matrix $Q_n$. The inter-observation time is denoted $\Delta t = t_{n} - t_{n-1}$.
+where the $\mathbf{w}_n$ is a Gaussian random variable with covariance matrix $Q_n$. The inter-observation time is denoted $\Delta t = t_{n} - t_{n-1}$, and,
 
 \begin{IEEEeqnarray}{rCl}
  A     &=& \begin{bmatrix}1 & \frac{1}{\lambda}(1-e^{(-\lambda \Delta t)} \\ 0 & e^{(-\lambda \Delta t)}\end{bmatrix} \\
@@ -1016,7 +1023,7 @@ where $v_n$ is a Gaussian random variable with covariance matrix $R$.
 
 
 
-\newpage
+%\newpage
 \bibliographystyle{IEEEtran}
 \bibliography{D:/pb404/Dropbox/PhD/Cleanbib}
 \input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
