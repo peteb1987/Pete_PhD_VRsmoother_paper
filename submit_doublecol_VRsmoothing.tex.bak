@@ -1,4 +1,4 @@
-\documentclass[journal]{IEEEtran}
+\documentclass[10pt,twocolumn,twoside]{IEEEtran}
 
 
 \usepackage{cite}
@@ -26,15 +26,16 @@
 
 \title{Particle Smoothing Algorithms for Variable Rate Models}
 
-\author{Pete~Bunch,~\IEEEmembership{Member,~IEEE,}
+\author{Pete~Bunch*,~\IEEEmembership{Member,~IEEE,}
         Simon~Godsill,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
 \thanks{P. Bunch and S. Godsill are with the Department
 of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
 \thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
 
+
 % The paper headers
-\markboth{IEEE Transaction in Signal Processing,~Vol.~1, No.~1, January~1901}%
-{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
+\markboth{IEEE Transaction in Signal Processing}%,~Vol.~1, No.~1, January~1901}%
+%{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
 
 % make the title area
 \maketitle
@@ -900,8 +901,10 @@ where $v_n$ is a Gaussian random variable with covariance matrix $R$.
 %\newpage
 \bibliographystyle{IEEEtran}
 \bibliography{D:/pb404/Dropbox/PhD/Cleanbib}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

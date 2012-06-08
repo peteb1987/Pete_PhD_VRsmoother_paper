@@ -1,4 +1,4 @@
-\documentclass[journal]{IEEEtran}
+\documentclass[10pt,twocolumn,twoside]{IEEEtran}
 
 
 \usepackage{cite}
@@ -26,15 +26,16 @@
 
 \title{Particle Smoothing Algorithms for Variable Rate Models}
 
-\author{Pete~Bunch,~\IEEEmembership{Member,~IEEE,}
+\author{Pete~Bunch*,~\IEEEmembership{Member,~IEEE,}
         Simon~Godsill,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
 \thanks{P. Bunch and S. Godsill are with the Department
 of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
-\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+}%\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+
 
 % The paper headers
-\markboth{IEEE Transaction in Signal Processing,~Vol.~1, No.~1, January~1901}%
-{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
+\markboth{IEEE Transaction in Signal Processing}{IEEE Transaction in Signal Processing}%,~Vol.~1, No.~1, January~1901}%
+%{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
 
 % make the title area
 \maketitle
@@ -258,8 +259,9 @@ The variable rate particle filter (VRPF) is described in \cite{Godsill2007,Godsi
 The transition term, $p(\theta_{n \setminus n-1} | \theta_{n-1}^-)$, has a similar form to the changepoint prior of (\ref{eq:cp_sequence_prior}) \cite{Jacobsen2006}, but an additional survivor function is included to account for the condition that changepoints cannot occur before $t_{n-1}$,
 %
 \begin{IEEEeqnarray}{rCl}
-\IEEEeqnarraymulticol{3}{l}{p(\theta_{n \setminus n-1} | \theta_{n-1}^-) = S(\tau_{K_n}, t_n) / S(\tau_{K_{n-1}+1}, t_{n-1}) } \nonumber \\
- \qquad  \qquad & & \times \prod\limits_{j:t_{n-1} \leq \tau_j < t_n} p(\tau_j, u_j| \tau_{j-1}, u_{j-1})  \label{eq:cp_sequence_trandens}     .
+\IEEEeqnarraymulticol{3}{l}{p(\theta_{n \setminus n-1} | \theta_{n-1}^-)} \nonumber \\
+  &=& S(\tau_{K_n},u_{K_n}, t_n) / S(\tau_{K_{n-1}+1},u_{K_{n-1}+1}, t_{n-1}) \nonumber \\
+  & & \times \prod\limits_{j:t_{n-1} \leq \tau_j < t_n} p(\tau_j, u_j| \tau_{j-1}, u_{j-1})  \label{eq:cp_sequence_trandens}     .
 \end{IEEEeqnarray}
 %\begin{IEEEeqnarray}{rCl}
 %\IEEEeqnarraymulticol{3}{l}{p(\theta_{n \setminus n-1} | \theta_{n-1})} \nonumber \\
@@ -900,8 +902,10 @@ where $v_n$ is a Gaussian random variable with covariance matrix $R$.
 %\newpage
 \bibliographystyle{IEEEtran}
 \bibliography{D:/pb404/Dropbox/PhD/Cleanbib}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

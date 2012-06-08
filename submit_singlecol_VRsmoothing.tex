@@ -1,5 +1,4 @@
-\documentclass[journal]{IEEEtran}
-
+\documentclass[peerreview,11pt,draftcls,onecolumn]{IEEEtran}
 
 \usepackage{cite}
 \usepackage[pdftex]{graphicx}
@@ -26,15 +25,16 @@
 
 \title{Particle Smoothing Algorithms for Variable Rate Models}
 
-\author{Pete~Bunch,~\IEEEmembership{Member,~IEEE,}
+\author{Pete~Bunch*,~\IEEEmembership{Member,~IEEE,}
         Simon~Godsill,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
 \thanks{P. Bunch and S. Godsill are with the Department
 of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
-\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+}
+%\thanks{Manuscript received June 08, 2012.}}
 
 % The paper headers
-\markboth{IEEE Transaction in Signal Processing,~Vol.~1, No.~1, January~1901}%
-{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
+\markboth{IEEE Transaction in Signal Processing}{IEEE Transaction in Signal Processing}%,~Vol.~1, No.~1, January~1901}%
+%{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
 
 % make the title area
 \maketitle
@@ -43,10 +43,18 @@ of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-t
 Standard state-space methods assume that the latent state evolves uniformly over time, and can be modelled with a discrete-time process synchronous with the observations. This may be a poor representation of some systems in which the state evolution displays discontinuities in its behaviour. For such cases, a variable rate model may be more appropriate; the system dynamics are conditioned on a set of random changepoints which constitute a marked point process. In this paper, new particle smoothing algorithms are presented for use with conditionally linear-Gaussian and conditionally deterministic dynamics. These are demonstrated on problems in financial modelling and target tracking. Results indicate that the smoothing approximations provide more accurate and more diverse representations of the state posterior distributions.
 \end{abstract}
 
-\begin{IEEEkeywords}
-Bayesian inference, state-space model, variable rate, particle filter, filtering, smoothing
-\end{IEEEkeywords}
+%\begin{IEEEkeywords}
+%Bayesian inference, state-space model, variable rate, particle filter, filtering, smoothing
+%\end{IEEEkeywords}
 
+\ifCLASSOPTIONpeerreview
+\begin{center} \bfseries EDICS Categories: MLR-BAYL, SSP-NGAU, SSP-TRAC, SSP-FILT \end{center}
+\fi
+
+\newpage
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
 
 
 \section{Introduction}
@@ -258,8 +266,9 @@ The variable rate particle filter (VRPF) is described in \cite{Godsill2007,Godsi
 The transition term, $p(\theta_{n \setminus n-1} | \theta_{n-1}^-)$, has a similar form to the changepoint prior of (\ref{eq:cp_sequence_prior}) \cite{Jacobsen2006}, but an additional survivor function is included to account for the condition that changepoints cannot occur before $t_{n-1}$,
 %
 \begin{IEEEeqnarray}{rCl}
-\IEEEeqnarraymulticol{3}{l}{p(\theta_{n \setminus n-1} | \theta_{n-1}^-) = S(\tau_{K_n}, t_n) / S(\tau_{K_{n-1}+1}, t_{n-1}) } \nonumber \\
- \qquad  \qquad & & \times \prod\limits_{j:t_{n-1} \leq \tau_j < t_n} p(\tau_j, u_j| \tau_{j-1}, u_{j-1})  \label{eq:cp_sequence_trandens}     .
+\IEEEeqnarraymulticol{3}{l}{p(\theta_{n \setminus n-1} | \theta_{n-1}^-)} \nonumber \\
+  &=& S(\tau_{K_n},u_{K_n}, t_n) / S(\tau_{K_{n-1}+1},u_{K_{n-1}+1}, t_{n-1}) \nonumber \\
+  & & \times \prod\limits_{j:t_{n-1} \leq \tau_j < t_n} p(\tau_j, u_j| \tau_{j-1}, u_{j-1})  \label{eq:cp_sequence_trandens}     .
 \end{IEEEeqnarray}
 %\begin{IEEEeqnarray}{rCl}
 %\IEEEeqnarraymulticol{3}{l}{p(\theta_{n \setminus n-1} | \theta_{n-1})} \nonumber \\
@@ -648,15 +657,15 @@ The filter used $\aleph_F = 100$ particles, and the smoother resampled $\aleph_S
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{example_data.pdf}
+\includegraphics[width=0.45\columnwidth]{example_data.pdf}
 \caption{An example simulated data set, showing value (top) and trend (bottom). Value observations are overlayed. Jump times are shown as dotted vertical lines.}
 \label{fig:example_data}
 \end{figure}
 
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{example_filtersmoother_state.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{example_smoother_state.pdf}}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{example_filtersmoother_state.pdf}} \\
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{example_smoother_state.pdf}}
 \caption{Trend estimates from (a) the filter-smoother and (b) the VRPS. Solid lines show means of each particle. Dashed lines show mean $\pm$2 standard deviations.}
 \label{fig:example_state}
 \end{figure}
@@ -667,14 +676,14 @@ Performance was evaluated by testing on 10 scenarios, each with 1000 observation
 \caption{State estimation performance.}
 \label{tab:finance_state_performance}
 \centering
-\renewcommand{\arraystretch}{1.5}
+%\renewcommand{\arraystretch}{1.5}
 \begin{tabular}{|c|c|c|c|}
 \hline
- &\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering VRPF}} & \raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering Filter-smoother}} & \raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering VRPS}} \\
+ & VRPF & Filter-smoother & VRPS \\
 \hline \hline
-\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{2cm}{\centering mean value estimate RMSE}}   & $5.31 \times 10^{-4}$ & $4.48 \times 10^{-4}$ & $4.16 \times 10^{-4}$ \\
+\centering mean value estimate RMSE & $5.31 \times 10^{-4}$ & $4.48 \times 10^{-4}$ & $4.16 \times 10^{-4}$ \\
 \hline
-\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{2cm}{\centering mean trend estimate RMSE}}   & $2.56 \times 10^{-2}$ & $1.79 \times 10^{-2}$ & $1.49 \times 10^{-2}$ \\
+\centering mean trend estimate RMSE & $2.56 \times 10^{-2}$ & $1.79 \times 10^{-2}$ & $1.49 \times 10^{-2}$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -683,7 +692,7 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.75\columnwidth]{finance_unique_particles.pdf}
+\includegraphics[width=0.45\columnwidth]{finance_unique_particles.pdf}
 \caption{Mean number of unique particles in the filter-smoother (dashed) and smoother (solid) estimates.}
 \label{fig:finance_unique_particles}
 \end{figure}
@@ -702,15 +711,15 @@ An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the 
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{simulated_problem.pdf}
+\includegraphics[width=0.45\columnwidth]{simulated_problem.pdf}
 \caption{An example simulated data set, showing true position (dashed line), observations (dots) and changepoint positions (crosses). }
 \label{fig:simulated_trajectory}
 \end{figure}
 
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DFilter.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DSmoother.pdf}}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{2DFilter.pdf}} \\
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{2DSmoother.pdf}}
 \caption{Filter (a) and smoother (b) particle estimates of position (solid lines), with particle changepoint positions (crosses). }
 \label{fig:2D_particle_results}
 \end{figure}
@@ -723,22 +732,21 @@ The mean number of unique particle estimates at each time step is shown in Fig.~
 \caption{State estimation performance.}
 \label{tab:tracking_state_performance}
 \centering
-\renewcommand{\arraystretch}{1.5}
+%\renewcommand{\arraystretch}{1.5}
 \begin{tabular}{|c|c|c|c|}
 \hline
- &\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering VRPF}} & \raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering Filter-smoother}} & \raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{1.5cm}{\centering VRPS}} \\
-% & \begin{minipage}[c]{1.5cm}\centering RBVRPF + KF\end{minipage} & \begin{minipage}[c]{1.5cm}\centering RBVRPF + RTS\end{minipage} & \begin{minipage}[c]{1.5cm}\centering RBVRPS + RTS\end{minipage} \\
+ &VRPF & Filter-smoother & VRPS \\
 \hline \hline
-\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{2cm}{\centering mean position estimate RMSE}} & 2.14 & 1.36 & 1.12 \\
+mean position estimate RMSE & 2.14 & 1.36 & 1.12 \\
 \hline
-\raisebox{0cm}[0.4cm][0.3cm]{\parbox[c]{2cm}{\centering mean velocity estimate RMSE}} & 1.89 & 1.03 & 0.85 \\
+mean velocity estimate RMSE & 1.89 & 1.03 & 0.85 \\
 \hline
 \end{tabular}
 \end{table}
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.75\columnwidth]{tracking_unique_particles.pdf}
+\includegraphics[width=0.45\columnwidth]{tracking_unique_particles.pdf}
 \caption{Mean number of unique particles in the final filter (dashed) and smoother (solid) estimates.}
 \label{fig:tracking_unique_particles}
 \end{figure}
@@ -822,16 +830,16 @@ The backwards Kalman filter recursion may be initialised exactly by inversion of
 where $\mathbf{y}_{N-L:N}$ is a vector of concatenated observations, and $H_{N-L}$ and $\Gamma_{N-L}$ may be constructed from the system models,
 %
 \begin{IEEEeqnarray}{rCl}
-\mathbf{y}_{N-L:N} & = & \begin{bmatrix}y_N \\ y_{N-1} \\ \vdots \\ y_{N-L} \end{bmatrix} \nonumber \\
-%\end{IEEEeqnarray}
-%\begin{IEEEeqnarray}{rCl}
-H_{N-L} & = & \begin{bmatrix} C A^L \\ C A^{L-1} \\ \vdots \\ C \end{bmatrix} \nonumber \\
-%\end{IEEEeqnarray}
-%\begin{IEEEeqnarray}{rCl}
+\mathbf{y}_{N-L:N} & = & \begin{bmatrix}y_N \\ y_{N-1} \\ \vdots \\ y_{N-L} \end{bmatrix} \nonumber
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
+H_{N-L} & = & \begin{bmatrix} C A^L \\ C A^{L-1} \\ \vdots \\ C \end{bmatrix} \nonumber
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
  \Gamma_{N-1} & = & K_{N-L} \begin{bmatrix} Q_N & 0 & \dots & 0 \\ 0 & Q_{N-1} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & Q_{N-L+1} \end{bmatrix} K_{N-L}^T \nonumber \\
-  & & + \: \begin{bmatrix} R_N & 0 & \dots & 0 \\ 0 & R_{N-1} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & R_{N-L} \end{bmatrix} \nonumber \\
-%\end{IEEEeqnarray}
-%\begin{IEEEeqnarray}{rCl}
+  & & + \: \begin{bmatrix} R_N & 0 & \dots & 0 \\ 0 & R_{N-1} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & R_{N-L} \end{bmatrix} \nonumber
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
  K_{N-L} & = & \begin{bmatrix} C & CA & \dots & CA^{L-1} \\ 0 & C & \dots & CA^{L-2} \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & C \\ 0 & 0 & \dots & 0 \end{bmatrix} \nonumber
 \end{IEEEeqnarray}
 
@@ -900,8 +908,10 @@ where $v_n$ is a Gaussian random variable with covariance matrix $R$.
 %\newpage
 \bibliographystyle{IEEEtran}
 \bibliography{D:/pb404/Dropbox/PhD/Cleanbib}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
