@@ -37,8 +37,8 @@ N.~Whiteley, A.~M. Johansen, and S.~Godsill, ``{M}onte {C}arlo filtering of
   Graphical Statistics}, vol.~20, pp. 119--139, 2011.
 
 \bibitem{Morelande2009a}
-M.~Morelande and N.~Gordon, ``Rao-blackwellised variable rate particle
-  filters,'' in \emph{Proc. 12th Int. Conf. Information Fusion}, july 2009, pp.
+M.~Morelande and N.~Gordon, ``{R}ao-{B}lackwellised variable rate particle
+  filters,'' in \emph{Proc. 12th Int. Conf. Information Fusion}, July 2009, pp.
   1 --8.
 
 \bibitem{Godsill2007a}
@@ -46,9 +46,9 @@ S.~Godsill, ``Particle filters for continuous-time jump models in tracking
   applications,'' \emph{ESAIM: Proc.}, vol.~19, pp. 39--52, 2007.
 
 \bibitem{Christensen2012}
-H.~L. Christensen, J.~Murphy, and S.~J. Godsill, ``Forecasting high-frequency
-  futures returns using online {L}angevin dynamics,'' \emph{IEEE Special Topics
-  in Signal Processing, to be published}, 2012.
+H.~Christensen, J.~Murphy, and S.~Godsill, ``Forecasting high-frequency futures
+  returns using online langevin dynamics,'' \emph{IEEE Journal of Selected
+  Topics in Signal Processing}, vol.~PP, no.~99, p.~1, 2012.
 
 \bibitem{Gordon1993}
 N.~Gordon, D.~Salmond, and A.~Smith, ``Novel approach to
@@ -110,8 +110,7 @@ X.~Li and V.~Jilkov, ``Survey of maneuvering target tracking. {P}art {I}:
 
 \bibitem{Bunch2012a}
 P.~Bunch and S.~Godsill, ``Dynamical models for tracking with the variable rate
-  particle filter,'' in \emph{Proc. 15th Int. Conf. Information Fusion, to be
-  published}, 2012.
+  particle filter,'' in \emph{Proc. 15th Int. Conf. Information Fusion}, 2012.
 
 \bibitem{Pitt1999}
 M.~K. Pitt and N.~Shephard, ``Filtering via simulation: Auxiliary particle
@@ -149,7 +148,7 @@ R.~Douc, A.~Garivier, E.~Moulines, and J.~Olsson, ``Sequential {M}onte {C}arlo
   Applied Probability}, vol.~21, no.~6, pp. 2109--2145, 2011.
 
 \bibitem{Briers2010}
-M.~Briers, A.~Doucet, and S.~Maskell, ``Smoothing algorithms for state–space
+M.~Briers, A.~Doucet, and S.~Maskell, ``Smoothing algorithms for state-space
   models,'' \emph{Annals of the Institute of Statistical Mathematics}, vol.~62,
   pp. 61--89, 2010.
 
@@ -159,8 +158,8 @@ P.~Fearnhead, D.~Wyncoll, and J.~Tawn, ``A sequential smoothing algorithm with
 
 \bibitem{Sarkka2012}
 S.~Sarkka, P.~Bunch, and S.~Godsill, ``A backward-simulation based
-  {Rao-Blackwellized} particle smoother for conditionally linear {Gaussian}
-  models,'' in \emph{16th {IFAC} Symp. System Identification, to be published},
+  rao-blackwellized particle smoother for conditionally linear gaussian
+  models,'' in \emph{Sysid 2012, 16th IFAC Symp. on System Identification},
   2012.
 
 \bibitem{Kitagawa1994}
@@ -175,7 +174,7 @@ A.~Gelb, Ed., \emph{Applied optimal estimation}.\hskip 1em plus 0.5em minus
 \bibitem{Bunch2012}
 P.~Bunch and S.~Godsill, ``Improved particle approximations to the joint
   smoothing distribution using {Markov} chain {Monte Carlo},'' \emph{IEEE
-  Trans. Signal Processing, to be published}, 2012, submitted for publication.
+  Trans. Signal Processing}, 2012, submitted for publication.
 
 \bibitem{Gilks1996}
 W.~Gilks, S.~Richardson, and D.~Spiegelhalter, \emph{Markov chain Monte Carlo
@@ -185,6 +184,15 @@ W.~Gilks, S.~Richardson, and D.~Spiegelhalter, \emph{Markov chain Monte Carlo
 D.~Schuhmacher, B.-T. Vo, and B.-N. Vo, ``A consistent metric for performance
   evaluation of multi-object filters,'' \emph{IEEE Trans. Signal Processing},
   vol.~56, pp. 3447--3457, 2008.
+
+\bibitem{Bar-Shalom1995}
+Y.~Bar-Shalom and X.~Li, \emph{Multitarget-multisensor tracking: principles and
+  techniques}.\hskip 1em plus 0.5em minus 0.4em\relax Storrs, CT : Yaakov
+  Bar-Shalom, 1995.
+
+\bibitem{Briers2003}
+M.~Briers, S.~Maskell, and R.~Wright, ``A rao-blackwellised unscented kalman
+  filter,'' in \emph{Proc. 6th Int. Conf. Information Fusion}, 2003.
 
 \bibitem{Julier2004}
 S.~Julier and J.~Uhlmann, ``Unscented filtering and nonlinear estimation,''

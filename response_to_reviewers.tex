@@ -8,7 +8,7 @@
 
 \begin{document}
 
-{\meta Many thanks for the comments, folks. I've made changes to address all but one, with which I have a bit of a philosophical disagreement. Reviewer 3's comments were particularly useful and prompted me to rethink carefully the purpose of the simulations section. Responses are inline with the individual points below. }
+{\meta Many thanks for the comments, folks. I've made changes to address them all. Responses are inline with the individual points below. }
 
 \section*{Reviewer Comments}
 
@@ -69,17 +69,15 @@ The authors propose a smoothing PF for variable rate models. The proposed method
 
 - The principal improvement offered by the more sophisticated particle smoothers compared to the filter-smoother is increased particle diversity. This should improve estimation performance but the improvements in consistency may be even greater. This is alluded to in the paper and partially covered by Figs 6 and 9 which show plots of sample trajectories. However, a more rigorous consistency analysis should be performed. For example, a simple approach would be to construct a Gaussian approximation to the posterior, establish a confidence ellipsoid and then count the number of times the true value falls within this ellipsoid.
 
-{\meta These two comments concern the same question: How should particle approximations of a distribution be compared? There is, of course, much more to a distributional estimate than how close its mean is to the true value, so we do need something more than just the RMSE, as you suggest. Ideally, we would like to compare our set of particles to the true posterior distribution, using statistics such as the effective sample size (ESS), or normalised estimation error squared (NEES). However this true posterior is not available. As a substitute, either a Gaussian approximation or a particle approximation with loads of particles are sometimes used as ``truth''. This is far from ideal, and I find the latter particularly unsettling, because we end up testing our particle algorithms only against their own best performance.
-
-My preferred alternative for measuring consistency is a mean ``empirical NEES'' statistic which takes a value between 0 and 1 and takes into account the estimation error, covariance estimate and diversity of the particle approximation. I've added details and plots of this metric to the paper. I think that together with the RMSE values, this provides sufficient evidence of the improvement provided by the smoother. }
+{\meta These two comments concern the same question: How should particle approximations of a distribution be compared? There is, of course, much more to a distributional estimate than how close its mean is to the true value, so we do need something more than just the RMSE, as you suggest. One useful and established metric for measuring efficiency is the normalised estimation error squared (NEES), but we can't use this directly, because when the particle estimate is degenerate the NEES is infinite. Therefore, I've added a transformed version of the NEES as an efficiency measure. I think that together with the RMSE values, this provides sufficient evidence of the improvement provided by the smoother. }
 
 - Comparing the proposed method and the filter-smoother for equal sample sizes doesn't really make sense given that the former has $O(N^2)$ expense while the latter has $O(N)$ expense. The filter-smoother should be implemented with a much larger sample size such that both algorithms have approximately equal expense. This approach, which is taken in (Fearnhead et al, 2010), seems much fairer.
 
-{\meta I completely disagree. I think this would be misleading and is unnecessary for demonstrating the purpose of the new smoothers.
+{\meta I think this is a bit misleading really. Although it might be a fairer test for a given problem, the result can be changed by modifying the scenario. For example, the relative performance of the smoother will be improved by having a longer data set. All I want to demonstrate in the simulations section is that the smoother operates as expected --- producing rejuvenated particle sets. The better algorithm for any application will depend on the model, the length of the data, and the desired output (e.g. is a distributional estimate needed, or is a single sample enough?).
 
-For a start, the filter-smoother and the smoother provide estimates with different qualities, and comparing them like this would be to compare apples with oranges. The principal reason for using a particle smoother is to rejuvenate a particle population with low path-space diversity. This is demonstrated by the increased number of unique particles and the improved consistency. (The reduced RMSE is a consequent bonus.) In contrast, [Fearnhead et al. 2010] are comparing a variety of smoothing algorithms all of which do the same thing, produce a diverse set of marginal smoothing particles. Their methods are not appropriate here.
+In contrast to us, [Fearnhead et al. 2010] are comparing a variety of smoothing algorithms all of which do the same thing, produce a diverse set of marginal smoothing particles. Simple changes like altering the data length are less likely to affect their results, so their methods are appropriate to their purpose, but less so here.
 
-Furthermore, if we were trying to solve a particular practical problem, such as producing the best state estimator possible for an offline tracker, then it would be a sensible test. However, the example simulations here are entirely fictional, cooked up simply to demonstrate that the new smoothing algorithm functions as expected. The problem is that whatever this test demonstrated about relative performance, the result could be reversed by changing the set-up of the simulation. }
+However, Simon agrees with you. So i have actually changed the number of particles in the comparisons based on this equal-computation principle. }
 
 - Results should be shown for a range of sample sizes so we can get an idea of the required sample size for (close to) optimal performance.
 
@@ -113,4 +111,4 @@ Some minor comments:
 
 
 
-\end{document}
+\end{document} 

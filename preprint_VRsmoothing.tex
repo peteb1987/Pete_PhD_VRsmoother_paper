@@ -1,6 +1,6 @@
-\documentclass[10pt,twocolumn,twoside]{IEEEtran}
+\documentclass{article}
 
-
+\usepackage{IEEEtrantools}
 \usepackage{cite}
 \usepackage[pdftex]{graphicx}
 \usepackage[cmex10]{amsmath}
@@ -26,16 +26,9 @@
 
 \title{Particle Smoothing Algorithms for Variable Rate Models}
 
-\author{Pete~Bunch*,~\IEEEmembership{Member,~IEEE,}
-        Simon~Godsill,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
-\thanks{P. Bunch and S. Godsill are with the Department
-of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
-}%\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+\author{Pete~Bunch and Simon~Godsill%
+\thanks{Department of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}}
 
-
-% The paper headers
-\markboth{IEEE Transaction in Signal Processing}{IEEE Transaction in Signal Processing}%,~Vol.~1, No.~1, January~1901}%
-%{Bunch \& Godsill: Particle Smoothing Algorithms for Variable Rate Models}
 
 % make the title area
 \maketitle
@@ -44,15 +37,13 @@ of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-t
 Standard state-space methods assume that the latent state evolves uniformly over time, and can be modelled with a discrete-time process synchronous with the observations. This may be a poor representation of some systems in which the state evolution displays discontinuities in its behaviour. For such cases, a variable rate model may be more appropriate; the system dynamics are conditioned on a set of random changepoints which constitute a marked point process. In this paper, new particle smoothing algorithms are presented for use with conditionally linear-Gaussian and conditionally deterministic dynamics. These are demonstrated on problems in financial modelling and target tracking. Results indicate that the smoothing approximations provide more accurate and more diverse representations of the state posterior distributions.
 \end{abstract}
 
-\begin{IEEEkeywords}
-Bayesian inference, state-space model, variable rate, particle filter, filtering, smoothing
-\end{IEEEkeywords}
+
 
 
 
 \section{Introduction}
 
-\IEEEPARstart{T}{he} objective of sequential Bayesian inference is to estimate an imperfectly observed quantity as it varies over time. This is accomplished through the use of probabilistic models for the state evolution and measurement processes. Often, the latent state is a continuously varying quantity, whereas the observations are made at a discrete set of times. In these circumstances, it is simplest to discretise the state onto the same set of times as the observations. When the system is also Markovian, this leads to the standard ``fixed rate'' hidden Markov model (HMM). The standard HMM is poorly suited to systems where the state evolution contains discontinuities; for example, the price of a financial asset which may display large jumps at random times between periods of diffusion-like behaviour, or the kinematic state of a manoeuvring vehicle which may have sudden changes in the acceleration when turns begin or end. Such problems can be handled more naturally using a ``variable rate'' model, in which the state dynamics are conditioned upon a set of changepoints which characterise transitions in behaviour.
+The objective of sequential Bayesian inference is to estimate an imperfectly observed quantity as it varies over time. This is accomplished through the use of probabilistic models for the state evolution and measurement processes. Often, the latent state is a continuously varying quantity, whereas the observations are made at a discrete set of times. In these circumstances, it is simplest to discretise the state onto the same set of times as the observations. When the system is also Markovian, this leads to the standard ``fixed rate'' hidden Markov model (HMM). The standard HMM is poorly suited to systems where the state evolution contains discontinuities; for example, the price of a financial asset which may display large jumps at random times between periods of diffusion-like behaviour, or the kinematic state of a manoeuvring vehicle which may have sudden changes in the acceleration when turns begin or end. Such problems can be handled more naturally using a ``variable rate'' model, in which the state dynamics are conditioned upon a set of changepoints which characterise transitions in behaviour.
 
 In a variable rate setting, changepoints and associated parameters are modelled as a marked point process (MPP), the mathematical properties of which are explored comprehensively in \cite{Jacobsen2006}. Conditional upon this MPP the state evolves according to some benign dynamics. In \cite{Godsill2007,Whiteley2011,Morelande2009a}, the conditional state evolution is treated as deterministic, while in \cite{Godsill2007a,Christensen2012} a conditionally linear-Gaussian state model is considered.
 
@@ -638,21 +629,15 @@ The number of MH steps, $M$, at each observation time, $n$, allows a trade-off o
 
 The smoothers and the final step of the filters each produce a particle approximation to the changepoint sequence posterior, $p(\theta|y_{1:N})$. Calculating a single estimator from these is no simple task. Each particle consists of a list of changepoint times and parameters, and there is no obvious way to take an average over the set to produce a single estimate. Furthermore, if a best estimate could be calculated (e.g. by finding the maximum a posteriori sequence), it is not trivial to define a distance metric between the estimated and true sequences to assess relative accuracy. (One possible choice of metric has been considered for this comparison, the optimal sub-pattern assignment (OSPA) distance of \cite{Schuhmacher2008}. However, the relative performance of the algorithms is liable to vary significantly with the parameters of the metric.)
 
-Comparisons of accuracy are most easily conducted by comparing state estimates. These can be calculated by simply taking a mean of the particle values (using the Gaussian means for the linear-Gaussian case). The accuracy is then assessed by comparing the size of errors of the resulting estimators. In addition, the benefit of employing a smoothing algorithm is that it ensures a more diverse particle representation of the posterior state distribution, and hence a more efficient estimate. To demonstrate this effect, a measure of efficiency is calculated by which to compare the algorithms. The normalised estimation error squared (NEES) \cite{Bar-Shalom1995,Briers2003} is a statistic derived from the chi-squared test to evaluate the consistency of an estimate. It is defined by,
+Comparisons of accuracy are most easily conducted by comparing state estimates. These can be calculated by simply taking a mean of the particle values (using the Gaussian means for the linear-Gaussian case). The accuracy is then assessed by comparing the size of estimation errors of the resulting estimators. In addition, the benefit of employing a smoothing algorithm is that it ensures a more diverse particle representation of the posterior state distribution. To demonstrate this effect, a measure of estimator consistency is calculated by which to compare the algorithms, the mean empirical normalised estimation error squared (MENEES). This is defined as,  %the number of unique state samples is plotted over time in the following examples. A
 %
 \begin{IEEEeqnarray}{rCl}
- \text{NEES}_k & = & (\hat{x}_k - x_k^*)^T \hat{P}_k^{-1} (\hat{x}_k - x_k^*) \nonumber \\
+ \text{MENEES}_k & = & (\hat{x}_k - x_k^*)^T \hat{P}_k^{-1} (\hat{x}_k - x_k^*) \nonumber \\
  \hat{x}_k & = & \frac{1}{N_S} \sum_i x_{k}^{(i)} \nonumber \\
- \hat{P}_k & = & \frac{1}{N_S} \sum_i (x_{k}^{(i)} - \hat{x}_k) (x_{k}^{(i)} - \hat{x}_k)^T \nonumber     ,
+ \hat{P}_k & = & \frac{1}{N_S} \sum_i (x_{k}^{(i)} - x_k^*) (x_{k}^{(i)} - x_k^*)^T \nonumber     ,
 \end{IEEEeqnarray}
 
-where $x_k^*$ is the true state value and $x_k^{(i)}$ are the individual particle states. Calculating NEES for particle approximations which might be degenerate is problematic, because $\hat{P}_k$ will not be invertible (resulting in an infinite value). Here we map the interval $(0, \infty)$ onto $(0, 1)$ using the following transformation, giving a transformed NEES (TNEES) score.
-%
-\begin{IEEEeqnarray}{rCl}
- \text{TNEES}_k & = &\frac{\text{NEES}_k}{1+\text{NEES}_k}     .
-\end{IEEEeqnarray}
-
-Assuming Gaussian distributed estimation errors, NEES can be shown to obey a chi-squared distribution with the degrees of freedom parameter equal to the number of state dimensions. Under this assumption, the optimal value of mean TNEES can be found using the transformation above and compared to the average over a large number of Monte Carlo runs. The integral required to calculate this mean is intractable but may be accurately approximated by simulation.
+where $x_k^*$ is the true state, and $x_k^{(i)}$ are the individual particle states. This statistic takes a value between $0$ and $1$, where $1$ is scored by a degenerate particle estimate (fewer linearly independent particles than state dimensions). For a non-degenerate estimate, smaller values correspond to smaller estimation errors relative to the estimated covariance. Thus, it incorporates the diversity of the particle set as well the accuracy of the estimate and covariance.
 
 In the following examples, we compare the state estimates from the ``filter-smoother'' \cite{Kitagawa1996} and the VRPS. Filter-smoother estimates use the particle approximation from the final step of the VRPF for the changepoint distribution. In the linear-Gaussian case, an RTS smoother is used to find the state posterior distribution for each particle, $p(x_n|\theta^{(i)}, y_{1:N})$, from which state estimates are derived.
 
@@ -664,7 +649,7 @@ In the following examples, we compare the state estimates from the ``filter-smoo
 
 The Rao-Blackwellised variable rate algorithms were tested on the jump-diffusion model outlined in section~\ref{sec:financial_model} using artificial simulated data. The times between changepoints are assumed to be exponentially distributed with mean $1/\alpha$, and equal probability of value and trend jumps. Observations were made on a regular time grid with a spacing of $0.0017s$. Other parameters used were: $\alpha = 20$, $\lambda = 5$, $\sigma = 0.05$, $\sigma_{J1} = 0.005$, $\sigma_{J2} = 0.05$, $\sigma_{y} = 0.001$.
 
-The filter and filter-smoother were run using using $\aleph_F = 1000$ particles, while the smoother used $\aleph_F = 100$ particles and was used to simulate $\aleph_S = 100$ smoothed paths. These values lead to roughly equal running time for the smoother and filter-smoother. Bootstrap proposals were used for the filter. An example forward realisation simulated from the model is shown in Fig.~\ref{fig:example_data}. The sampled trend trajectories produced by the filter-smoother and VRPS are shown in Fig.~\ref{fig:example_state} (the equivalent graphs for value are not particularly informative as this quantity is observed, and the errors produced by both algorithms are small). Notice that the path diversity is dramatically improved by the VRPS.
+The filter used $\aleph_F = 100$ particles, and the smoother resampled $\aleph_S = 100$ sequences. Bootstrap proposals were used for the filter. An example forward realisation simulated from the model is shown in figure~\ref{fig:example_data}. The sampled trend trajectories produced by the filter-smoother and VRPS are shown in figure~\ref{fig:example_state} (the equivalent graphs for value are not particularly informative as this quantity is observed, and the errors produced by both algorithms are small). Notice that the path diversity is dramatically improved by the VRPS.
 %
 \begin{figure}[!t]
 \centering
@@ -681,7 +666,7 @@ The filter and filter-smoother were run using using $\aleph_F = 1000$ particles,
 \label{fig:example_state}
 \end{figure}
 %
-Performance was evaluated by testing on 100 scenarios, each with 1000 observations. At each observation time, an estimate of the value and trend is made by taking the average of Gaussian means generated by an RTS smoother for each particle. The resulting mean absolute error over all scenarios is shown in Fig.~\ref{fig:finance_rmse}, demonstrating a small improvement in accuracy from the smoother. Mean TNEES is shown in Fig.~\ref{fig:finance_mtnees}, showing a similar efficiency between filter and smoother. The filter-smoother produces a mean TNEES close to $1$ at most time instants, because there is often only one unique particle in the set.% are displayed in table~\ref{tab:finance_state_performance}
+Performance was evaluated by testing on 100 scenarios, each with 1000 observations. At each observation time, an estimate of the value and trend is made by taking the average of Gaussian means generated by an RTS smoother for each particle. The resulting mean absolute error over all scenarios is shown in figure~\ref{fig:finance_rmse}, demonstrating a small improvement in accuracy from the smoother. More significantly, MENEES is shown in figure~\ref{fig:finance_menees}, showing a similar consistency between filter and smoother. The filter-smoother produces an MENEES of $1$ at almost all time instants, because there is only one unique particle in the set.% are displayed in table~\ref{tab:finance_state_performance}
 %
 \begin{figure}[!t]
 \centering
@@ -693,9 +678,9 @@ Performance was evaluated by testing on 100 scenarios, each with 1000 observatio
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{finance_mtnees.pdf}
-\caption{Mean TNEES over 100 scenarios using filter, filter-smoother, and smoother. Optimum value: 0.54}
-\label{fig:finance_mtnees}
+\includegraphics[width=0.9\columnwidth]{finance_menees.pdf}
+\caption{MENEES over 100 scenarios using filter, filter-smoother, and smoother.}
+\label{fig:finance_menees}
 \end{figure}
 %
 %\begin{table}%
@@ -723,7 +708,7 @@ Performance was evaluated by testing on 100 scenarios, each with 1000 observatio
 %\label{fig:finance_unique_particles}
 %\end{figure}
 %
-As well as providing more accurate and more diverse estimates, the smoother is also capable of preserving multi-modality in its representation of the posterior distribution, which is lost by the filter smoother due to the particle collapse to a single value. This is highlighted in Fig.~\ref{fig:finance_multimodality}, which shows the trend estimates from a segment of simulated data containing a small jump. In the filter-smoother results, none of the particles have a jump at this point. In contrast, a significant number of the smoother particles contain a jump around about the right place. This ability to represent multi-modality is a key advantage of good particle smoothing algorithms.
+As well as providing more accurate and more diverse estimates, the smoother is also capable of preserving multi-modality in its representation of the posterior distribution, which is lost by the filter smoother due to the particle collapse to a single value. This is highlighted in figure~\ref{fig:finance_multimodality}, which shows a segment of the trend estimates from figure~\ref{fig:example_state} containing a small jump. In the filter-smoother results, none of the particles have a jump at this point. In contrast, a significant number of the smoother particles contain a jump around about the right place. This ability to represent multi-modality is a key advantage of good particle smoothing algorithms.
 %
 \begin{figure}[!t]
 \centering
@@ -741,7 +726,7 @@ The piecewise-deterministic variable rate algorithms were tested on the intrinsi
 
 The filtering and smoothing algorithms were tested on artificial data simulated from the model. Observations were generated every $0.1s$. The variances of tangential and normal accelerations were set to $0.01m/s^2$ and $1m/s^2$ respectively, and those for the drift velocities to $1m/s$. The parameters of the Gamma distribution for inter-changepoint times were $5$ and $1s$ for the shape and scale respectively. Observation noise standard deviations were $0.1m$ and $0.25^{\circ}$ respectively.
 
-The filter and filter-smoother were run using using $\aleph_F = 500$ particles, while the smoother used $\aleph_F = 50$ particles and was used to simulate $\aleph_S = 50$ smoothed paths. These values lead to roughly equal running time for the smoother and filter-smoother. The filter employed resample-move steps with proposals based on an unscented transform \cite{Julier2004} approximation to the optimal proposal density, and the smoother using $M=5$ steps in each Markov chain.
+The filter and smoother were each used to generate $50$ particles, with the filter employing resample-move steps with proposals based on an unscented transform \cite{Julier2004} approximation to the optimal proposal density, and the smoother using $M=5$ steps in each Markov chain.
 
 An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the results from the filter-smoother and smoother in Fig.\ref{fig:2D_particle_results}. The improved particle diversity achieved by the smoothing algorithm is readily apparent.
 %
@@ -760,7 +745,7 @@ An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the 
 \label{fig:2D_particle_results}
 \end{figure}
 %
-Performance was evaluated by testing on 100 independently generated scenarios, each with 500 observations. At each observation time, an estimate of the position and velocity is made by taking the average of values from the array of particles. The resulting mean absolute error over all scenarios is shown in Fig.~\ref{fig:tracking_rmse}, again demonstrating a small improvement in accuracy from the smoother. The smoother also provides a more accurate estimate of the number of changepoints in each test, with an average error of 0.6 compared to 2.0 from the filter-smoother. Mean TNEES is displayed in Fig.~\ref{fig:tracking_mtnees}. It shows that while the smoother does not match the efficiency of the filter, it is a significant improvement over the filter-smoother, which has a Mean TNEES of $1$ at almost all time instants, because there is only one unique particle in the set. %in table~\ref{tab:tracking_state_performance}, demonstrating an improvement in accuracy from the smoother.
+Performance was evaluated by testing on 100 independently generated scenarios, each with 500 observations. At each observation time, an estimate of the position and velocity is made by taking the average of values from the array of particles. The resulting mean absolute error over all scenarios is shown in figure~\ref{fig:finance_rmse}, again demonstrating a small improvement in accuracy from the smoother. The smoother also provides a more accurate estimate of the number of changepoints in each test, with an average error of 0.6 compared to 2.0 from the filter-smoother. MENEES is displayed in figure~\ref{fig:tracking_menees}, showing a similar consistency between filter and smoother. The filter-smoother produces an MENEES of $1$ at almost all time instants, because there is only one unique particle in the set. %in table~\ref{tab:tracking_state_performance}, demonstrating an improvement in accuracy from the smoother.
 %
 \begin{figure}[!t]
 \centering
@@ -772,9 +757,9 @@ Performance was evaluated by testing on 100 independently generated scenarios, e
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{tracking_mtnees.pdf}
-\caption{Mean TNEES over 100 scenarios using filter, filter-smoother, and smoother. Optimum value: 0.73}
-\label{fig:tracking_mtnees}
+\includegraphics[width=0.9\columnwidth]{tracking_menees.pdf}
+\caption{MENEES over 100 scenarios using filter, filter-smoother, and smoother.}
+\label{fig:tracking_menees}
 \end{figure}
 %
 %The mean number of unique particle estimates at each time step is shown in Fig.~\ref{fig:tracking_unique_particles}. This illustrates again the principal advantage of the VRPS algorithm --- the increased number of unique particles in the approximation means a better characterisation of the posterior changepoint distribution, allowing, for example, calculation of state covariances.
@@ -803,16 +788,15 @@ Performance was evaluated by testing on 100 independently generated scenarios, e
 %\label{fig:tracking_unique_particles}
 %\end{figure}
 %
-Finally, in Fig.~\ref{fig:varying_num_pts} the variation in accuracy and efficiency of the smoothing particle approximation is demonstrated as the number of smoothing particles varies. As expected, the rate of improvement diminishes and becomes negligible as the number of smoothing particles exceeds the number of filtering particles.
+Finally, in figure~\ref{fig:varying_num_pts} the variation in accuracy and consistency of the smoothing particle approximation is demonstrated as the number of smoothing particles varies. As expected, the rate of improvement diminishes and becomes negligible as the number of smoothing particles exceeds the number of filtering particles.
 %
-\begin{figure}
+\begin{figure}[!t]
 \centering
 \subfloat[]{\includegraphics[width=0.45\columnwidth]{pos_RMSE_vs_numpts.pdf}}
-\subfloat[]{\includegraphics[width=0.45\columnwidth]{MTNEES_vs_numpts.pdf}}
-\caption{Average position error (a) and Mean TNEES (b) over 100 scenarios with varying number of smoother particles and 50 filter particles.}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{MENEES_vs_numpts.pdf}}
+\caption{Average position error (a) and MENEES (b) over 100 scenarios with varying number of smoother particles and 50 filter particles.}
 \label{fig:varying_num_pts}
 \end{figure}
-
 
 
 \section{Conclusions}
@@ -821,7 +805,7 @@ New smoothing algorithms have been introduced for variable rate models which hav
 
 
 
-\appendices
+\appendix
 %\section{The Backwards Kalman Filter} \label{app:backwards_KF}
 %
 %A backwards Kalman filter \cite{Fraser1969,Kitagawa1994} is used to calculate the joint likelihood term, $p(y_{n+1:N}|x_n, \tilde{\theta}_{n}^+)$, when the state dynamics are linear-Gaussian. Assume that at time $t_{n+1}$ there is a Gaussian density such that,
@@ -975,30 +959,3 @@ where $v_n$ is a Gaussian random variable with covariance matrix $R$.
 %\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
 
 \end{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

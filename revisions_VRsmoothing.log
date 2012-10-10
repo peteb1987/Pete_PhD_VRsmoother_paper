@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  13 SEP 2012 11:19
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  9 OCT 2012 12:24
 entering extended mode
 **revisions_VRsmoothing.tex
 
@@ -413,10 +413,10 @@ File: ./images/finance/finance_value_rmse.pdf Graphic file (type pdf)
 File: ./images/finance/finance_trend_rmse.pdf Graphic file (type pdf)
 
 <use ./images/finance/finance_trend_rmse.pdf>
-<./images/finance/finance_menees.pdf, id=49, 381.425pt x 211.79124pt>
-File: ./images/finance/finance_menees.pdf Graphic file (type pdf)
+<./images/finance/finance_mtnees.pdf, id=49, 381.425pt x 211.79124pt>
+File: ./images/finance/finance_mtnees.pdf Graphic file (type pdf)
 
-<use ./images/finance/finance_menees.pdf>
+<use ./images/finance/finance_mtnees.pdf>
 <./images/finance/finance_filter_multimodality.pdf, id=50, 219.82124pt x 148.55
 5pt>
 File: ./images/finance/finance_filter_multimodality.pdf Graphic file (type pdf)
@@ -430,59 +430,57 @@ f)
 h/VariableRateAlgorithms/combined_paper/images/finance/example_data.pdf> <D:/pb
 404/Research/VariableRateAlgorithms/combined_paper/images/finance/example_filte
 rsmoother_state.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/i
-mages/finance/example_smoother_state.pdf> <D:/pb404/Research/VariableRateAlgori
-thms/combined_paper/images/finance/finance_value_rmse.pdf> <D:/pb404/Research/V
-ariableRateAlgorithms/combined_paper/images/finance/finance_trend_rmse.pdf>] <.
-/images/tracking/simulated_problem.pdf, id=95, 289.08pt x 216.81pt>
+mages/finance/example_smoother_state.pdf>]
+<./images/tracking/simulated_problem.pdf, id=83, 289.08pt x 216.81pt>
 File: ./images/tracking/simulated_problem.pdf Graphic file (type pdf)
 
 <use ./images/tracking/simulated_problem.pdf>
-<./images/tracking/2DFilter.pdf, id=96, 289.08pt x 216.81pt>
+<./images/tracking/2DFilter.pdf, id=84, 289.08pt x 216.81pt>
 File: ./images/tracking/2DFilter.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DFilter.pdf>
-<./images/tracking/2DSmoother.pdf, id=97, 289.08pt x 216.81pt>
+<./images/tracking/2DSmoother.pdf, id=85, 289.08pt x 216.81pt>
 File: ./images/tracking/2DSmoother.pdf Graphic file (type pdf)
 
 <use ./images/tracking/2DSmoother.pdf>
-<./images/tracking/tracking_pos_rmse.pdf, id=98, 379.4175pt x 211.79124pt>
+<./images/tracking/tracking_pos_rmse.pdf, id=86, 379.4175pt x 211.79124pt>
 File: ./images/tracking/tracking_pos_rmse.pdf Graphic file (type pdf)
 
 <use ./images/tracking/tracking_pos_rmse.pdf>
-<./images/tracking/tracking_vel_rmse.pdf, id=99, 379.4175pt x 211.79124pt>
+<./images/tracking/tracking_vel_rmse.pdf, id=87, 379.4175pt x 211.79124pt>
 File: ./images/tracking/tracking_vel_rmse.pdf Graphic file (type pdf)
 
 <use ./images/tracking/tracking_vel_rmse.pdf>
-<./images/tracking/tracking_menees.pdf, id=100, 379.4175pt x 211.79124pt>
-File: ./images/tracking/tracking_menees.pdf Graphic file (type pdf)
+<./images/tracking/tracking_mtnees.pdf, id=88, 379.4175pt x 211.79124pt>
+File: ./images/tracking/tracking_mtnees.pdf Graphic file (type pdf)
 
-<use ./images/tracking/tracking_menees.pdf>
-<./images/tracking/pos_RMSE_vs_numpts.pdf, id=101, 207.77625pt x 209.78375pt>
+<use ./images/tracking/tracking_mtnees.pdf>
+<./images/tracking/pos_RMSE_vs_numpts.pdf, id=89, 207.77625pt x 209.78375pt>
 File: ./images/tracking/pos_RMSE_vs_numpts.pdf Graphic file (type pdf)
 
 <use ./images/tracking/pos_RMSE_vs_numpts.pdf>
-<./images/tracking/MENEES_vs_numpts.pdf, id=102, 207.77625pt x 209.78375pt>
-File: ./images/tracking/MENEES_vs_numpts.pdf Graphic file (type pdf)
+<./images/tracking/MTNEES_vs_numpts.pdf, id=90, 207.77625pt x 209.78375pt>
+File: ./images/tracking/MTNEES_vs_numpts.pdf Graphic file (type pdf)
 
-<use ./images/tracking/MENEES_vs_numpts.pdf> [10 <D:/pb404/Research/VariableRat
-eAlgorithms/combined_paper/images/finance/finance_menees.pdf> <D:/pb404/Researc
-h/VariableRateAlgorithms/combined_paper/images/finance/finance_filter_multimoda
-lity.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/finan
-ce/finance_smoother_multimodality.pdf> <D:/pb404/Research/VariableRateAlgorithm
-s/combined_paper/images/tracking/simulated_problem.pdf> <D:/pb404/Research/Vari
-ableRateAlgorithms/combined_paper/images/tracking/2DFilter.pdf> <D:/pb404/Resea
-rch/VariableRateAlgorithms/combined_paper/images/tracking/2DSmoother.pdf>]
-Underfull \hbox (badness 1454) in paragraph at lines 813--814
+<use ./images/tracking/MTNEES_vs_numpts.pdf>
+Underfull \hbox (badness 1454) in paragraph at lines 820--821
 \OT1/ptm/m/n/10 points. For the linear-Gaussian case, the al-go-rithm em-
  []
 
-[11 <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/tracking/tr
-acking_pos_rmse.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/i
-mages/tracking/tracking_vel_rmse.pdf> <D:/pb404/Research/VariableRateAlgorithms
-/combined_paper/images/tracking/tracking_menees.pdf> <D:/pb404/Research/Variabl
-eRateAlgorithms/combined_paper/images/tracking/pos_RMSE_vs_numpts.pdf> <D:/pb40
-4/Research/VariableRateAlgorithms/combined_paper/images/tracking/MENEES_vs_nump
-ts.pdf>]
+[10 <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/finance/fin
+ance_value_rmse.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/i
+mages/finance/finance_trend_rmse.pdf> <D:/pb404/Research/VariableRateAlgorithms
+/combined_paper/images/finance/finance_mtnees.pdf> <D:/pb404/Research/VariableR
+ateAlgorithms/combined_paper/images/finance/finance_filter_multimodality.pdf> <
+D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/finance/finance_
+smoother_multimodality.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_
+paper/images/tracking/simulated_problem.pdf>] [11 <D:/pb404/Research/VariableRa
+teAlgorithms/combined_paper/images/tracking/2DFilter.pdf> <D:/pb404/Research/Va
+riableRateAlgorithms/combined_paper/images/tracking/2DSmoother.pdf> <D:/pb404/R
+esearch/VariableRateAlgorithms/combined_paper/images/tracking/tracking_pos_rmse
+.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/tracking/
+tracking_vel_rmse.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper
+/images/tracking/tracking_mtnees.pdf>]
 (D:\pb404\Research\VariableRateAlgorithms\combined_paper\revisions_VRsmoothing.
 bbl
 Underfull \hbox (badness 4072) in paragraph at lines 54--57
@@ -490,20 +488,23 @@ Underfull \hbox (badness 4072) in paragraph at lines 54--57
  []
 
 
-Underfull \hbox (badness 2318) in paragraph at lines 126--129
+Underfull \hbox (badness 2318) in paragraph at lines 125--128
 []\OT1/ptm/m/n/8 A. Doucet, N. De Fre-itas, K. Mur-phy, and S. Rus-sell, ``Rao-
 
  []
 
-Missing character: There is no – in font ptmr7t!
-) [12]
+[12 <D:/pb404/Research/VariableRateAlgorithms/combined_paper/images/tracking/po
+s_RMSE_vs_numpts.pdf> <D:/pb404/Research/VariableRateAlgorithms/combined_paper/
+images/tracking/MTNEES_vs_numpts.pdf>]) [13
+
+]
 (D:\pb404\Research\VariableRateAlgorithms\combined_paper\revisions_VRsmoothing.
 aux) ) 
 Here is how much of TeX's memory you used:
- 3922 strings out of 494019
- 60267 string characters out of 3143883
- 135249 words of memory out of 3000000
- 7144 multiletter control sequences out of 15000+200000
+ 3924 strings out of 494019
+ 60295 string characters out of 3143883
+ 135258 words of memory out of 3000000
+ 7146 multiletter control sequences out of 15000+200000
  45956 words of font info for 94 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  36i,21n,45p,1215b,563s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -525,9 +526,9 @@ nts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
 rw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/u
 tmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
 
-Output written on revisions_VRsmoothing.pdf (12 pages, 1591067 bytes).
+Output written on revisions_VRsmoothing.pdf (13 pages, 2140780 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
+ 247 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
