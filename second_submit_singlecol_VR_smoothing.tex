@@ -1,4 +1,4 @@
-\documentclass[10pt,twocolumn,twoside]{IEEEtran}
+\documentclass[peerreview,11pt,draftcls,onecolumn]{IEEEtran}
 
 
 \usepackage{cite}
@@ -668,15 +668,15 @@ The filter and filter-smoother were run using using $\aleph_F = 1000$ particles,
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{example_data.pdf}
+\includegraphics[width=0.45\columnwidth]{example_data.pdf}
 \caption{An example simulated data set, showing value (top) and trend (bottom). Value observations are overlayed. Jump times are shown as dotted vertical lines.}
 \label{fig:example_data}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{example_filtersmoother_state.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{example_smoother_state.pdf}}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{example_filtersmoother_state.pdf}} \\
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{example_smoother_state.pdf}}
 \caption{Trend estimates from (a) the filter-smoother and (b) smoother. Solid lines show means of each particle. Dashed lines show mean $\pm$2 standard deviations.}
 \label{fig:example_state}
 \end{figure}
@@ -685,15 +685,15 @@ Performance was evaluated by testing on 100 scenarios, each with 1000 observatio
 %
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{finance_value_rmse.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{finance_trend_rmse.pdf}}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{finance_value_rmse.pdf}} \\
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{finance_trend_rmse.pdf}}
 \caption{Value (a) and trend (b) mean absolute error over 100 scenarios using filter, filter-smoother, and smoother.}
 \label{fig:finance_rmse}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{finance_mtnees.pdf}
+\includegraphics[width=0.45\columnwidth]{finance_mtnees.pdf}
 \caption{Mean TNEES over 100 scenarios using filter, filter-smoother, and smoother. Optimum value: 0.54}
 \label{fig:finance_mtnees}
 \end{figure}
@@ -747,15 +747,15 @@ An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the 
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{simulated_problem.pdf}
+\includegraphics[width=0.45\columnwidth]{simulated_problem.pdf}
 \caption{An example simulated data set, showing true position (dashed line), observations (dots) and changepoint positions (crosses). }
 \label{fig:simulated_trajectory}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DFilter.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DSmoother.pdf}}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{2DFilter.pdf}} \\
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{2DSmoother.pdf}}
 \caption{Filter-smoother (a) and smoother (b) particle estimates of position (solid lines), with particle changepoint positions (crosses). }
 \label{fig:2D_particle_results}
 \end{figure}
@@ -764,15 +764,15 @@ Performance was evaluated by testing on 100 independently generated scenarios, e
 %
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{tracking_pos_rmse.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{tracking_vel_rmse.pdf}}
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{tracking_pos_rmse.pdf}} \\
+\subfloat[]{\includegraphics[width=0.45\columnwidth]{tracking_vel_rmse.pdf}}
 \caption{Position (a) and velocity (b) mean absolute error over 100 scenarios using filter, filter-smoother, and smoother.}
 \label{fig:tracking_rmse}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{tracking_mtnees.pdf}
+\includegraphics[width=0.45\columnwidth]{tracking_mtnees.pdf}
 \caption{Mean TNEES over 100 scenarios using filter, filter-smoother, and smoother. Optimum value: 0.73}
 \label{fig:tracking_mtnees}
 \end{figure}
