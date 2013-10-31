@@ -1,5 +1,5 @@
-%\documentclass[10pt,twocolumn,twoside]{IEEEtran}
-\documentclass[peerreview,11pt,draftcls,onecolumn]{IEEEtran}
+\documentclass[10pt,twocolumn,twoside]{IEEEtran}
+%\documentclass[peerreview,11pt,draftcls,onecolumn]{IEEEtran}
 
 
 \usepackage{cite}
@@ -15,7 +15,7 @@
 \usepackage{url}
 \usepackage{color}
 
-\graphicspath{{./images/}{./images/finance/}{./images/tracking/}}
+\graphicspath{{../images/}{../images/finance/}{../images/tracking/}}
 
 
 \newenvironment{meta}[0]{\color{red} \em}{}
@@ -714,8 +714,8 @@ An example trajectory is shown in Fig.~\ref{fig:simulated_trajectory}, with the 
 %
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DFilter.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{2DSmoother.pdf}}
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{2Dfilter.pdf}} \\
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{2Dsmoother.pdf}}
 \caption{Filter-smoother (a) and smoother (b) particle estimates of position (solid lines), with particle changepoint positions (crosses). }
 \label{fig:2D_particle_results}
 \end{figure}
@@ -724,15 +724,15 @@ Performance was evaluated by testing on 100 independently generated scenarios, e
 %
 \begin{figure}[!t]
 \centering
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{tracking_pos_rmse.pdf}} \\
-\subfloat[]{\includegraphics[width=0.9\columnwidth]{tracking_vel_rmse.pdf}}
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{tracking_pos_RMSE.pdf}} \\
+\subfloat[]{\includegraphics[width=0.9\columnwidth]{tracking_vel_RMSE.pdf}}
 \caption{Position (a) and velocity (b) mean absolute error over 100 scenarios using filter, filter-smoother, and smoother.}
 \label{fig:tracking_rmse}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{tracking_mtnees.pdf}
+\includegraphics[width=0.9\columnwidth]{tracking_MTNEES.pdf}
 \caption{Mean TNEES over 100 scenarios using filter, filter-smoother, and smoother. Optimum value: 0.73}
 \label{fig:tracking_mtnees}
 \end{figure}
